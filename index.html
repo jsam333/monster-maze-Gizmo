@@ -8,7 +8,7 @@
     *,*::before,*::after{box-sizing:border-box}
     html{font-size:150%}
     html,body{margin:0;min-height:100%;min-height:100dvh;background:#000;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-    .game-shell{--shell-w:500;--shell-h:718;aspect-ratio:var(--shell-w)/var(--shell-h);width:min(500px,100vw,calc(100dvh*var(--shell-w)/var(--shell-h)));height:auto;max-width:100vw;max-height:100dvh;display:flex;flex-direction:column;background:#000;box-shadow:0 14px 56px rgba(0,0,0,.94),0 0 0 1px rgba(255,255,255,.04) inset;position:relative;overflow:hidden;border-radius:0;isolation:isolate;container-type:size;container-name:game}
+    .game-shell{--shell-w:500;--shell-h:718;aspect-ratio:var(--shell-w)/var(--shell-h);width:min(100vw,calc(100dvh*var(--shell-w)/var(--shell-h)));height:auto;max-width:100vw;max-height:100dvh;display:flex;flex-direction:column;background:#000;box-shadow:0 14px 56px rgba(0,0,0,.94),0 0 0 1px rgba(255,255,255,.04) inset;position:relative;overflow:hidden;border-radius:0;isolation:isolate;container-type:size;container-name:game}
     .game-shell::before,.game-shell::after{content:"";position:absolute;inset:0;pointer-events:none}
     .game-shell::before{z-index:4;opacity:.22;background:repeating-linear-gradient(180deg,rgba(255,255,255,.13) 0,rgba(255,255,255,.13) 1px,rgba(0,0,0,0) 1px,rgba(0,0,0,0) 4px),linear-gradient(90deg,rgba(120,255,214,.04) 0,rgba(255,255,255,0) 38%,rgba(98,174,255,.04) 100%)}
     .game-shell::after{z-index:4;background:
@@ -74,7 +74,7 @@
   <div class="game-shell" id="gameShell">
     <div class="maze-area">
       <div class="coin-counter" id="coinCounter" aria-live="polite">Lv 1/10<br>Gold 0</div>
-      <canvas id="mazeCanvas" width="500" height="508" aria-label="Maze"></canvas>
+      <canvas id="mazeCanvas" aria-label="Maze"></canvas>
     </div>
     <div class="dpad" id="dpadRoot" role="group" aria-label="Move">
       <div class="dpad-cooldown-overlay" aria-hidden="true">
@@ -129,6 +129,26 @@
 
       var canvas = document.getElementById("mazeCanvas");
       var ctx = canvas.getContext("2d");
+      if (ctx && ctx.imageSmoothingEnabled !== undefined) {
+        ctx.imageSmoothingEnabled = true;
+      }
+
+      function syncCanvasBackingStore() {
+        var dpr = window.devicePixelRatio || 1;
+        var cw = canvas.clientWidth;
+        var ch = canvas.clientHeight;
+        if (cw < 1 || ch < 1) {
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          return;
+        }
+        var bw = Math.max(1, Math.round(cw * dpr));
+        var bh = Math.max(1, Math.round(ch * dpr));
+        if (canvas.width !== bw || canvas.height !== bh) {
+          canvas.width = bw;
+          canvas.height = bh;
+        }
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
       var winOverlay = document.getElementById("winOverlay");
       var loseOverlay = document.getElementById("loseOverlay");
       var shopOverlay = document.getElementById("shopOverlay");
@@ -271,23 +291,21 @@
 
       buildShopBuyButtons(shopBuyMount);
 
-      var SHOP_BUY_SPECS = [
-        {
-          type: "cooldown",
-          el: document.getElementById("shopBuyCooldown"),
-          extraCheck: function () {
+      var SHOP_BUY_SPECS = [];
+      var siBuild;
+      for (siBuild = 0; siBuild < SHOP_ITEM_DEFS.length; siBuild++) {
+        var defShop = SHOP_ITEM_DEFS[siBuild];
+        var specShop = {
+          type: defShop.type,
+          el: document.getElementById(defShop.id),
+        };
+        if (defShop.type === "cooldown") {
+          specShop.extraCheck = function () {
             return countOwnedCooldownSlots() < MAX_COOLDOWN_PURCHASES;
-          },
-        },
-        { type: "wall", el: document.getElementById("shopBuyWall") },
-        { type: "invuln", el: document.getElementById("shopBuyInvuln") },
-        { type: "magnet", el: document.getElementById("shopBuyMagnet") },
-        { type: "fear", el: document.getElementById("shopBuyFear") },
-        { type: "banish", el: document.getElementById("shopBuyBanish") },
-        { type: "goldBurst", el: document.getElementById("shopBuyGoldBurst") },
-        { type: "phase", el: document.getElementById("shopBuyPhase") },
-        { type: "stunNova", el: document.getElementById("shopBuyStunNova") },
-      ];
+          };
+        }
+        SHOP_BUY_SPECS.push(specShop);
+      }
 
       var currentLevel = 1;
       var goldWallet = 0;
@@ -1897,8 +1915,12 @@
       }
 
       function layoutMaze() {
-        var cw = canvas.width;
-        var ch = canvas.height;
+        var cw = canvas.clientWidth;
+        var ch = canvas.clientHeight;
+        if (cw < 1 || ch < 1) {
+          cw = 500;
+          ch = 508;
+        }
         rows = 5 + currentLevel;
         cols = 5 + currentLevel;
         cellSize = Math.floor(Math.min(cw / cols, ch / rows));
@@ -2187,12 +2209,7 @@
         }
       }
 
-      function draw() {
-        var cw = canvas.width;
-        var ch = canvas.height;
-        ctx.fillStyle = "#000000";
-        ctx.fillRect(0, 0, cw, ch);
-
+      function drawMazeWalls() {
         ctx.strokeStyle = "#6e6e6e";
         ctx.lineWidth = 2;
         ctx.lineCap = "square";
@@ -2224,7 +2241,9 @@
             ctx.stroke();
           }
         }
+      }
 
+      function drawExitGlow() {
         var gx = offsetX + (cols - 1) * cellSize + cellSize / 2;
         var gy = offsetY + (rows - 1) * cellSize + cellSize / 2;
         ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
@@ -2234,7 +2253,9 @@
         ctx.strokeStyle = "#888888";
         ctx.lineWidth = 2;
         ctx.stroke();
+      }
 
+      function drawPendingCoinPickups() {
         pendingCoinKeys.forEach(function (key) {
           var comma = key.indexOf(",");
           var cr = parseInt(key.slice(0, comma), 10);
@@ -2243,8 +2264,9 @@
           var cy = offsetY + cr * cellSize + cellSize / 2;
           drawGoldPickupDisc(ctx, cx, cy, cellSize);
         });
+      }
 
-        var nowGoldFx = performance.now();
+      function drawCoinPullAnimations(nowGoldFx) {
         var pai;
         for (pai = 0; pai < coinPullAnimations.length; pai++) {
           var ap = coinPullAnimations[pai];
@@ -2274,7 +2296,9 @@
             ctx.restore();
           }
         }
+      }
 
+      function drawPendingLevelPowerups() {
         var ppi;
         for (ppi = 0; ppi < pendingLevelPowerups.length; ppi++) {
           var pup = pendingLevelPowerups[ppi];
@@ -2286,144 +2310,147 @@
             drawPu(ctx, px, py, cellSize, ph);
           }
         }
+      }
 
-        var nowDraw = performance.now();
-        if (gameActive()) {
-          var mpos = getMonsterPixelPos(nowDraw);
-          var mx = mpos.x;
-          var my = mpos.y;
-          var hidePreviewR = monsterEffectiveHitRadius(nowDraw);
-          var hidePreviewRSq = hidePreviewR * hidePreviewR;
+      function drawActiveGameLayer(nowDraw) {
+        if (!gameActive()) {
+          return;
+        }
+        var mpos = getMonsterPixelPos(nowDraw);
+        var mx = mpos.x;
+        var my = mpos.y;
+        var monHitR = monsterEffectiveHitRadius(nowDraw);
+        var hidePreviewRSq = monHitR * monHitR;
 
-          var previewSegs = [];
-          var PREVIEW_MAX_TILE_EDGES = 4;
-          var enemyFearedPreview = nowDraw < fearUntilMs;
-          if (monsterGlideActive) {
-            var glideEnd = tileCenterPixel(monsterGlideTc, monsterGlideTr);
-            previewSegs.push({
-              x0: mpos.x,
-              y0: mpos.y,
-              x1: glideEnd.x,
-              y1: glideEnd.y,
-            });
-            var tail = enemyFearedPreview
-              ? getMonsterFleePreviewPath(
-                  monsterGlideTr,
-                  monsterGlideTc,
-                  PREVIEW_MAX_TILE_EDGES
-                )
-              : shortestPath(
-                  monsterGlideTr,
-                  monsterGlideTc,
-                  playerR,
-                  playerC
-                );
-            appendTileCenterSegs(tail, PREVIEW_MAX_TILE_EDGES, previewSegs);
-          } else {
-            var fullM = enemyFearedPreview
-              ? getMonsterFleePreviewPath(
-                  monsterR,
-                  monsterC,
-                  PREVIEW_MAX_TILE_EDGES
-                )
-              : shortestPath(monsterR, monsterC, playerR, playerC);
-            if (fullM.length >= 2) {
-              appendTileCenterSegs(fullM, PREVIEW_MAX_TILE_EDGES, previewSegs);
-            }
-          }
-          strokeRedPreviewLine(ctx, previewSegs, mx, my, hidePreviewRSq);
-
-          var mix;
-          for (mix = 0; mix < spawnedEnemies.length; mix++) {
-            var mPv = spawnedEnemies[mix];
-            if (mPv.kind !== "minion") {
-              continue;
-            }
-            var minionSegs = buildMinionPreviewSegs(mPv, nowDraw);
-            var mnh = getMinionPixelPos(mPv, nowDraw);
-            strokeRedPreviewLine(
-              ctx,
-              minionSegs,
-              mnh.x,
-              mnh.y,
-              hidePreviewRSq
-            );
-          }
-
-          var monR = monsterEffectiveHitRadius(nowDraw);
-          if (nowDraw < monsterStunnedUntilMs) {
-            ctx.save();
-            ctx.globalAlpha = 0.52;
-          }
-          drawCanvasEmoji(
-            ctx,
-            EMOJI_ONI,
-            mx,
-            my,
-            monR * 2.45 * EMOJI_VISUAL_SCALE,
-            EMOJI_TINT_ENEMY
-          );
-          if (nowDraw < monsterStunnedUntilMs) {
-            ctx.restore();
-          }
-
-          var ex;
-          for (ex = 0; ex < spawnedEnemies.length; ex++) {
-            var spawnEnt = spawnedEnemies[ex];
-            if (spawnEnt.kind === "egg") {
-              var grow = (nowDraw - spawnEnt.spawnMs) / EGG_HATCH_MS;
-              if (grow < 0) grow = 0;
-              if (grow > 1) grow = 1;
-              var eggCen = tileCenterPixel(spawnEnt.cellC, spawnEnt.cellR);
-              var eggFont =
-                cellSize * 0.64 * EMOJI_VISUAL_SCALE * grow;
-              if (
-                spawnEnt.stunnedUntilMs &&
-                nowDraw < spawnEnt.stunnedUntilMs
-              ) {
-                ctx.save();
-                ctx.globalAlpha = 0.52;
-              }
-              drawCanvasEmoji(
-                ctx,
-                EMOJI_MINION,
-                eggCen.x,
-                eggCen.y,
-                eggFont,
-                EMOJI_TINT_EGG
+        var previewSegs = [];
+        var PREVIEW_MAX_TILE_EDGES = 4;
+        var enemyFearedPreview = nowDraw < fearUntilMs;
+        if (monsterGlideActive) {
+          var glideEnd = tileCenterPixel(monsterGlideTc, monsterGlideTr);
+          previewSegs.push({
+            x0: mpos.x,
+            y0: mpos.y,
+            x1: glideEnd.x,
+            y1: glideEnd.y,
+          });
+          var tail = enemyFearedPreview
+            ? getMonsterFleePreviewPath(
+                monsterGlideTr,
+                monsterGlideTc,
+                PREVIEW_MAX_TILE_EDGES
+              )
+            : shortestPath(
+                monsterGlideTr,
+                monsterGlideTc,
+                playerR,
+                playerC
               );
-              if (
-                spawnEnt.stunnedUntilMs &&
-                nowDraw < spawnEnt.stunnedUntilMs
-              ) {
-                ctx.restore();
-              }
-            }
+          appendTileCenterSegs(tail, PREVIEW_MAX_TILE_EDGES, previewSegs);
+        } else {
+          var fullM = enemyFearedPreview
+            ? getMonsterFleePreviewPath(
+                monsterR,
+                monsterC,
+                PREVIEW_MAX_TILE_EDGES
+              )
+            : shortestPath(monsterR, monsterC, playerR, playerC);
+          if (fullM.length >= 2) {
+            appendTileCenterSegs(fullM, PREVIEW_MAX_TILE_EDGES, previewSegs);
           }
-          for (ex = 0; ex < spawnedEnemies.length; ex++) {
-            var mn = spawnedEnemies[ex];
-            if (mn.kind !== "minion") {
-              continue;
-            }
-            var mnp = getMinionPixelPos(mn, nowDraw);
-            if (nowDraw < mn.stunnedUntilMs) {
+        }
+        strokeRedPreviewLine(ctx, previewSegs, mx, my, hidePreviewRSq);
+
+        var mix;
+        for (mix = 0; mix < spawnedEnemies.length; mix++) {
+          var mPv = spawnedEnemies[mix];
+          if (mPv.kind !== "minion") {
+            continue;
+          }
+          var minionSegs = buildMinionPreviewSegs(mPv, nowDraw);
+          var mnh = getMinionPixelPos(mPv, nowDraw);
+          strokeRedPreviewLine(
+            ctx,
+            minionSegs,
+            mnh.x,
+            mnh.y,
+            hidePreviewRSq
+          );
+        }
+
+        if (nowDraw < monsterStunnedUntilMs) {
+          ctx.save();
+          ctx.globalAlpha = 0.52;
+        }
+        drawCanvasEmoji(
+          ctx,
+          EMOJI_ONI,
+          mx,
+          my,
+          monHitR * 2.45 * EMOJI_VISUAL_SCALE,
+          EMOJI_TINT_ENEMY
+        );
+        if (nowDraw < monsterStunnedUntilMs) {
+          ctx.restore();
+        }
+
+        var ex;
+        for (ex = 0; ex < spawnedEnemies.length; ex++) {
+          var spawnEnt = spawnedEnemies[ex];
+          if (spawnEnt.kind === "egg") {
+            var grow = (nowDraw - spawnEnt.spawnMs) / EGG_HATCH_MS;
+            if (grow < 0) grow = 0;
+            if (grow > 1) grow = 1;
+            var eggCen = tileCenterPixel(spawnEnt.cellC, spawnEnt.cellR);
+            var eggFont =
+              cellSize * 0.64 * EMOJI_VISUAL_SCALE * grow;
+            if (
+              spawnEnt.stunnedUntilMs &&
+              nowDraw < spawnEnt.stunnedUntilMs
+            ) {
               ctx.save();
               ctx.globalAlpha = 0.52;
             }
             drawCanvasEmoji(
               ctx,
               EMOJI_MINION,
-              mnp.x,
-              mnp.y,
-              cellSize * 0.64 * EMOJI_VISUAL_SCALE,
-              EMOJI_TINT_ENEMY
+              eggCen.x,
+              eggCen.y,
+              eggFont,
+              EMOJI_TINT_EGG
             );
-            if (nowDraw < mn.stunnedUntilMs) {
+            if (
+              spawnEnt.stunnedUntilMs &&
+              nowDraw < spawnEnt.stunnedUntilMs
+            ) {
               ctx.restore();
             }
           }
         }
+        for (ex = 0; ex < spawnedEnemies.length; ex++) {
+          var mn = spawnedEnemies[ex];
+          if (mn.kind !== "minion") {
+            continue;
+          }
+          var mnp = getMinionPixelPos(mn, nowDraw);
+          if (nowDraw < mn.stunnedUntilMs) {
+            ctx.save();
+            ctx.globalAlpha = 0.52;
+          }
+          drawCanvasEmoji(
+            ctx,
+            EMOJI_MINION,
+            mnp.x,
+            mnp.y,
+            cellSize * 0.64 * EMOJI_VISUAL_SCALE,
+            EMOJI_TINT_ENEMY
+          );
+          if (nowDraw < mn.stunnedUntilMs) {
+            ctx.restore();
+          }
+        }
+      }
 
+      function drawPlayerAvatar(nowDraw) {
         var ppos = getPlayerPixelPos(nowDraw);
         var px = ppos.x;
         var py = ppos.y;
@@ -2442,6 +2469,26 @@
         if (nowDraw < phaseUntilMs) {
           ctx.restore();
         }
+      }
+
+      function draw() {
+        syncCanvasBackingStore();
+        var cw = canvas.clientWidth;
+        var ch = canvas.clientHeight;
+        if (cw < 1 || ch < 1) {
+          return;
+        }
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, cw, ch);
+
+        drawMazeWalls();
+        drawExitGlow();
+        drawPendingCoinPickups();
+        drawCoinPullAnimations(performance.now());
+        drawPendingLevelPowerups();
+        var nowDraw = performance.now();
+        drawActiveGameLayer(nowDraw);
+        drawPlayerAvatar(nowDraw);
       }
 
       var DIRS = ["north", "south", "east", "west"];
@@ -2922,15 +2969,28 @@
       });
 
       var resizeTimer;
-      function onResize() {
+      function scheduleRelayout(delayMs) {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function () {
           layoutMaze();
           draw();
-        }, 100);
+        }, delayMs);
+      }
+
+      function onResize() {
+        scheduleRelayout(100);
       }
 
       window.addEventListener("resize", onResize);
+
+      if (typeof ResizeObserver !== "undefined") {
+        var mazeAreaEl = canvas.parentElement;
+        if (mazeAreaEl) {
+          new ResizeObserver(function () {
+            scheduleRelayout(50);
+          }).observe(mazeAreaEl);
+        }
+      }
 
       requestAnimationFrame(tickGame);
       startRun();
