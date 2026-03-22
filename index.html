@@ -22,36 +22,36 @@
     .maze-area{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#000;position:relative}
     .coin-counter{position:absolute;top:8px;right:10px;z-index:5;max-width:calc(100% - 16px);text-align:right;font-size:clamp(.72rem,3.6cqw,.95rem);font-weight:600;color:#c8c8c8;text-shadow:0 1px 3px rgba(0,0,0,.9);letter-spacing:.02em;line-height:1.35;pointer-events:none;user-select:none}
     #shopOverlay.win-overlay{align-items:stretch;justify-content:stretch;padding:0}
-    .shop-panel{width:100%;height:100%;max-width:none;max-height:none;overflow-y:auto;padding:20px 18px 28px;border-radius:0;background:#000;border:none;display:flex;flex-direction:column;gap:12px;box-sizing:border-box;color:#c6c6c6}
-    .shop-sub{margin:0;font-size:.9rem;color:#8c8c8c;text-align:center}
-    button.shop-item-buy{width:100%;display:flex;flex-direction:row;align-items:center;gap:14px;padding:10px 12px;border-radius:10px;background:#0a0a0a;border:2px solid #3a3a3a;cursor:pointer;touch-action:manipulation;text-align:left;font:inherit;color:inherit;box-sizing:border-box;transition:transform .08s ease,border-color .12s ease,box-shadow .12s ease}
-    button.shop-item-buy:hover:not(:disabled){border-color:#6e6e6e;box-shadow:0 0 0 3px rgba(255,255,255,.06)}
+    .shop-panel{width:100%;height:100%;max-width:none;max-height:none;overflow-y:auto;padding:clamp(10px,4cqw,26px) clamp(8px,3.6cqw,22px) clamp(12px,5.6cqw,32px);border-radius:0;background:#000;border:none;display:flex;flex-direction:column;gap:clamp(8px,2.4cqw,14px);box-sizing:border-box;color:#c6c6c6}
+    .shop-panel>.win-title{font-size:clamp(1.1rem,6.75cqw,1.65rem)}
+    .shop-sub{margin:0;font-size:clamp(.78rem,3.78cqw,.98rem);color:#8c8c8c;text-align:center}
+    button.shop-item-buy{width:100%;display:flex;flex-direction:row;align-items:center;gap:clamp(8px,2.8cqw,16px);padding:clamp(6px,2cqw,12px) clamp(6px,2.4cqw,14px);border-radius:clamp(6px,2cqw,12px);background:#0a0a0a;border:max(1px,.4cqw) solid #3a3a3a;cursor:pointer;touch-action:manipulation;text-align:left;font:inherit;font-size:clamp(.82rem,3.42cqw,1rem);color:inherit;box-sizing:border-box;transition:transform .08s ease,border-color .12s ease,box-shadow .12s ease}
+    button.shop-item-buy:hover:not(:disabled){border-color:#6e6e6e;box-shadow:0 0 0 max(2px,.6cqw) rgba(255,255,255,.06)}
     button.shop-item-buy:focus{outline:none}
-    button.shop-item-buy:focus-visible{outline:2px solid #909090;outline-offset:3px}
+    button.shop-item-buy:focus-visible{outline:max(1px,.35cqw) solid #909090;outline-offset:max(2px,.6cqw)}
     button.shop-item-buy:not(:disabled):active{transform:scale(.99);filter:brightness(.96)}
     button.shop-item-buy:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
     button.shop-item-buy .shop-pickup-preview{pointer-events:none}
-    .shop-pickup-preview{flex:0 0 auto;width:96px;height:96px;border-radius:14px;background:#050505;border:2px solid #5a5a5a;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+    .shop-pickup-preview{flex:0 0 auto;width:clamp(56px,19.2cqw,112px);height:clamp(56px,19.2cqw,112px);border-radius:clamp(8px,2.8cqw,16px);background:#050505;border:max(1px,.4cqw) solid #5a5a5a;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
     .shop-pickup-preview span{box-sizing:border-box}
     button.shop-item-buy:not(:disabled):hover .shop-pickup-preview{border-color:#8a8a8a}
     button.shop-item-buy:disabled .shop-pickup-preview{border-color:#2a2a2a}
-    .shop-item-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:8px;text-align:left}
-    .shop-preview-cooldown{width:44px;height:44px;border-radius:50%;background:rgba(200,140,255,.55);border:3px solid #a070e0}
-    .shop-preview-wall{width:50px;height:34px;border-radius:7px;background:rgba(180,130,80,.7);border:3px solid #8b6040}
-    .shop-preview-invuln-wrap{width:48px;height:48px;display:flex;align-items:center;justify-content:center}
-    .shop-preview-invuln{width:30px;height:30px;background:rgba(120,220,255,.65);border:3px solid #4ad0f0;transform:rotate(45deg)}
-    .shop-preview-magnet{width:40px;height:32px;border:3px solid #a83838;border-top:none;border-radius:0 0 18px 18px;background:rgba(200,90,90,.45);align-self:center}
-    .shop-preview-fear{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(180,90,220,.75),rgba(60,20,90,.85));border:3px solid #7a3daa}
-    .shop-preview-banish{width:40px;height:40px;border-radius:50%;background:rgba(90,95,110,.65);border:3px solid #c44;position:relative}
-    .shop-preview-banish::before,.shop-preview-banish::after{content:"";position:absolute;left:50%;top:50%;width:3px;height:22px;background:#e85555;border-radius:2px}
+    .shop-item-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:clamp(4px,1.6cqw,10px);text-align:left}
+    .shop-preview-cooldown{width:46%;height:46%;border-radius:50%;background:rgba(200,140,255,.55);border:max(1px,.6cqw) solid #a070e0}
+    .shop-preview-wall{width:52%;height:35.5%;border-radius:clamp(3px,1.4cqw,8px);background:rgba(180,130,80,.7);border:max(1px,.6cqw) solid #8b6040}
+    .shop-preview-invuln-wrap{width:50%;height:50%;display:flex;align-items:center;justify-content:center}
+    .shop-preview-invuln{width:62.5%;height:62.5%;background:rgba(120,220,255,.65);border:max(1px,.6cqw) solid #4ad0f0;transform:rotate(45deg)}
+    .shop-preview-magnet{width:42%;height:33.5%;border:max(1px,.6cqw) solid #a83838;border-top:none;border-radius:0 0 clamp(8px,3.75cqw,20px) clamp(8px,3.75cqw,20px);background:rgba(200,90,90,.45);align-self:center}
+    .shop-preview-fear{width:40%;height:40%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(180,90,220,.75),rgba(60,20,90,.85));border:max(1px,.6cqw) solid #7a3daa}
+    .shop-preview-banish{width:42%;height:42%;border-radius:50%;background:rgba(90,95,110,.65);border:max(1px,.6cqw) solid #c44;position:relative}
+    .shop-preview-banish::before,.shop-preview-banish::after{content:"";position:absolute;left:50%;top:50%;width:max(2px,.55cqw);height:23%;background:#e85555;border-radius:max(1px,.35cqw)}
     .shop-preview-banish::before{transform:translate(-50%,-50%) rotate(45deg)}
     .shop-preview-banish::after{transform:translate(-50%,-50%) rotate(-45deg)}
-    .shop-preview-gold-burst{width:44px;height:44px;display:flex;align-items:center;justify-content:center;gap:3px;flex-wrap:wrap;align-content:center}
-    .shop-preview-gold-burst span{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff4a8,#e8c030 55%,#a67c10);border:2px solid #8a6a18}
-    .shop-preview-phase{width:40px;height:40px;border-radius:50%;border:3px dashed rgba(120,240,255,.9);background:radial-gradient(circle at 40% 35%,rgba(180,255,255,.35),rgba(40,90,110,.45))}
-    .shop-preview-stun-nova{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#fff8c8,#f0d040 40%,#c9a020 100%);border:3px solid #e8c040;box-shadow:0 0 0 2px rgba(255,255,255,.25) inset}
-    .shop-item-desc{display:block;margin:0;font-size:.8rem;color:#909090;line-height:1.35}
-    .shop-continue{min-height:48px;margin-top:4px}
+    .shop-preview-gold-burst{width:46%;height:46%;display:flex;align-items:center;justify-content:center;gap:clamp(2px,.6cqw,5px);flex-wrap:wrap;align-content:center}
+    .shop-preview-gold-burst span{width:11.5%;height:11.5%;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff4a8,#e8c030 55%,#a67c10);border:max(1px,.4cqw) solid #8a6a18}
+    .shop-preview-phase{width:42%;height:42%;border-radius:50%;border:max(1px,.6cqw) dashed rgba(120,240,255,.9);background:radial-gradient(circle at 40% 35%,rgba(180,255,255,.35),rgba(40,90,110,.45))}
+    .shop-preview-stun-nova{width:42%;height:42%;border-radius:50%;background:radial-gradient(circle at 50% 45%,#fff8c8,#f0d040 40%,#c9a020 100%);border:max(1px,.6cqw) solid #e8c040;box-shadow:0 0 0 max(1px,.4cqw) rgba(255,255,255,.25) inset}
+    .shop-item-desc{display:block;margin:0;font-size:clamp(.68rem,3.04cqw,.88rem);color:#909090;line-height:1.35}
     #mazeCanvas{display:block;width:100%;height:100%;max-width:100%;max-height:100%;touch-action:none}
     .dpad{position:relative;flex:0 0 calc(100% * 210 / 718);padding:4px;display:grid;grid-template-columns:3fr 4fr 3fr;grid-template-rows:1fr;align-items:stretch;gap:4px;min-height:0;background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);border-top:1px solid #333}
     .dpad-center{display:flex;flex-direction:column;min-width:0;min-height:0;gap:4px}
@@ -67,6 +67,7 @@
     .win-overlay.hidden{display:none}
     .win-title{margin:0;font-size:1.5rem;font-weight:600;color:#e0e0e0}
     .win-btn{min-height:48px;padding:0 28px;font-size:1rem;font-weight:600;color:#0a0a0a;background:#b8b8b8;border:none;border-radius:12px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    .shop-panel .win-btn.shop-continue{min-height:clamp(40px,9.6cqw,54px);margin-top:clamp(2px,.8cqw,6px);padding:0 clamp(14px,5.6cqw,30px);font-size:clamp(.82rem,3.7cqw,1.02rem);border-radius:clamp(8px,2.4cqw,14px)}
     .win-btn:active{filter:brightness(.92)}
   </style>
 </head>
@@ -133,12 +134,19 @@
         ctx.imageSmoothingEnabled = true;
       }
 
+      var lastCanvasSyncDpr = 0;
+      var lastCanvasSyncBw = 0;
+      var lastCanvasSyncBh = 0;
+
       function syncCanvasBackingStore() {
         var dpr = window.devicePixelRatio || 1;
         var cw = canvas.clientWidth;
         var ch = canvas.clientHeight;
         if (cw < 1 || ch < 1) {
           ctx.setTransform(1, 0, 0, 1, 0, 0);
+          lastCanvasSyncDpr = 0;
+          lastCanvasSyncBw = 0;
+          lastCanvasSyncBh = 0;
           return;
         }
         var bw = Math.max(1, Math.round(cw * dpr));
@@ -147,7 +155,26 @@
           canvas.width = bw;
           canvas.height = bh;
         }
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        if (
+          dpr !== lastCanvasSyncDpr ||
+          bw !== lastCanvasSyncBw ||
+          bh !== lastCanvasSyncBh
+        ) {
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          lastCanvasSyncDpr = dpr;
+          lastCanvasSyncBw = bw;
+          lastCanvasSyncBh = bh;
+        }
+      }
+
+      function clamp01(t) {
+        if (t < 0) {
+          return 0;
+        }
+        if (t > 1) {
+          return 1;
+        }
+        return t;
       }
       var winOverlay = document.getElementById("winOverlay");
       var loseOverlay = document.getElementById("loseOverlay");
@@ -2270,12 +2297,7 @@
         var pai;
         for (pai = 0; pai < coinPullAnimations.length; pai++) {
           var ap = coinPullAnimations[pai];
-          var tRaw = (nowGoldFx - ap.startMs) / ap.durationMs;
-          if (tRaw < 0) {
-            tRaw = 0;
-          } else if (tRaw > 1) {
-            tRaw = 1;
-          }
+          var tRaw = clamp01((nowGoldFx - ap.startMs) / ap.durationMs);
           var te = 1 - Math.pow(1 - tRaw, 3);
           var sx = offsetX + ap.sc * cellSize + cellSize / 2;
           var sy = offsetY + ap.sr * cellSize + cellSize / 2;
@@ -2397,9 +2419,7 @@
         for (ex = 0; ex < spawnedEnemies.length; ex++) {
           var spawnEnt = spawnedEnemies[ex];
           if (spawnEnt.kind === "egg") {
-            var grow = (nowDraw - spawnEnt.spawnMs) / EGG_HATCH_MS;
-            if (grow < 0) grow = 0;
-            if (grow > 1) grow = 1;
+            var grow = clamp01((nowDraw - spawnEnt.spawnMs) / EGG_HATCH_MS);
             var eggCen = tileCenterPixel(spawnEnt.cellC, spawnEnt.cellR);
             var eggFont =
               cellSize * 0.64 * EMOJI_VISUAL_SCALE * grow;
@@ -2484,9 +2504,9 @@
         drawMazeWalls();
         drawExitGlow();
         drawPendingCoinPickups();
-        drawCoinPullAnimations(performance.now());
-        drawPendingLevelPowerups();
         var nowDraw = performance.now();
+        drawCoinPullAnimations(nowDraw);
+        drawPendingLevelPowerups();
         drawActiveGameLayer(nowDraw);
         drawPlayerAvatar(nowDraw);
       }
@@ -2500,6 +2520,14 @@
       var moveCooldownStart = 0;
       var moveCooldownEnd = 0;
       var queued = { north: false, south: false, east: false, west: false };
+
+      function clearMoveQueue() {
+        var di;
+        for (di = 0; di < DIRS.length; di++) {
+          queued[DIRS[di]] = false;
+        }
+      }
+
       var KEY_TO_DIR = {
         ArrowUp: "north",
         ArrowDown: "south",
@@ -2507,8 +2535,9 @@
         ArrowRight: "east"
       };
 
-      function canStepFrom(r, c, dir) {
-        if (performance.now() < phaseUntilMs) {
+      function canStepFrom(r, c, dir, nowMs) {
+        var stepNow = nowMs !== undefined ? nowMs : performance.now();
+        if (stepNow < phaseUntilMs) {
           if (dir === "north") {
             return r > 0;
           }
@@ -2535,7 +2564,8 @@
         if (!gameActive()) return false;
         if (playerGlideActive) return false;
 
-        if (!canStepFrom(playerR, playerC, dir)) {
+        var moveNow = performance.now();
+        if (!canStepFrom(playerR, playerC, dir, moveNow)) {
           var nb = neighborCell(playerR, playerC, dir);
           if (
             nb.r < 0 ||
@@ -2567,13 +2597,10 @@
         playerR = nr;
         playerC = nc;
 
-        var moveNow = performance.now();
         var pfr;
         var pfc;
         if (playerGlideActive) {
-          var pRawU = (moveNow - playerGlideStartMs) / PLAYER_GLIDE_MS;
-          if (pRawU < 0) pRawU = 0;
-          if (pRawU > 1) pRawU = 1;
+          var pRawU = clamp01((moveNow - playerGlideStartMs) / PLAYER_GLIDE_MS);
           var pSmooth = pRawU * pRawU * (3 - 2 * pRawU);
           pfr = playerGlideFr + (playerGlideTr - playerGlideFr) * pSmooth;
           pfc = playerGlideFc + (playerGlideTc - playerGlideFc) * pSmooth;
@@ -2603,9 +2630,7 @@
       function resetCooldowns() {
         moveCooldownStart = 0;
         moveCooldownEnd = 0;
-        DIRS.forEach(function (dir) {
-          queued[dir] = false;
-        });
+        clearMoveQueue();
         if (dpadRoot) dpadRoot.classList.remove("dpad--cooling");
         if (dpadCooldownFillGlobal) {
           dpadCooldownFillGlobal.style.transform = "scaleY(0)";
@@ -2802,9 +2827,7 @@
         if (now >= moveCooldownEnd) {
           if (attemptMove(dir)) {
             startMoveCooldown(now);
-            DIRS.forEach(function (d) {
-              queued[d] = false;
-            });
+            clearMoveQueue();
           }
           return;
         }
@@ -2834,9 +2857,7 @@
             if (now >= moveCooldownEnd) {
               if (attemptMove(nextDir)) {
                 startMoveCooldown(now);
-                DIRS.forEach(function (d) {
-                  queued[d] = false;
-                });
+                clearMoveQueue();
               }
             } else {
               queued[nextDir] = true;
@@ -2853,9 +2874,7 @@
             }
           }
           if (qDir !== null && gameActive()) {
-            DIRS.forEach(function (d) {
-              queued[d] = false;
-            });
+            clearMoveQueue();
             if (playerGlideActive) {
               if (canBufferDir(qDir)) {
                 bufferedPlayerDir = qDir;
@@ -2869,12 +2888,9 @@
         if (cdDurAll < 1) {
           cdDurAll = 1;
         }
-        var pAll =
-          now >= moveCooldownEnd
-            ? 0
-            : (now - moveCooldownStart) / cdDurAll;
-        if (pAll < 0) pAll = 0;
-        if (pAll > 1) pAll = 1;
+        var pAll = clamp01(
+          now >= moveCooldownEnd ? 0 : (now - moveCooldownStart) / cdDurAll
+        );
         if (dpadRoot && dpadCooldownFillGlobal) {
           if (now >= moveCooldownEnd) {
             dpadCooldownFillGlobal.style.transform = "scaleY(0)";
