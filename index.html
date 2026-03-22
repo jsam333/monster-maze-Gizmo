@@ -11,12 +11,16 @@
       box-sizing: border-box;
     }
 
+    html {
+      font-size: 150%;
+    }
+
     html,
     body {
       margin: 0;
       min-height: 100%;
       min-height: 100dvh;
-      background: #0f1115;
+      background: #000000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -34,8 +38,8 @@
       max-height: 100dvh;
       display: flex;
       flex-direction: column;
-      background: #151922;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+      background: #000000;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.85);
       position: relative;
       overflow: hidden;
       container-type: size;
@@ -48,7 +52,283 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #12151c;
+      background: #000000;
+      position: relative;
+    }
+
+    .coin-counter {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      z-index: 5;
+      max-width: calc(100% - 16px);
+      text-align: right;
+      font-size: clamp(0.72rem, 3.6cqw, 0.95rem);
+      font-weight: 600;
+      color: #c8c8c8;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #shopOverlay.win-overlay {
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 0;
+    }
+
+    .shop-panel {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      overflow-y: auto;
+      padding: 20px 18px 28px;
+      border-radius: 0;
+      background: #000000;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-sizing: border-box;
+      color: #c6c6c6;
+    }
+
+    .shop-sub {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #8c8c8c;
+      text-align: center;
+    }
+
+    button.shop-item-buy {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #0a0a0a;
+      border: 2px solid #3a3a3a;
+      cursor: pointer;
+      touch-action: manipulation;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+      box-sizing: border-box;
+      transition: transform 0.08s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    button.shop-item-buy:hover:not(:disabled) {
+      border-color: #6e6e6e;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+    }
+
+    button.shop-item-buy:focus {
+      outline: none;
+    }
+
+    button.shop-item-buy:focus-visible {
+      outline: 2px solid #909090;
+      outline-offset: 3px;
+    }
+
+    button.shop-item-buy:not(:disabled):active {
+      transform: scale(0.99);
+      filter: brightness(0.96);
+    }
+
+    button.shop-item-buy:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    button.shop-item-buy .shop-pickup-preview {
+      pointer-events: none;
+    }
+
+    .shop-pickup-preview {
+      flex: 0 0 auto;
+      width: 96px;
+      height: 96px;
+      border-radius: 14px;
+      background: #050505;
+      border: 2px solid #5a5a5a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .shop-pickup-preview span {
+      box-sizing: border-box;
+    }
+
+    button.shop-item-buy:not(:disabled):hover .shop-pickup-preview {
+      border-color: #8a8a8a;
+    }
+
+    button.shop-item-buy:disabled .shop-pickup-preview {
+      border-color: #2a2a2a;
+    }
+
+    .shop-item-main {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .shop-preview-cooldown {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(200, 140, 255, 0.55);
+      border: 3px solid #a070e0;
+    }
+
+    .shop-preview-wall {
+      width: 50px;
+      height: 34px;
+      border-radius: 7px;
+      background: rgba(180, 130, 80, 0.7);
+      border: 3px solid #8b6040;
+    }
+
+    .shop-preview-invuln-wrap {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shop-preview-invuln {
+      width: 30px;
+      height: 30px;
+      background: rgba(120, 220, 255, 0.65);
+      border: 3px solid #4ad0f0;
+      transform: rotate(45deg);
+    }
+
+    .shop-preview-magnet {
+      width: 40px;
+      height: 32px;
+      border: 3px solid #a83838;
+      border-top: none;
+      border-radius: 0 0 18px 18px;
+      background: rgba(200, 90, 90, 0.45);
+      align-self: center;
+    }
+
+    .shop-preview-fear {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 35% 35%,
+        rgba(180, 90, 220, 0.75),
+        rgba(60, 20, 90, 0.85)
+      );
+      border: 3px solid #7a3daa;
+    }
+
+    .shop-preview-banish {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(90, 95, 110, 0.65);
+      border: 3px solid #c44;
+      position: relative;
+    }
+
+    .shop-preview-banish::before,
+    .shop-preview-banish::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 3px;
+      height: 22px;
+      background: #e85555;
+      border-radius: 2px;
+    }
+
+    .shop-preview-banish::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .shop-preview-banish::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .shop-preview-gold-burst {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      flex-wrap: wrap;
+      align-content: center;
+    }
+
+    .shop-preview-gold-burst span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 30% 30%,
+        #fff4a8,
+        #e8c030 55%,
+        #a67c10
+      );
+      border: 2px solid #8a6a18;
+    }
+
+    .shop-preview-phase {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px dashed rgba(120, 240, 255, 0.9);
+      background: radial-gradient(
+        circle at 40% 35%,
+        rgba(180, 255, 255, 0.35),
+        rgba(40, 90, 110, 0.45)
+      );
+    }
+
+    .shop-preview-stun-nova {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 50% 45%,
+        #fff8c8,
+        #f0d040 40%,
+        #c9a020 100%
+      );
+      border: 3px solid #e8c040;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) inset;
+    }
+
+    .shop-item-desc {
+      display: block;
+      margin: 0;
+      font-size: 0.8rem;
+      color: #909090;
+      line-height: 1.35;
+    }
+
+    .shop-continue {
+      min-height: 48px;
+      margin-top: 4px;
     }
 
     #mazeCanvas {
@@ -61,6 +341,7 @@
     }
 
     .dpad {
+      position: relative;
       flex: 0 0 calc(100% * 210 / 718);
       padding: 4px;
       display: grid;
@@ -69,8 +350,8 @@
       align-items: stretch;
       gap: 4px;
       min-height: 0;
-      background: linear-gradient(180deg, #1a1f2a 0%, #151922 100%);
-      border-top: 1px solid #2a3140;
+      background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+      border-top: 1px solid #333333;
     }
 
     .dpad-center {
@@ -91,9 +372,9 @@
       justify-content: center;
       font-size: clamp(2rem, 10cqw, 2.7rem);
       line-height: 1;
-      color: #c8d4e6;
-      background: #252b38;
-      border: 2px solid #3d4658;
+      color: #c0c0c0;
+      background: #121212;
+      border: 2px solid #404040;
       border-radius: 10px;
       cursor: pointer;
       touch-action: manipulation;
@@ -111,17 +392,17 @@
       min-height: 0;
     }
 
-    /* Full-button translucent white fill, grows bottom → top while greyed out */
-    .dpad-cooldown-sheen {
+    /* One shared bar across the whole d-pad, bottom → top */
+    .dpad-cooldown-overlay {
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
+      inset: 4px;
+      border-radius: 12px;
       overflow: hidden;
       pointer-events: none;
-      z-index: 2;
+      z-index: 5;
     }
 
-    .dpad-cooldown-fill {
+    .dpad-cooldown-fill-global {
       position: absolute;
       left: 0;
       right: 0;
@@ -130,14 +411,14 @@
       width: 100%;
       transform-origin: bottom center;
       transform: scaleY(0);
-      background: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.14);
     }
 
-    .dpad-btn--cooling {
-      filter: grayscale(0.9) brightness(0.65);
-      color: #8899aa;
-      border-color: #2d3544;
-      background: #1a1f28;
+    .dpad.dpad--cooling .dpad-btn {
+      filter: grayscale(0.85) brightness(0.55);
+      color: #6a6a6a;
+      border-color: #2a2a2a;
+      background: #080808;
     }
 
     .dpad-btn--side {
@@ -156,9 +437,9 @@
       width: 100%;
     }
 
-    .dpad-btn:active:not(.dpad-btn--cooling) {
-      background: #323a4a;
-      border-color: #5a6a82;
+    .dpad:not(.dpad--cooling) .dpad-btn:active {
+      background: #1f1f1f;
+      border-color: #666666;
     }
 
     .win-overlay {
@@ -169,7 +450,7 @@
       align-items: center;
       justify-content: center;
       gap: 20px;
-      background: rgba(10, 12, 18, 0.88);
+      background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(4px);
       z-index: 10;
     }
@@ -182,7 +463,7 @@
       margin: 0;
       font-size: 1.5rem;
       font-weight: 600;
-      color: #e8eef8;
+      color: #e0e0e0;
     }
 
     .win-btn {
@@ -190,8 +471,8 @@
       padding: 0 28px;
       font-size: 1rem;
       font-weight: 600;
-      color: #1a1d24;
-      background: #50c878;
+      color: #0a0a0a;
+      background: #b8b8b8;
       border: none;
       border-radius: 12px;
       cursor: pointer;
@@ -207,26 +488,26 @@
 <body>
   <div class="game-shell" id="gameShell">
     <div class="maze-area">
+      <div class="coin-counter" id="coinCounter" aria-live="polite">Lv 1/10<br>Gold 0</div>
       <canvas id="mazeCanvas" width="500" height="508" aria-label="Maze"></canvas>
     </div>
-    <div class="dpad" role="group" aria-label="Move">
+    <div class="dpad" id="dpadRoot" role="group" aria-label="Move">
+      <div class="dpad-cooldown-overlay" aria-hidden="true">
+        <span class="dpad-cooldown-fill-global"></span>
+      </div>
       <button type="button" class="dpad-btn dpad-btn--side" data-dir="west" aria-label="Move left">
         <span class="dpad-btn-label">◀</span>
-        <span class="dpad-cooldown-sheen" aria-hidden="true"><span class="dpad-cooldown-fill"></span></span>
       </button>
       <div class="dpad-center">
         <button type="button" class="dpad-btn dpad-btn--ns" data-dir="north" aria-label="Move up">
           <span class="dpad-btn-label">▲</span>
-          <span class="dpad-cooldown-sheen" aria-hidden="true"><span class="dpad-cooldown-fill"></span></span>
         </button>
         <button type="button" class="dpad-btn dpad-btn--ns" data-dir="south" aria-label="Move down">
           <span class="dpad-btn-label">▼</span>
-          <span class="dpad-cooldown-sheen" aria-hidden="true"><span class="dpad-cooldown-fill"></span></span>
         </button>
       </div>
       <button type="button" class="dpad-btn dpad-btn--side" data-dir="east" aria-label="Move right">
         <span class="dpad-btn-label">▶</span>
-        <span class="dpad-cooldown-sheen" aria-hidden="true"><span class="dpad-cooldown-fill"></span></span>
       </button>
     </div>
     <div class="win-overlay hidden" id="winOverlay" aria-hidden="true">
@@ -235,7 +516,145 @@
     </div>
     <div class="win-overlay hidden" id="loseOverlay" aria-hidden="true">
       <p class="win-title">Caught!</p>
-      <button type="button" class="win-btn" id="loseNewBtn">New maze</button>
+      <button type="button" class="win-btn" id="loseNewBtn">New run</button>
+    </div>
+    <div class="win-overlay hidden" id="shopOverlay" aria-hidden="true">
+      <div class="shop-panel" role="dialog" aria-labelledby="shopTitle">
+        <p class="win-title" id="shopTitle">Shop</p>
+        <p class="shop-sub" id="shopGoldLine">Gold: 0</p>
+        <p class="shop-sub" id="shopOwnedLine">Spawns per level: 0</p>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyCooldown"
+          title="Cooldown token — 2 gold. Looks like this in the maze."
+          aria-label="Buy cooldown token for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-cooldown"></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up for −0.1s cooldown, min 0.15s — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyWall"
+          title="Wall break token — 2 gold. Looks like this in the maze."
+          aria-label="Buy wall break token for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-wall"></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up for +1 wall break charge — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyInvuln"
+          title="Invulnerability token — 2 gold. Looks like this in the maze."
+          aria-label="Buy invulnerability token for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-invuln-wrap"><span class="shop-preview-invuln"></span></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up for 5s invulnerability — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyMagnet"
+          title="Magnet token — 2 gold. Pulls gold along rows/columns."
+          aria-label="Buy magnet token for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-magnet"></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up for 5s magnet: gold up to 2 tiles away in a straight line pulls toward you — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyFear"
+          title="Fear token — 2 gold. Enemies run from you."
+          aria-label="Buy fear token for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-fear"></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up for 5s fear: Oni and minions path away from you — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyBanish"
+          title="Banish token — 2 gold. Removes one minion."
+          aria-label="Buy banish token for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-banish"></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up to destroy one random minion on the level (hatched imps only) — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyGoldBurst"
+          title="Bonus gold — 2 gold. Adds 3 coins on the level."
+          aria-label="Buy bonus gold pickup for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-gold-burst"><span></span><span></span><span></span></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up to spawn 3 gold on random empty tiles (never the exit; skips cells that already have gold or another pickup) — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyPhase"
+          title="Phase token — 2 gold. Walk through walls briefly."
+          aria-label="Buy phase token for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-phase"></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up for 5s phase: move through maze walls (still blocked by the outer edge) — 2 gold.</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="shop-item-buy"
+          id="shopBuyStunNova"
+          title="Stun nova — 2 gold. Freezes nearby enemies."
+          aria-label="Buy stun nova for 2 gold"
+        >
+          <span class="shop-pickup-preview" aria-hidden="true">
+            <span class="shop-preview-stun-nova"></span>
+          </span>
+          <span class="shop-item-main">
+            <span class="shop-item-desc">Pick up to stun all enemies within 3 orthogonal tiles of you (through walls) for 5s — 2 gold.</span>
+          </span>
+        </button>
+        <button type="button" class="win-btn shop-continue" id="shopContinueBtn">Continue</button>
+      </div>
+    </div>
+    <div class="win-overlay hidden" id="campaignOverlay" aria-hidden="true">
+      <p class="win-title">You cleared all 10 levels!</p>
+      <button type="button" class="win-btn" id="campaignNewRunBtn">New run</button>
     </div>
   </div>
   <script>
@@ -252,8 +671,79 @@
       var ctx = canvas.getContext("2d");
       var winOverlay = document.getElementById("winOverlay");
       var loseOverlay = document.getElementById("loseOverlay");
+      var shopOverlay = document.getElementById("shopOverlay");
+      var campaignOverlay = document.getElementById("campaignOverlay");
       var newMazeBtn = document.getElementById("newMazeBtn");
       var loseNewBtn = document.getElementById("loseNewBtn");
+      var shopGoldLine = document.getElementById("shopGoldLine");
+      var shopOwnedLine = document.getElementById("shopOwnedLine");
+      var shopContinueBtn = document.getElementById("shopContinueBtn");
+      var SHOP_BUY_SPECS = [
+        {
+          type: "cooldown",
+          el: document.getElementById("shopBuyCooldown"),
+          extraCheck: function () {
+            return countOwnedCooldownSlots() < MAX_COOLDOWN_PURCHASES;
+          },
+        },
+        { type: "wall", el: document.getElementById("shopBuyWall") },
+        { type: "invuln", el: document.getElementById("shopBuyInvuln") },
+        { type: "magnet", el: document.getElementById("shopBuyMagnet") },
+        { type: "fear", el: document.getElementById("shopBuyFear") },
+        { type: "banish", el: document.getElementById("shopBuyBanish") },
+        { type: "goldBurst", el: document.getElementById("shopBuyGoldBurst") },
+        { type: "phase", el: document.getElementById("shopBuyPhase") },
+        { type: "stunNova", el: document.getElementById("shopBuyStunNova") },
+      ];
+      var campaignNewRunBtn = document.getElementById("campaignNewRunBtn");
+      var coinCounterEl = document.getElementById("coinCounter");
+
+      /** Set false to boot straight into the maze as before. */
+      var SHOW_SHOP_ON_LOAD = false;
+
+      var MAX_LEVEL = 10;
+      var BASE_EGG_INTERVAL_MS = 20000;
+      var MIN_EGG_INTERVAL_MS = 2500;
+      /** First (currentLevel − 1) egg-drop gaps each level use this instead of the regular interval. */
+      var FAST_EGG_GAP_MS = 2000;
+      /** Per level: regular egg/minion spawn spacing drops by this much from the base. */
+      var EGG_INTERVAL_PER_LEVEL_MS = 1000;
+      var SHOP_PRICE_GOLD = 2;
+      var COOLDOWN_MS_BASE = 500;
+      var MIN_COOLDOWN_MS = 150;
+      var COOLDOWN_REDUCTION_PER_BUY = 100;
+      var MAX_COOLDOWN_PURCHASES = Math.floor(
+        (COOLDOWN_MS_BASE - MIN_COOLDOWN_MS) / COOLDOWN_REDUCTION_PER_BUY
+      );
+
+      var currentLevel = 1;
+      var goldWallet = 0;
+      var shopAfterLevel = 0;
+      var cooldownReductionPurchases = 0;
+      var wallBreakCharges = 0;
+      var invulnerableUntilMs = 0;
+      /** While performance.now() < this, cardinal gold up to 2 tiles away steps toward the player. */
+      var magnetUntilMs = 0;
+      var MAGNET_DURATION_MS = 5000;
+      var fearUntilMs = 0;
+      var FEAR_DURATION_MS = 5000;
+      var phaseUntilMs = 0;
+      var PHASE_DURATION_MS = 5000;
+      var monsterStunnedUntilMs = 0;
+      var STUN_NOVA_RANGE = 3;
+      var STUN_NOVA_MS = 5000;
+      var lastGameTickMs = 0;
+      var MAGNET_PULL_ANIM_MS = 320;
+      /** { sr, sc, er, ec, startMs, durationMs, absorbPlayer? } — magnet pull in flight. */
+      var coinPullAnimations = [];
+      /** Purchased powerups; each entry spawns one pickup per level (random tile, no overlap with gold). */
+      var ownedPowerups = [];
+      /** Current level only: { r, c, type: … includes 'goldBurst' } */
+      var pendingLevelPowerups = [];
+
+      var GOLD_PICKUPS_PER_LEVEL = 10;
+      var GOLD_BURST_SPAWN_COUNT = 3;
+      var pendingCoinKeys = new Set();
 
       var rows;
       var cols;
@@ -283,15 +773,665 @@
       var monsterGlideFc;
       var monsterGlideTr;
       var monsterGlideTc;
+      var monsterFearPreviewCache = null;
       /** Time to cross one tile at constant speed (linear; segments chain with no pause). */
       var MONSTER_TILE_MS = 750;
+      /** Main enemy scales up and does not move for this long after each level starts. */
+      var MONSTER_GROW_MS = 2000;
+      var monsterGrowStartMs = 0;
+      var EGG_HATCH_MS = 3000;
+      var EMOJI_ONI = "👹";
+      var EMOJI_MINION = "👿";
+      /** Black chess knight (U+265E) — reads as knight; often monochrome per font. */
+      var EMOJI_PLAYER_KNIGHT = "\u265E";
+      /** Flat tints for canvas emoji (source-atop on scratch). */
+      var EMOJI_TINT_PLAYER = "#ffffff";
+      var EMOJI_TINT_ENEMY = "#e52d2d";
+      /** Minion egg phase: grey silhouette until hatch. */
+      var EMOJI_TINT_EGG = "#7a7a7a";
+      /** Multiplier on emoji font size vs previous tuning (hitboxes unchanged). */
+      var EMOJI_VISUAL_SCALE = 1.2;
+      /** Nudge emoji art down on canvas (hit position unchanged). */
+      var EMOJI_DRAW_OFFSET_Y = 5;
+      var emojiTintCanvas = null;
+      var spawnedEnemies = [];
+      var nextEggDropAt = 0;
+      /** Count of 2s gaps remaining before switching to getEggIntervalMs for this level. */
+      var fastEggGapsRemaining = 0;
 
       function cellKey(r, c) {
         return r + "," + c;
       }
 
+      function getEggIntervalMs() {
+        var raw =
+          BASE_EGG_INTERVAL_MS - (currentLevel - 1) * EGG_INTERVAL_PER_LEVEL_MS;
+        if (raw < MIN_EGG_INTERVAL_MS) {
+          return MIN_EGG_INTERVAL_MS;
+        }
+        return raw;
+      }
+
+      function consumeNextEggDropGapMs() {
+        if (fastEggGapsRemaining > 0) {
+          fastEggGapsRemaining--;
+          return FAST_EGG_GAP_MS;
+        }
+        return getEggIntervalMs();
+      }
+
+      function effectiveCooldownMs() {
+        return Math.max(
+          MIN_COOLDOWN_MS,
+          COOLDOWN_MS_BASE - cooldownReductionPurchases * COOLDOWN_REDUCTION_PER_BUY
+        );
+      }
+
+      function updateCoinCounterUi() {
+        if (!coinCounterEl) {
+          return;
+        }
+        coinCounterEl.innerHTML =
+          "Lv " +
+          currentLevel +
+          "/" +
+          MAX_LEVEL +
+          "<br>Gold " +
+          goldWallet;
+      }
+
+      function countOwnedCooldownSlots() {
+        var n = 0;
+        var i;
+        for (i = 0; i < ownedPowerups.length; i++) {
+          if (ownedPowerups[i].type === "cooldown") {
+            n++;
+          }
+        }
+        return n;
+      }
+
+      function formatOwnedPowerupsLine() {
+        var counts = Object.create(null);
+        var i;
+        for (i = 0; i < ownedPowerups.length; i++) {
+          var t = ownedPowerups[i].type;
+          counts[t] = (counts[t] || 0) + 1;
+        }
+        return (
+          "Spawns per level: " +
+          ownedPowerups.length +
+          " — CD " +
+          (counts.cooldown || 0) +
+          " · Wall " +
+          (counts.wall || 0) +
+          " · Inv " +
+          (counts.invuln || 0) +
+          " · Mag " +
+          (counts.magnet || 0) +
+          " · Fear " +
+          (counts.fear || 0) +
+          " · Ban " +
+          (counts.banish || 0) +
+          " · +3G " +
+          (counts.goldBurst || 0) +
+          " · Ph " +
+          (counts.phase || 0) +
+          " · Stun " +
+          (counts.stunNova || 0)
+        );
+      }
+
+      function updateShopUi() {
+        if (shopGoldLine) {
+          shopGoldLine.textContent = "Gold: " + goldWallet;
+        }
+        if (shopOwnedLine) {
+          shopOwnedLine.textContent = formatOwnedPowerupsLine();
+        }
+        var canBuy = goldWallet >= SHOP_PRICE_GOLD;
+        var si;
+        for (si = 0; si < SHOP_BUY_SPECS.length; si++) {
+          var sb = SHOP_BUY_SPECS[si];
+          if (sb.el) {
+            sb.el.disabled =
+              !canBuy || (sb.extraCheck ? !sb.extraCheck() : false);
+          }
+        }
+      }
+
+      function showShopOverlay() {
+        shopOverlay.classList.remove("hidden");
+        shopOverlay.setAttribute("aria-hidden", "false");
+        updateShopUi();
+      }
+
+      function hideShopOverlay() {
+        shopOverlay.classList.add("hidden");
+        shopOverlay.setAttribute("aria-hidden", "true");
+      }
+
+      function showCampaignOverlay() {
+        campaignOverlay.classList.remove("hidden");
+        campaignOverlay.setAttribute("aria-hidden", "false");
+      }
+
+      function hideCampaignOverlay() {
+        campaignOverlay.classList.add("hidden");
+        campaignOverlay.setAttribute("aria-hidden", "true");
+      }
+
+      function scatterOwnedPowerupsOnLevel() {
+        pendingLevelPowerups = [];
+        if (!ownedPowerups.length) {
+          return;
+        }
+        var pool = [];
+        var br;
+        var bc;
+        for (br = 0; br < rows; br++) {
+          for (bc = 0; bc < cols; bc++) {
+            if (br === 0 && bc === 0) {
+              continue;
+            }
+            if (br === rows - 1 && bc === cols - 1) {
+              continue;
+            }
+            var k = cellKey(br, bc);
+            if (pendingCoinKeys.has(k)) {
+              continue;
+            }
+            pool.push([br, bc]);
+          }
+        }
+        shuffleInPlace(pool);
+        var ii;
+        var nPlace = Math.min(ownedPowerups.length, pool.length);
+        for (ii = 0; ii < nPlace; ii++) {
+          pendingLevelPowerups.push({
+            r: pool[ii][0],
+            c: pool[ii][1],
+            type: ownedPowerups[ii].type,
+          });
+        }
+      }
+
+      var POWERUP_APPLY = {
+        cooldown: function (now) {
+          if (cooldownReductionPurchases < MAX_COOLDOWN_PURCHASES) {
+            cooldownReductionPurchases++;
+          }
+        },
+        wall: function (now) {
+          wallBreakCharges++;
+        },
+        invuln: function (now) {
+          invulnerableUntilMs = now + 5000;
+        },
+        magnet: function (now) {
+          magnetUntilMs = now + MAGNET_DURATION_MS;
+        },
+        fear: function (now) {
+          fearUntilMs = now + FEAR_DURATION_MS;
+          monsterFearPreviewCache = null;
+          clearMinionPlannedPathsForFear();
+        },
+        banish: function (now) {
+          banishOneRandomMinion();
+        },
+        goldBurst: function (now) {
+          spawnExtraGoldPickups(GOLD_BURST_SPAWN_COUNT);
+        },
+        phase: function (now) {
+          phaseUntilMs = now + PHASE_DURATION_MS;
+        },
+        stunNova: function (now) {
+          applyOrthogonalStunNova(now);
+        },
+      };
+
+      function tryCollectPowerupAtPlayer() {
+        var pi;
+        for (pi = pendingLevelPowerups.length - 1; pi >= 0; pi--) {
+          var pu = pendingLevelPowerups[pi];
+          if (pu.r === playerR && pu.c === playerC) {
+            pendingLevelPowerups.splice(pi, 1);
+            var nowPu = performance.now();
+            var fn = POWERUP_APPLY[pu.type];
+            if (fn) {
+              fn(nowPu);
+            }
+            return;
+          }
+        }
+      }
+
+      function cellHasPendingPowerupAt(r, c) {
+        var pi;
+        for (pi = 0; pi < pendingLevelPowerups.length; pi++) {
+          var p = pendingLevelPowerups[pi];
+          if (p.r === r && p.c === c) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      /**
+       * Random tiles: no coin yet, not the exit, no other maze pickup still in
+       * pendingLevelPowerups, and not the landing cell of an in-flight magnet coin.
+       */
+      function spawnExtraGoldPickups(count) {
+        var pool = [];
+        var br;
+        var bc;
+        for (br = 0; br < rows; br++) {
+          for (bc = 0; bc < cols; bc++) {
+            if (br === rows - 1 && bc === cols - 1) {
+              continue;
+            }
+            var k = cellKey(br, bc);
+            if (pendingCoinKeys.has(k)) {
+              continue;
+            }
+            if (cellHasPendingPowerupAt(br, bc)) {
+              continue;
+            }
+            if (cellReservedByPullAnim(br, bc)) {
+              continue;
+            }
+            pool.push([br, bc]);
+          }
+        }
+        shuffleInPlace(pool);
+        var nAdd = Math.min(count, pool.length);
+        var ci;
+        for (ci = 0; ci < nAdd; ci++) {
+          pendingCoinKeys.add(cellKey(pool[ci][0], pool[ci][1]));
+        }
+        updateCoinCounterUi();
+      }
+
+      function applyOrthogonalStunNova(now) {
+        var endMs = now + STUN_NOVA_MS;
+        function manhattanToPlayer(r, c) {
+          return Math.abs(r - playerR) + Math.abs(c - playerC);
+        }
+        if (manhattanToPlayer(monsterR, monsterC) <= STUN_NOVA_RANGE) {
+          monsterStunnedUntilMs = endMs;
+        }
+        var ei;
+        for (ei = 0; ei < spawnedEnemies.length; ei++) {
+          var ent = spawnedEnemies[ei];
+          if (ent.kind === "egg") {
+            if (manhattanToPlayer(ent.cellR, ent.cellC) <= STUN_NOVA_RANGE) {
+              ent.stunnedUntilMs = endMs;
+            }
+          } else if (ent.kind === "minion") {
+            if (manhattanToPlayer(ent.r, ent.c) <= STUN_NOVA_RANGE) {
+              ent.stunnedUntilMs = endMs;
+            }
+          }
+        }
+      }
+
+      function banishOneRandomMinion() {
+        var idxs = [];
+        var i;
+        for (i = 0; i < spawnedEnemies.length; i++) {
+          if (spawnedEnemies[i].kind === "minion") {
+            idxs.push(i);
+          }
+        }
+        if (!idxs.length) {
+          return;
+        }
+        var pick = idxs[(Math.random() * idxs.length) | 0];
+        spawnedEnemies.splice(pick, 1);
+      }
+
+      function clearMinionPlannedPathsForFear() {
+        var mi;
+        for (mi = 0; mi < spawnedEnemies.length; mi++) {
+          var ent = spawnedEnemies[mi];
+          if (ent.kind === "minion") {
+            ent.plannedCells = [];
+          }
+        }
+      }
+
+      /** Coin, powerups, and exit only resolve after the glide lands (visual tile = logical tile). */
+      function onPlayerArrivedOnTile(now) {
+        if (!gameActive()) {
+          return;
+        }
+        tryCollectCoinAtPlayer();
+        tryCollectPowerupAtPlayer();
+        if (hitboxesOverlap(now)) {
+          triggerLose();
+          return;
+        }
+        if (playerR === rows - 1 && playerC === cols - 1) {
+          onLevelComplete();
+        }
+      }
+
+      function hasInternalWallInDir(r, c, dir) {
+        if (dir === "north") {
+          return r > 0 && (grid[r][c] & N);
+        }
+        if (dir === "south") {
+          return r < rows - 1 && (grid[r][c] & S);
+        }
+        if (dir === "east") {
+          return c < cols - 1 && (grid[r][c] & E);
+        }
+        if (dir === "west") {
+          return c > 0 && (grid[r][c] & W);
+        }
+        return false;
+      }
+
+      function canBufferDir(dir) {
+        if (canStepFrom(playerR, playerC, dir)) {
+          return true;
+        }
+        var nb = neighborCell(playerR, playerC, dir);
+        if (
+          nb.r < 0 ||
+          nb.r >= rows ||
+          nb.c < 0 ||
+          nb.c >= cols
+        ) {
+          return false;
+        }
+        return wallBreakCharges > 0 && hasInternalWallInDir(playerR, playerC, dir);
+      }
+
+      function tryOpenInternalWallForPlayer(r, c, dir) {
+        if (dir === "north") {
+          if (r <= 0) {
+            return false;
+          }
+          if (!(grid[r][c] & N)) {
+            return false;
+          }
+          grid[r][c] &= ~N;
+          grid[r - 1][c] &= ~S;
+          monsterFearPreviewCache = null;
+          if (performance.now() < fearUntilMs) {
+            clearMinionPlannedPathsForFear();
+          }
+          return true;
+        }
+        if (dir === "south") {
+          if (r >= rows - 1) {
+            return false;
+          }
+          if (!(grid[r][c] & S)) {
+            return false;
+          }
+          grid[r][c] &= ~S;
+          grid[r + 1][c] &= ~N;
+          monsterFearPreviewCache = null;
+          if (performance.now() < fearUntilMs) {
+            clearMinionPlannedPathsForFear();
+          }
+          return true;
+        }
+        if (dir === "east") {
+          if (c >= cols - 1) {
+            return false;
+          }
+          if (!(grid[r][c] & E)) {
+            return false;
+          }
+          grid[r][c] &= ~E;
+          grid[r][c + 1] &= ~W;
+          monsterFearPreviewCache = null;
+          if (performance.now() < fearUntilMs) {
+            clearMinionPlannedPathsForFear();
+          }
+          return true;
+        }
+        if (dir === "west") {
+          if (c <= 0) {
+            return false;
+          }
+          if (!(grid[r][c] & W)) {
+            return false;
+          }
+          grid[r][c] &= ~W;
+          grid[r][c - 1] &= ~E;
+          monsterFearPreviewCache = null;
+          if (performance.now() < fearUntilMs) {
+            clearMinionPlannedPathsForFear();
+          }
+          return true;
+        }
+        return false;
+      }
+
+      function neighborCell(r, c, dir) {
+        var nr = r;
+        var nc = c;
+        if (dir === "north") {
+          nr--;
+        } else if (dir === "south") {
+          nr++;
+        } else if (dir === "east") {
+          nc++;
+        } else {
+          nc--;
+        }
+        return { r: nr, c: nc };
+      }
+
+      function scatterCoins() {
+        coinPullAnimations.length = 0;
+        pendingCoinKeys.clear();
+        var pool = [];
+        var br;
+        var bc;
+        for (br = 0; br < rows; br++) {
+          for (bc = 0; bc < cols; bc++) {
+            if (br === 0 && bc === 0) {
+              continue;
+            }
+            if (br === rows - 1 && bc === cols - 1) {
+              continue;
+            }
+            pool.push([br, bc]);
+          }
+        }
+        shuffleInPlace(pool);
+        var ci;
+        for (
+          ci = 0;
+          ci < GOLD_PICKUPS_PER_LEVEL && ci < pool.length;
+          ci++
+        ) {
+          pendingCoinKeys.add(cellKey(pool[ci][0], pool[ci][1]));
+        }
+        updateCoinCounterUi();
+      }
+
+      function tryCollectCoinAtPlayer() {
+        var k = cellKey(playerR, playerC);
+        if (!pendingCoinKeys.has(k)) {
+          return;
+        }
+        pendingCoinKeys.delete(k);
+        goldWallet++;
+        updateCoinCounterUi();
+      }
+
+      /** Shortest walk distances from player through open passages, capped at 2 steps out. */
+      function magnetReachDistFromPlayer() {
+        var dist = Object.create(null);
+        var q = [];
+        var pr = playerR;
+        var pc = playerC;
+        dist[cellKey(pr, pc)] = 0;
+        q.push([pr, pc, 0]);
+        var qi = 0;
+        while (qi < q.length) {
+          var cur = q[qi++];
+          var r = cur[0];
+          var c = cur[1];
+          var d = cur[2];
+          if (d >= 2) {
+            continue;
+          }
+          var nbs = walkNeighbors(r, c);
+          var ni;
+          for (ni = 0; ni < nbs.length; ni++) {
+            var nr = nbs[ni][0];
+            var nc = nbs[ni][1];
+            var nk = cellKey(nr, nc);
+            if (dist[nk] !== undefined) {
+              continue;
+            }
+            dist[nk] = d + 1;
+            q.push([nr, nc, d + 1]);
+          }
+        }
+        return dist;
+      }
+
+      /** For a cell at graph distance 2 from the player, first walk-neighbor at distance 1 (N,E,S,W order). */
+      function magnetFirstNeighborOneCloser(r, c, distMap) {
+        var nbs = walkNeighbors(r, c);
+        var ni;
+        for (ni = 0; ni < nbs.length; ni++) {
+          var nr = nbs[ni][0];
+          var nc = nbs[ni][1];
+          if (distMap[cellKey(nr, nc)] === 1) {
+            return { r: nr, c: nc };
+          }
+        }
+        return null;
+      }
+
+      function cellReservedByPullAnim(er, ec) {
+        var ai;
+        for (ai = 0; ai < coinPullAnimations.length; ai++) {
+          var ap = coinPullAnimations[ai];
+          if (ap.er === er && ap.ec === ec) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function tickMagnetGoldVisuals(now) {
+        var ai = 0;
+        while (ai < coinPullAnimations.length) {
+          var a = coinPullAnimations[ai];
+          if (now < a.startMs + a.durationMs) {
+            ai++;
+            continue;
+          }
+          coinPullAnimations.splice(ai, 1);
+          if (a.absorbPlayer) {
+            goldWallet++;
+            updateCoinCounterUi();
+          } else {
+            var ek = cellKey(a.er, a.ec);
+            if (a.er === playerR && a.ec === playerC) {
+              goldWallet++;
+              updateCoinCounterUi();
+            } else {
+              pendingCoinKeys.add(ek);
+            }
+          }
+        }
+      }
+
+      /** Pull gold up to 2 maze steps from the player (around corners), one step per tick toward player. */
+      function applyMagnetGoldPull(now) {
+        tickMagnetGoldVisuals(now);
+        if (now >= magnetUntilMs || !gameActive()) {
+          return;
+        }
+        var distMap = magnetReachDistFromPlayer();
+        var absorbKeys = [];
+        var pullOps = [];
+        var pullDestUsed = Object.create(null);
+        pendingCoinKeys.forEach(function (k) {
+          var comma = k.indexOf(",");
+          var cr = parseInt(k.slice(0, comma), 10);
+          var cc = parseInt(k.slice(comma + 1), 10);
+          var dk = distMap[k];
+          if (dk === 1) {
+            absorbKeys.push(k);
+          } else if (dk === 2) {
+            var nxt = magnetFirstNeighborOneCloser(cr, cc, distMap);
+            if (!nxt) {
+              return;
+            }
+            var destK = cellKey(nxt.r, nxt.c);
+            if (
+              pendingCoinKeys.has(destK) ||
+              cellReservedByPullAnim(nxt.r, nxt.c) ||
+              pullDestUsed[destK]
+            ) {
+              return;
+            }
+            pullDestUsed[destK] = true;
+            pullOps.push({
+              k: k,
+              sr: cr,
+              sc: cc,
+              er: nxt.r,
+              ec: nxt.c,
+            });
+          }
+        });
+        var bi;
+        for (bi = 0; bi < absorbKeys.length; bi++) {
+          var kAbs = absorbKeys[bi];
+          if (!pendingCoinKeys.has(kAbs)) {
+            continue;
+          }
+          pendingCoinKeys.delete(kAbs);
+          var ca = kAbs.indexOf(",");
+          var r1 = parseInt(kAbs.slice(0, ca), 10);
+          var c1 = parseInt(kAbs.slice(ca + 1), 10);
+          coinPullAnimations.push({
+            sr: r1,
+            sc: c1,
+            er: playerR,
+            ec: playerC,
+            startMs: now,
+            durationMs: MAGNET_PULL_ANIM_MS,
+            absorbPlayer: true,
+          });
+        }
+        for (bi = 0; bi < pullOps.length; bi++) {
+          var pb = pullOps[bi];
+          if (!pendingCoinKeys.has(pb.k)) {
+            continue;
+          }
+          pendingCoinKeys.delete(pb.k);
+          coinPullAnimations.push({
+            sr: pb.sr,
+            sc: pb.sc,
+            er: pb.er,
+            ec: pb.ec,
+            startMs: now,
+            durationMs: MAGNET_PULL_ANIM_MS,
+          });
+        }
+      }
+
       function gameActive() {
-        return winOverlay.classList.contains("hidden") && loseOverlay.classList.contains("hidden");
+        return (
+          winOverlay.classList.contains("hidden") &&
+          loseOverlay.classList.contains("hidden") &&
+          shopOverlay.classList.contains("hidden") &&
+          campaignOverlay.classList.contains("hidden")
+        );
       }
 
       function tileCenterPixel(tc, tr) {
@@ -311,6 +1451,28 @@
           return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u };
         }
         return tileCenterPixel(monsterC, monsterR);
+      }
+
+      function pixelCellFromPixel(px, py) {
+        var cc = Math.floor((px - offsetX) / cellSize);
+        var rr = Math.floor((py - offsetY) / cellSize);
+        if (rr < 0) rr = 0;
+        if (rr >= rows) rr = rows - 1;
+        if (cc < 0) cc = 0;
+        if (cc >= cols) cc = cols - 1;
+        return { r: rr, c: cc };
+      }
+
+      function getMinionPixelPos(m, now) {
+        if (m.glideActive) {
+          var u = (now - m.glideStartMs) / MONSTER_TILE_MS;
+          if (u < 0) u = 0;
+          if (u > 1) u = 1;
+          var a = tileCenterPixel(m.fc, m.fr);
+          var b = tileCenterPixel(m.tc, m.tr);
+          return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u };
+        }
+        return tileCenterPixel(m.c, m.r);
       }
 
       function getPlayerPixelPos(now) {
@@ -337,15 +1499,53 @@
         return cellSize * 0.3;
       }
 
+      function monsterGrowProgress(now) {
+        var t = (now - monsterGrowStartMs) / MONSTER_GROW_MS;
+        if (t < 0) {
+          t = 0;
+        }
+        if (t > 1) {
+          t = 1;
+        }
+        return t;
+      }
+
+      function monsterEffectiveHitRadius(now) {
+        return monsterHitRadius() * monsterGrowProgress(now);
+      }
+
       function hitboxesOverlap(now) {
+        if (now < invulnerableUntilMs) {
+          return false;
+        }
         var p = getPlayerPixelPos(now);
-        var m = getMonsterPixelPos(now);
         var rp = playerHitRadius();
-        var rm = monsterHitRadius();
+        var rm = monsterEffectiveHitRadius(now);
+        var sum = rp + rm;
+        var sumSq = sum * sum;
+        var m = getMonsterPixelPos(now);
         var dx = p.x - m.x;
         var dy = p.y - m.y;
-        var sum = rp + rm;
-        return dx * dx + dy * dy <= sum * sum;
+        if (dx * dx + dy * dy <= sumSq) {
+          return true;
+        }
+        var i;
+        for (i = 0; i < spawnedEnemies.length; i++) {
+          var e = spawnedEnemies[i];
+          if (e.hurtsPlayer === false) {
+            continue;
+          }
+          if (e.kind !== "minion") {
+            continue;
+          }
+          var q = getMinionPixelPos(e, now);
+          dx = p.x - q.x;
+          dy = p.y - q.y;
+          if (dx * dx + dy * dy <= sumSq) {
+            return true;
+          }
+        }
+        return false;
       }
 
       function triggerLose() {
@@ -353,47 +1553,206 @@
         loseOverlay.setAttribute("aria-hidden", "false");
       }
 
-      /** Squared distance from point P to segment AB. */
-      function distPointSegSq(px, py, ax, ay, bx, by) {
-        var dx = bx - ax;
-        var dy = by - ay;
-        var lenSq = dx * dx + dy * dy;
-        if (lenSq < 1e-8) {
-          var qx = px - ax;
-          var qy = py - ay;
-          return qx * qx + qy * qy;
-        }
-        var t = ((px - ax) * dx + (py - ay) * dy) / lenSq;
-        if (t < 0) t = 0;
-        else if (t > 1) t = 1;
-        var cx = ax + t * dx;
-        var cy = ay + t * dy;
-        var ex = px - cx;
-        var ey = py - cy;
-        return ex * ex + ey * ey;
-      }
-
-      /** Alpha 0..1 for preview line: invisible near enemy, full opacity past outer radius (smoothstep in between). */
-      function previewLineAlphaFromDistSq(distSq, innerRSq, outerRSq) {
-        if (distSq >= outerRSq) return 1;
-        if (distSq <= innerRSq) return 0;
-        var d = Math.sqrt(distSq);
-        var innerR = Math.sqrt(innerRSq);
-        var outerR = Math.sqrt(outerRSq);
-        var t = (d - innerR) / (outerR - innerR);
-        if (t < 0) t = 0;
-        if (t > 1) t = 1;
-        return t * t * (3 - 2 * t);
+      function walkNeighborsInGrid(g, rr, cc, r, c) {
+        var out = [];
+        var w = g[r][c];
+        if (!(w & N) && r > 0) out.push([r - 1, c]);
+        if (!(w & E) && c < cc - 1) out.push([r, c + 1]);
+        if (!(w & S) && r < rr - 1) out.push([r + 1, c]);
+        if (!(w & W) && c > 0) out.push([r, c - 1]);
+        return out;
       }
 
       function walkNeighbors(r, c) {
+        return walkNeighborsInGrid(grid, rows, cols, r, c);
+      }
+
+      function minionNeighborChoices(r, c, fromR, fromC) {
+        var nbs = walkNeighbors(r, c);
+        var filtered = nbs;
+        if (fromR >= 0) {
+          filtered = nbs.filter(function (nb) {
+            return nb[0] !== fromR || nb[1] !== fromC;
+          });
+        }
+        if (!filtered.length) {
+          filtered = nbs;
+        }
+        return filtered.slice();
+      }
+
+      var MIN_MINION_PLAN_LEN = 8;
+      var MINION_PREVIEW_EDGES = 3;
+
+      function rollRandomForwardSteps(startR, startC, fromR, fromC, edgeCount) {
         var out = [];
-        var w = grid[r][c];
-        if (!(w & N) && r > 0) out.push([r - 1, c]);
-        if (!(w & E) && c < cols - 1) out.push([r, c + 1]);
-        if (!(w & S) && r < rows - 1) out.push([r + 1, c]);
-        if (!(w & W) && c > 0) out.push([r, c - 1]);
+        var cr = startR;
+        var cc = startC;
+        var fr = fromR;
+        var fc = fromC;
+        var i;
+        for (i = 0; i < edgeCount; i++) {
+          var nbs = minionNeighborChoices(cr, cc, fr, fc);
+          if (!nbs.length) {
+            break;
+          }
+          shuffleInPlace(nbs);
+          var pick = nbs[0];
+          out.push({ r: pick[0], c: pick[1] });
+          fr = cr;
+          fc = cc;
+          cr = pick[0];
+          cc = pick[1];
+        }
         return out;
+      }
+
+      function replenishMinionPlannedPath(m, minLen, now) {
+        if (now === undefined || now === null) {
+          now = performance.now();
+        }
+        var feared = now < fearUntilMs;
+        var fleeDist = feared ? fullBfsDistFromPlayer() : null;
+        var safety = 0;
+        while (m.plannedCells.length < minLen && safety++ < 24) {
+          var startR;
+          var startC;
+          var fromR;
+          var fromC;
+          var L = m.plannedCells.length;
+          if (L === 0) {
+            startR = m.r;
+            startC = m.c;
+            fromR = m.fromR;
+            fromC = m.fromC;
+          } else {
+            var last = m.plannedCells[L - 1];
+            startR = last.r;
+            startC = last.c;
+            if (L >= 2) {
+              var prev = m.plannedCells[L - 2];
+              fromR = prev.r;
+              fromC = prev.c;
+            } else {
+              fromR = m.r;
+              fromC = m.c;
+            }
+          }
+          var rolled = feared
+            ? rollFleeForwardSteps(startR, startC, fromR, fromC, 12, fleeDist)
+            : rollRandomForwardSteps(startR, startC, fromR, fromC, 12);
+          if (!rolled.length) {
+            break;
+          }
+          var ri;
+          for (ri = 0; ri < rolled.length; ri++) {
+            m.plannedCells.push(rolled[ri]);
+          }
+        }
+      }
+
+      function minionPlanTargetValid(r, c, fromR, fromC, tr, tc) {
+        var choices = minionNeighborChoices(r, c, fromR, fromC);
+        var ci;
+        for (ci = 0; ci < choices.length; ci++) {
+          if (choices[ci][0] === tr && choices[ci][1] === tc) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function buildMinionPreviewSegs(minion, nowMs) {
+        replenishMinionPlannedPath(minion, MIN_MINION_PLAN_LEN, nowMs);
+        var p = minion.plannedCells;
+        var segs = [];
+        function pushEdge(r0, c0, r1, c1) {
+          segs.push({
+            x0: offsetX + c0 * cellSize + cellSize / 2,
+            y0: offsetY + r0 * cellSize + cellSize / 2,
+            x1: offsetX + c1 * cellSize + cellSize / 2,
+            y1: offsetY + r1 * cellSize + cellSize / 2,
+          });
+        }
+        if (minion.glideActive) {
+          var mpos = getMinionPixelPos(minion, nowMs);
+          var glideEnd = tileCenterPixel(minion.tc, minion.tr);
+          segs.push({
+            x0: mpos.x,
+            y0: mpos.y,
+            x1: glideEnd.x,
+            y1: glideEnd.y,
+          });
+          var ei;
+          for (ei = 0; ei < MINION_PREVIEW_EDGES && ei + 1 < p.length; ei++) {
+            pushEdge(p[ei].r, p[ei].c, p[ei + 1].r, p[ei + 1].c);
+          }
+        } else {
+          var prevR = minion.r;
+          var prevC = minion.c;
+          var ek;
+          for (ek = 0; ek < MINION_PREVIEW_EDGES && ek < p.length; ek++) {
+            pushEdge(prevR, prevC, p[ek].r, p[ek].c);
+            prevR = p[ek].r;
+            prevC = p[ek].c;
+          }
+        }
+        return segs;
+      }
+
+      function strokeRedPreviewLine(
+        ctx,
+        previewSegs,
+        hx,
+        hy,
+        hidePreviewRSq
+      ) {
+        if (!previewSegs.length) {
+          return;
+        }
+        var previewSubs = 5;
+        ctx.save();
+        ctx.strokeStyle = "rgba(210, 35, 45, 0.82)";
+        ctx.lineWidth = Math.max(2, cellSize * 0.065);
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.beginPath();
+        var penDown = false;
+        var si;
+        for (si = 0; si < previewSegs.length; si++) {
+          var sg = previewSegs[si];
+          var x0 = sg.x0;
+          var y0 = sg.y0;
+          var x1 = sg.x1;
+          var y1 = sg.y1;
+          var s;
+          for (s = 0; s < previewSubs; s++) {
+            var u0 = s / previewSubs;
+            var u1 = (s + 1) / previewSubs;
+            var ax = x0 + (x1 - x0) * u0;
+            var ay = y0 + (y1 - y0) * u0;
+            var bx = x0 + (x1 - x0) * u1;
+            var by = y0 + (y1 - y0) * u1;
+            var dax = ax - hx;
+            var day = ay - hy;
+            var dbx = bx - hx;
+            var dby = by - hy;
+            if (
+              dax * dax + day * day <= hidePreviewRSq &&
+              dbx * dbx + dby * dby <= hidePreviewRSq
+            ) {
+              penDown = false;
+              continue;
+            }
+            if (!penDown) {
+              ctx.moveTo(ax, ay);
+              penDown = true;
+            }
+            ctx.lineTo(bx, by);
+          }
+        }
+        ctx.stroke();
+        ctx.restore();
       }
 
       function shortestPath(sr, sc, tr, tc) {
@@ -437,6 +1796,137 @@
           }
         }
         return [{ r: sr, c: sc }];
+      }
+
+      /** Shortest walk distance from the player to every reachable cell. */
+      function fullBfsDistFromPlayer() {
+        var dist = Object.create(null);
+        var q = [];
+        var pr = playerR;
+        var pc = playerC;
+        dist[cellKey(pr, pc)] = 0;
+        q.push([pr, pc]);
+        var qi = 0;
+        while (qi < q.length) {
+          var cur = q[qi++];
+          var r = cur[0];
+          var c = cur[1];
+          var base = dist[cellKey(r, c)];
+          var nbs = walkNeighbors(r, c);
+          var ni;
+          for (ni = 0; ni < nbs.length; ni++) {
+            var nr = nbs[ni][0];
+            var nc = nbs[ni][1];
+            var nk = cellKey(nr, nc);
+            if (dist[nk] !== undefined) {
+              continue;
+            }
+            dist[nk] = base + 1;
+            q.push([nr, nc]);
+          }
+        }
+        return dist;
+      }
+
+      function pickFleeCellFromNeighbors(nbs, distMap, fromR, fromC) {
+        var bestD = -1;
+        var bestPick = null;
+        var bestBacktrack = 1;
+        var j;
+        for (j = 0; j < nbs.length; j++) {
+          var nr = nbs[j][0];
+          var nc = nbs[j][1];
+          var d = distMap[cellKey(nr, nc)];
+          if (d === undefined) {
+            continue;
+          }
+          var isBacktrack =
+            fromR >= 0 && fromC >= 0 && nr === fromR && nc === fromC ? 1 : 0;
+          if (
+            d > bestD ||
+            (d === bestD && isBacktrack < bestBacktrack)
+          ) {
+            bestD = d;
+            bestBacktrack = isBacktrack;
+            bestPick = [nr, nc];
+          }
+        }
+        return bestPick;
+      }
+
+      function pickMonsterFleeStep(fr, fc, distMap) {
+        var pick = pickFleeCellFromNeighbors(walkNeighbors(fr, fc), distMap);
+        if (!pick) {
+          return null;
+        }
+        return { r: pick[0], c: pick[1] };
+      }
+
+      function buildMonsterFleePreviewPath(fromR, fromC, maxEdges) {
+        var distMap = fullBfsDistFromPlayer();
+        var path = [{ r: fromR, c: fromC }];
+        var cr = fromR;
+        var cc = fromC;
+        var e;
+        for (e = 0; e < maxEdges; e++) {
+          var nxt = pickMonsterFleeStep(cr, cc, distMap);
+          if (!nxt) {
+            break;
+          }
+          path.push(nxt);
+          cr = nxt.r;
+          cc = nxt.c;
+        }
+        return path;
+      }
+
+      function getMonsterFleePreviewPath(fromR, fromC, maxEdges) {
+        var cache = monsterFearPreviewCache;
+        if (
+          cache &&
+          cache.fromR === fromR &&
+          cache.fromC === fromC &&
+          cache.playerR === playerR &&
+          cache.playerC === playerC &&
+          cache.maxEdges === maxEdges
+        ) {
+          return cache.path;
+        }
+        var path = buildMonsterFleePreviewPath(fromR, fromC, maxEdges);
+        monsterFearPreviewCache = {
+          fromR: fromR,
+          fromC: fromC,
+          playerR: playerR,
+          playerC: playerC,
+          maxEdges: maxEdges,
+          path: path,
+        };
+        return path;
+      }
+
+      function rollFleeForwardSteps(startR, startC, fromR, fromC, edgeCount, distMap) {
+        var out = [];
+        var cr = startR;
+        var cc = startC;
+        var fr = fromR;
+        var fc = fromC;
+        var i;
+        for (i = 0; i < edgeCount; i++) {
+          var nbs = minionNeighborChoices(cr, cc, fr, fc);
+          if (!nbs.length) {
+            break;
+          }
+          var pick = pickFleeCellFromNeighbors(nbs, distMap, fr, fc);
+          if (!pick) {
+            break;
+          }
+          out.push({ r: pick[0], c: pick[1] });
+          fr = cr;
+          fc = cc;
+          cr = pick[0];
+          cc = pick[1];
+        }
+        return out;
       }
 
       function shuffleInPlace(arr) {
@@ -529,14 +2019,298 @@
         }
       }
 
+      function closeWallEdge(g, w) {
+        if (w.ax === "E") {
+          g[w.ri][w.ci] |= E;
+          g[w.ri][w.ci + 1] |= W;
+        } else {
+          g[w.ri][w.ci] |= S;
+          g[w.ri + 1][w.ci] |= N;
+        }
+      }
+
+      /** True if cells (r,c)..(r+1,c+1) are pairwise connected (no 2x2 "empty box"). */
+      function twoByTwoIsOpenBox(g, r, c) {
+        return (
+          !(g[r][c] & E) &&
+          !(g[r][c] & S) &&
+          !(g[r][c + 1] & S) &&
+          !(g[r + 1][c] & E)
+        );
+      }
+
       /**
-       * One pass: open floor(8% of closed internal walls). No two openings share a cell
+       * After extra punches, remove any fully open 2x2 (four passages around a square).
+       * Restores one wall chosen at random among the four internal edges.
+       */
+      var NEAR_START_BREAK_MAX_STEPS = 3;
+
+      function bfsDistancesFromStart() {
+        var dist = [];
+        var ri;
+        var ci;
+        for (ri = 0; ri < rows; ri++) {
+          dist.push([]);
+          for (ci = 0; ci < cols; ci++) {
+            dist[ri].push(-1);
+          }
+        }
+        var q = [[0, 0]];
+        dist[0][0] = 0;
+        var qi = 0;
+        while (qi < q.length) {
+          var cur = q[qi++];
+          var cr = cur[0];
+          var cc = cur[1];
+          var d = dist[cr][cc];
+          var nbs = walkNeighbors(cr, cc);
+          var ni;
+          for (ni = 0; ni < nbs.length; ni++) {
+            var nb = nbs[ni];
+            var nr = nb[0];
+            var nc = nb[1];
+            if (dist[nr][nc] >= 0) {
+              continue;
+            }
+            dist[nr][nc] = d + 1;
+            q.push([nr, nc]);
+          }
+        }
+        return dist;
+      }
+
+      function wallIsOpen(g, w) {
+        if (w.ax === "E") {
+          return !(g[w.ri][w.ci] & E);
+        }
+        return !(g[w.ri][w.ci] & S);
+      }
+
+      function wallEndpointCells(w) {
+        if (w.ax === "E") {
+          return [
+            [w.ri, w.ci],
+            [w.ri, w.ci + 1],
+          ];
+        }
+        return [
+          [w.ri, w.ci],
+          [w.ri + 1, w.ci],
+        ];
+      }
+
+      function punchedNearStartOk(g, punchedList) {
+        var dist = bfsDistancesFromStart();
+        var pi;
+        for (pi = 0; pi < punchedList.length; pi++) {
+          var w = punchedList[pi];
+          if (!wallIsOpen(g, w)) {
+            continue;
+          }
+          var ends = wallEndpointCells(w);
+          var d0 = dist[ends[0][0]][ends[0][1]];
+          var d1 = dist[ends[1][0]][ends[1][1]];
+          if (
+            (d0 >= 0 && d0 <= NEAR_START_BREAK_MAX_STEPS) ||
+            (d1 >= 0 && d1 <= NEAR_START_BREAK_MAX_STEPS)
+          ) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      /**
+       * If no extra opening still exists within NEAR_START_BREAK_MAX_STEPS of (0,0),
+       * open a random closed internal wall that touches the near-start region.
+       */
+      function ensureNearStartBreak(g, r, c, punchedList) {
+        var attempts = 0;
+        while (attempts++ < 100) {
+          if (punchedNearStartOk(g, punchedList)) {
+            return;
+          }
+          var dist = bfsDistancesFromStart();
+          var walls = listClosedInternalWalls(g, r, c);
+          var candidates = [];
+          var wi;
+          for (wi = 0; wi < walls.length; wi++) {
+            var w = walls[wi];
+            var ends = wallEndpointCells(w);
+            var da = dist[ends[0][0]][ends[0][1]];
+            var db = dist[ends[1][0]][ends[1][1]];
+            if (
+              (da >= 0 && da <= NEAR_START_BREAK_MAX_STEPS) ||
+              (db >= 0 && db <= NEAR_START_BREAK_MAX_STEPS)
+            ) {
+              candidates.push(w);
+            }
+          }
+          shuffleInPlace(candidates);
+          if (!candidates.length) {
+            return;
+          }
+          openWallEdge(g, candidates[0]);
+          punchedList.push(candidates[0]);
+          breakOpenTwoByTwo(g, r, c);
+        }
+      }
+
+      function breakOpenTwoByTwo(g, r, c) {
+        var safety = 0;
+        while (safety++ < 200) {
+          var ri;
+          var ci;
+          var foundRi = -1;
+          var foundCi = -1;
+          for (ri = 0; ri < r - 1; ri++) {
+            for (ci = 0; ci < c - 1; ci++) {
+              if (twoByTwoIsOpenBox(g, ri, ci)) {
+                foundRi = ri;
+                foundCi = ci;
+                break;
+              }
+            }
+            if (foundRi >= 0) break;
+          }
+          if (foundRi < 0) {
+            return;
+          }
+          var choices = [
+            { ax: "E", ri: foundRi, ci: foundCi },
+            { ax: "S", ri: foundRi, ci: foundCi },
+            { ax: "S", ri: foundRi, ci: foundCi + 1 },
+            { ax: "E", ri: foundRi + 1, ci: foundCi },
+          ];
+          shuffleInPlace(choices);
+          closeWallEdge(g, choices[0]);
+        }
+      }
+
+      /**
+       * BFS from (0,0) without stepping on exit (goal). Any non-exit cell not visited is only
+       * reachable in the full maze by routes that cross the exit — unwinnable for pickups.
+       */
+      function bfsReachableAvoidExit(g, r, c) {
+        var gr = r - 1;
+        var gc = c - 1;
+        var vis = {};
+        var q = [[0, 0]];
+        vis[cellKey(0, 0)] = true;
+        var qi = 0;
+        while (qi < q.length) {
+          var cur = q[qi++];
+          var cr = cur[0];
+          var cc = cur[1];
+          var nbs = walkNeighborsInGrid(g, r, c, cr, cc);
+          var ni;
+          for (ni = 0; ni < nbs.length; ni++) {
+            var nb = nbs[ni];
+            var nr = nb[0];
+            var nc = nb[1];
+            if (nr === gr && nc === gc) {
+              continue;
+            }
+            var k = cellKey(nr, nc);
+            if (vis[k]) {
+              continue;
+            }
+            vis[k] = true;
+            q.push([nr, nc]);
+          }
+        }
+        return vis;
+      }
+
+      function findWallConnectingVisToTrapped(g, r, c, vis, gr, gc) {
+        var walls = listClosedInternalWalls(g, r, c);
+        shuffleInPlace(walls);
+        var wi;
+        for (wi = 0; wi < walls.length; wi++) {
+          var wall = walls[wi];
+          var ends = wallEndpointCells(wall);
+          var a = ends[0];
+          var b = ends[1];
+          var va = !!vis[cellKey(a[0], a[1])];
+          var vb = !!vis[cellKey(b[0], b[1])];
+          var ga = a[0] === gr && a[1] === gc;
+          var gb = b[0] === gr && b[1] === gc;
+          if (va && !vb && !gb) {
+            return wall;
+          }
+          if (vb && !va && !ga) {
+            return wall;
+          }
+        }
+        return null;
+      }
+
+      function findWallTouchingTrapped(g, r, c, vis, gr, gc) {
+        var walls = listClosedInternalWalls(g, r, c);
+        shuffleInPlace(walls);
+        var wi;
+        for (wi = 0; wi < walls.length; wi++) {
+          var wall = walls[wi];
+          var ends = wallEndpointCells(wall);
+          var ai;
+          for (ai = 0; ai < 2; ai++) {
+            var p = ends[ai];
+            if (p[0] === gr && p[1] === gc) {
+              continue;
+            }
+            if (!vis[cellKey(p[0], p[1])]) {
+              return wall;
+            }
+          }
+        }
+        return null;
+      }
+
+      function ensureReachableWithoutUsingExit(g, r, c) {
+        var gr = r - 1;
+        var gc = c - 1;
+        var safety = 0;
+        while (safety++ < 400) {
+          var vis = bfsReachableAvoidExit(g, r, c);
+          var ri;
+          var ci;
+          var allOk = true;
+          for (ri = 0; ri < r; ri++) {
+            for (ci = 0; ci < c; ci++) {
+              if (ri === gr && ci === gc) {
+                continue;
+              }
+              if (!vis[cellKey(ri, ci)]) {
+                allOk = false;
+                break;
+              }
+            }
+            if (!allOk) {
+              break;
+            }
+          }
+          if (allOk) {
+            return;
+          }
+          var w =
+            findWallConnectingVisToTrapped(g, r, c, vis, gr, gc) ||
+            findWallTouchingTrapped(g, r, c, vis, gr, gc);
+          if (!w) {
+            return;
+          }
+          openWallEdge(g, w);
+          breakOpenTwoByTwo(g, r, c);
+        }
+      }
+
+      /**
+       * One pass: open floor(15% of closed internal walls). No two openings share a cell
        * (each wall touches two cells — none of those cells may appear on another chosen wall),
        * so shortcuts stay at least one cell apart on the grid.
        */
       function punchExtraPassages(g, r, c) {
         var walls = listClosedInternalWalls(g, r, c);
-        var k = Math.floor(walls.length * 0.08);
+        var k = Math.floor(walls.length * 0.15);
         shuffleInPlace(walls);
         var used = [];
         var ri;
@@ -576,13 +2350,14 @@
         for (i = 0; i < chosen.length; i++) {
           openWallEdge(g, chosen[i]);
         }
+        return chosen;
       }
 
       function layoutMaze() {
         var cw = canvas.width;
         var ch = canvas.height;
-        cols = 8;
-        rows = 8;
+        rows = 5 + currentLevel;
+        cols = 5 + currentLevel;
         cellSize = Math.floor(Math.min(cw / cols, ch / rows));
         mazeW = cols * cellSize;
         mazeH = rows * cellSize;
@@ -590,10 +2365,19 @@
         offsetY = Math.floor((ch - mazeH) / 2);
       }
 
-      function newGame() {
+      function onLevelComplete() {
+        shopAfterLevel = currentLevel;
+        updateCoinCounterUi();
+        showShopOverlay();
+      }
+
+      function startLevel() {
         layoutMaze();
         grid = generateMaze(rows, cols);
-        punchExtraPassages(grid, rows, cols);
+        var punchedWalls = punchExtraPassages(grid, rows, cols);
+        breakOpenTwoByTwo(grid, rows, cols);
+        ensureNearStartBreak(grid, rows, cols, punchedWalls);
+        ensureReachableWithoutUsingExit(grid, rows, cols);
         playerR = 0;
         playerC = 0;
         playerGlideActive = false;
@@ -601,21 +2385,277 @@
         monsterR = rows - 1;
         monsterC = cols - 1;
         monsterGlideActive = false;
+        monsterFearPreviewCache = null;
+        spawnedEnemies = [];
+        invulnerableUntilMs = 0;
+        magnetUntilMs = 0;
+        fearUntilMs = 0;
+        phaseUntilMs = 0;
+        monsterStunnedUntilMs = 0;
+        lastGameTickMs = 0;
+        var startT = performance.now();
+        monsterGrowStartMs = startT;
+        fastEggGapsRemaining = Math.max(0, currentLevel - 1);
+        nextEggDropAt = startT + consumeNextEggDropGapMs();
         winOverlay.classList.add("hidden");
         winOverlay.setAttribute("aria-hidden", "true");
         loseOverlay.classList.add("hidden");
         loseOverlay.setAttribute("aria-hidden", "true");
+        hideShopOverlay();
+        hideCampaignOverlay();
         resetCooldowns();
+        scatterCoins();
+        scatterOwnedPowerupsOnLevel();
+        updateCoinCounterUi();
         draw();
       }
+
+      function startRun() {
+        currentLevel = 1;
+        goldWallet = 0;
+        cooldownReductionPurchases = 0;
+        wallBreakCharges = 0;
+        invulnerableUntilMs = 0;
+        magnetUntilMs = 0;
+        fearUntilMs = 0;
+        phaseUntilMs = 0;
+        monsterStunnedUntilMs = 0;
+        lastGameTickMs = 0;
+        ownedPowerups = [];
+        shopAfterLevel = 0;
+        loseOverlay.classList.add("hidden");
+        loseOverlay.setAttribute("aria-hidden", "true");
+        hideShopOverlay();
+        hideCampaignOverlay();
+        startLevel();
+      }
+
+      function resetRun() {
+        startRun();
+      }
+
+      function drawCanvasEmoji(ctx, emoji, x, y, fontSizePx, tintCssColor) {
+        if (fontSizePx < 3) {
+          return;
+        }
+        y += EMOJI_DRAW_OFFSET_Y;
+        var fs = Math.round(fontSizePx);
+        var fontStr =
+          fs +
+          'px "Segoe UI Symbol", system-ui, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
+        if (!tintCssColor) {
+          ctx.save();
+          ctx.font = fontStr;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(emoji, x, y);
+          ctx.restore();
+          return;
+        }
+        var sw = Math.ceil(fs * 1.5 + 10);
+        var sh = Math.ceil(fs * 1.35 + 10);
+        if (!emojiTintCanvas) {
+          emojiTintCanvas = document.createElement("canvas");
+        }
+        if (emojiTintCanvas.width < sw) {
+          emojiTintCanvas.width = sw;
+        }
+        if (emojiTintCanvas.height < sh) {
+          emojiTintCanvas.height = sh;
+        }
+        var c2 = emojiTintCanvas.getContext("2d");
+        c2.clearRect(0, 0, sw, sh);
+        c2.font = fontStr;
+        c2.textAlign = "center";
+        c2.textBaseline = "middle";
+        c2.fillText(emoji, sw / 2, sh / 2);
+        c2.globalCompositeOperation = "source-atop";
+        c2.fillStyle = tintCssColor;
+        c2.fillRect(0, 0, sw, sh);
+        c2.globalCompositeOperation = "source-over";
+        ctx.drawImage(emojiTintCanvas, 0, 0, sw, sh, x - sw / 2, y - sh / 2, sw, sh);
+      }
+
+      function drawGoldPickupDisc(ctx, cx, cy, cellSize) {
+        var rad = Math.max(3, cellSize * 0.14);
+        var grd = ctx.createRadialGradient(
+          cx - rad * 0.35,
+          cy - rad * 0.35,
+          rad * 0.15,
+          cx,
+          cy,
+          rad
+        );
+        grd.addColorStop(0, "#fff4a8");
+        grd.addColorStop(0.45, "#e8c030");
+        grd.addColorStop(1, "#a67c10");
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = "#8a6a18";
+        ctx.lineWidth = Math.max(1, cellSize * 0.04);
+        ctx.stroke();
+      }
+
+      var POWERUP_DRAW = {
+        invuln: function (ctx, px, py, cellSize, ph) {
+          ctx.fillStyle = "rgba(120, 220, 255, 0.65)";
+          ctx.beginPath();
+          ctx.moveTo(px, py - ph);
+          ctx.lineTo(px + ph, py);
+          ctx.lineTo(px, py + ph);
+          ctx.lineTo(px - ph, py);
+          ctx.closePath();
+          ctx.fill();
+          ctx.strokeStyle = "#4ad0f0";
+          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          ctx.stroke();
+        },
+        cooldown: function (ctx, px, py, cellSize) {
+          var cr = Math.max(3, cellSize * 0.13);
+          ctx.fillStyle = "rgba(200, 140, 255, 0.55)";
+          ctx.beginPath();
+          ctx.arc(px, py, cr, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = "#a070e0";
+          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          ctx.stroke();
+        },
+        wall: function (ctx, px, py, cellSize) {
+          var bw = Math.max(5, cellSize * 0.2);
+          var bh = Math.max(4, cellSize * 0.14);
+          ctx.fillStyle = "rgba(180, 130, 80, 0.7)";
+          var rx = px - bw / 2;
+          var ry = py - bh / 2;
+          var rr = cellSize * 0.08;
+          ctx.beginPath();
+          ctx.moveTo(rx + rr, ry);
+          ctx.lineTo(rx + bw - rr, ry);
+          ctx.quadraticCurveTo(rx + bw, ry, rx + bw, ry + rr);
+          ctx.lineTo(rx + bw, ry + bh - rr);
+          ctx.quadraticCurveTo(rx + bw, ry + bh, rx + bw - rr, ry + bh);
+          ctx.lineTo(rx + rr, ry + bh);
+          ctx.quadraticCurveTo(rx, ry + bh, rx, ry + bh - rr);
+          ctx.lineTo(rx, ry + rr);
+          ctx.quadraticCurveTo(rx, ry, rx + rr, ry);
+          ctx.closePath();
+          ctx.fill();
+          ctx.strokeStyle = "#8b6040";
+          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          ctx.stroke();
+        },
+        magnet: function (ctx, px, py, cellSize) {
+          var mw = Math.max(10, cellSize * 0.26);
+          var mh = Math.max(8, cellSize * 0.2);
+          var mrx = px - mw / 2;
+          var mry = py - mh / 2;
+          var arcY = mry + mh - mw / 2;
+          if (arcY < mry + mw * 0.15) {
+            arcY = mry + mw * 0.15;
+          }
+          var rCup = mw / 2;
+          ctx.fillStyle = "rgba(200, 90, 90, 0.5)";
+          ctx.beginPath();
+          ctx.moveTo(mrx, mry);
+          ctx.lineTo(mrx + mw, mry);
+          ctx.lineTo(mrx + mw, arcY);
+          ctx.arc(px, arcY, rCup, 0, Math.PI, false);
+          ctx.lineTo(mrx, mry);
+          ctx.closePath();
+          ctx.fill();
+          ctx.strokeStyle = "#a83838";
+          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          ctx.stroke();
+        },
+        fear: function (ctx, px, py, cellSize) {
+          var fw = Math.max(8, cellSize * 0.22);
+          ctx.fillStyle = "rgba(140, 70, 200, 0.55)";
+          ctx.beginPath();
+          ctx.arc(px, py, fw * 0.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = "#8b4dc4";
+          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          ctx.stroke();
+          var eye = Math.max(2, cellSize * 0.04);
+          ctx.fillStyle = "rgba(40, 15, 60, 0.85)";
+          ctx.beginPath();
+          ctx.arc(px - fw * 0.16, py - eye * 0.2, eye, 0, Math.PI * 2);
+          ctx.arc(px + fw * 0.16, py - eye * 0.2, eye, 0, Math.PI * 2);
+          ctx.fill();
+        },
+        banish: function (ctx, px, py, cellSize) {
+          var brad = Math.max(6, cellSize * 0.18);
+          ctx.fillStyle = "rgba(85, 90, 105, 0.7)";
+          ctx.beginPath();
+          ctx.arc(px, py, brad, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = "#d04545";
+          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          ctx.stroke();
+          ctx.strokeStyle = "#ff6b6b";
+          ctx.lineWidth = Math.max(2, cellSize * 0.055);
+          ctx.beginPath();
+          ctx.moveTo(px - brad * 0.45, py - brad * 0.45);
+          ctx.lineTo(px + brad * 0.45, py + brad * 0.45);
+          ctx.moveTo(px + brad * 0.45, py - brad * 0.45);
+          ctx.lineTo(px - brad * 0.45, py + brad * 0.45);
+          ctx.stroke();
+        },
+        goldBurst: function (ctx, px, py, cellSize) {
+          var gsz = cellSize * 0.52;
+          var goy = cellSize * 0.12;
+          var gox = cellSize * 0.14;
+          drawGoldPickupDisc(ctx, px, py - goy, gsz);
+          drawGoldPickupDisc(ctx, px - gox, py + goy * 0.75, gsz);
+          drawGoldPickupDisc(ctx, px + gox, py + goy * 0.75, gsz);
+        },
+        phase: function (ctx, px, py, cellSize) {
+          var prad = Math.max(7, cellSize * 0.2);
+          ctx.strokeStyle = "rgba(140, 250, 255, 0.95)";
+          ctx.lineWidth = Math.max(2, cellSize * 0.045);
+          ctx.setLineDash([cellSize * 0.1, cellSize * 0.08]);
+          ctx.beginPath();
+          ctx.arc(px, py, prad, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = "rgba(100, 200, 220, 0.25)";
+          ctx.beginPath();
+          ctx.arc(px, py, prad * 0.72, 0, Math.PI * 2);
+          ctx.fill();
+        },
+        stunNova: function (ctx, px, py, cellSize) {
+          var snR = Math.max(8, cellSize * 0.2);
+          var spi;
+          ctx.fillStyle = "rgba(255, 230, 120, 0.5)";
+          ctx.beginPath();
+          ctx.arc(px, py, snR * 0.55, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = "#e8c040";
+          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          for (spi = 0; spi < 8; spi++) {
+            var ang = (spi / 8) * Math.PI * 2 - Math.PI / 2;
+            ctx.beginPath();
+            ctx.moveTo(
+              px + Math.cos(ang) * snR * 0.35,
+              py + Math.sin(ang) * snR * 0.35
+            );
+            ctx.lineTo(
+              px + Math.cos(ang) * snR * 0.95,
+              py + Math.sin(ang) * snR * 0.95
+            );
+            ctx.stroke();
+          }
+        },
+      };
 
       function draw() {
         var cw = canvas.width;
         var ch = canvas.height;
-        ctx.fillStyle = "#1a1d24";
+        ctx.fillStyle = "#000000";
         ctx.fillRect(0, 0, cw, ch);
 
-        ctx.strokeStyle = "#7eb8da";
+        ctx.strokeStyle = "#6e6e6e";
         ctx.lineWidth = 2;
         ctx.lineCap = "square";
 
@@ -649,97 +2689,260 @@
 
         var gx = offsetX + (cols - 1) * cellSize + cellSize / 2;
         var gy = offsetY + (rows - 1) * cellSize + cellSize / 2;
-        ctx.fillStyle = "rgba(80, 200, 120, 0.35)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
         ctx.beginPath();
         ctx.arc(gx, gy, cellSize * 0.38, 0, Math.PI * 2);
         ctx.fill();
-        ctx.strokeStyle = "#50c878";
+        ctx.strokeStyle = "#888888";
         ctx.lineWidth = 2;
         ctx.stroke();
+
+        pendingCoinKeys.forEach(function (key) {
+          var comma = key.indexOf(",");
+          var cr = parseInt(key.slice(0, comma), 10);
+          var cc = parseInt(key.slice(comma + 1), 10);
+          var cx = offsetX + cc * cellSize + cellSize / 2;
+          var cy = offsetY + cr * cellSize + cellSize / 2;
+          drawGoldPickupDisc(ctx, cx, cy, cellSize);
+        });
+
+        var nowGoldFx = performance.now();
+        var pai;
+        for (pai = 0; pai < coinPullAnimations.length; pai++) {
+          var ap = coinPullAnimations[pai];
+          var tRaw = (nowGoldFx - ap.startMs) / ap.durationMs;
+          if (tRaw < 0) {
+            tRaw = 0;
+          } else if (tRaw > 1) {
+            tRaw = 1;
+          }
+          var te = 1 - Math.pow(1 - tRaw, 3);
+          var sx = offsetX + ap.sc * cellSize + cellSize / 2;
+          var sy = offsetY + ap.sr * cellSize + cellSize / 2;
+          var ex = offsetX + ap.ec * cellSize + cellSize / 2;
+          var ey = offsetY + ap.er * cellSize + cellSize / 2;
+          if (ap.absorbPlayer) {
+            ex = offsetX + playerC * cellSize + cellSize / 2;
+            ey = offsetY + playerR * cellSize + cellSize / 2;
+          }
+          var ix = sx + (ex - sx) * te;
+          var iy = sy + (ey - sy) * te;
+          if (ap.absorbPlayer && tRaw > 0.62) {
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, 1 - (tRaw - 0.62) / 0.38);
+          }
+          drawGoldPickupDisc(ctx, ix, iy, cellSize);
+          if (ap.absorbPlayer && tRaw > 0.62) {
+            ctx.restore();
+          }
+        }
+
+        var ppi;
+        for (ppi = 0; ppi < pendingLevelPowerups.length; ppi++) {
+          var pup = pendingLevelPowerups[ppi];
+          var px = offsetX + pup.c * cellSize + cellSize / 2;
+          var py = offsetY + pup.r * cellSize + cellSize / 2;
+          var ph = Math.max(4, cellSize * 0.16);
+          var drawPu = POWERUP_DRAW[pup.type];
+          if (drawPu) {
+            drawPu(ctx, px, py, cellSize, ph);
+          }
+        }
 
         var nowDraw = performance.now();
         if (gameActive()) {
           var mpos = getMonsterPixelPos(nowDraw);
           var mx = mpos.x;
           var my = mpos.y;
-          var lineFadeInnerSq = cellSize * cellSize * 0.3 * 0.3;
-          var lineFadeOuterSq = cellSize * cellSize * 0.58 * 0.58;
+          var hidePreviewR = monsterEffectiveHitRadius(nowDraw);
+          var hidePreviewRSq = hidePreviewR * hidePreviewR;
 
-          var pathM = null;
+          var previewSegs = [];
+          var PREVIEW_MAX_TILE_EDGES = 4;
+          var enemyFearedPreview = nowDraw < fearUntilMs;
           if (monsterGlideActive) {
-            pathM = shortestPath(monsterGlideTr, monsterGlideTc, playerR, playerC);
-          } else {
-            var stepToNext = shortestPath(monsterR, monsterC, playerR, playerC);
-            if (stepToNext.length >= 2) {
-              pathM = shortestPath(stepToNext[1].r, stepToNext[1].c, playerR, playerC);
+            var glideEnd = tileCenterPixel(monsterGlideTc, monsterGlideTr);
+            previewSegs.push({
+              x0: mpos.x,
+              y0: mpos.y,
+              x1: glideEnd.x,
+              y1: glideEnd.y,
+            });
+            var tail = enemyFearedPreview
+              ? getMonsterFleePreviewPath(
+                  monsterGlideTr,
+                  monsterGlideTc,
+                  PREVIEW_MAX_TILE_EDGES
+                )
+              : shortestPath(
+                  monsterGlideTr,
+                  monsterGlideTc,
+                  playerR,
+                  playerC
+                );
+            var maxTailE = Math.min(
+              PREVIEW_MAX_TILE_EDGES,
+              Math.max(0, tail.length - 1)
+            );
+            var ei;
+            for (ei = 0; ei < maxTailE; ei++) {
+              var tv0 = tail[ei];
+              var tv1 = tail[ei + 1];
+              previewSegs.push({
+                x0: offsetX + tv0.c * cellSize + cellSize / 2,
+                y0: offsetY + tv0.r * cellSize + cellSize / 2,
+                x1: offsetX + tv1.c * cellSize + cellSize / 2,
+                y1: offsetY + tv1.r * cellSize + cellSize / 2,
+              });
             }
-          }
-          if (pathM !== null && pathM.length >= 2) {
-            var maxJ = pathM.length - 2;
-            if (maxJ > 4) maxJ = 4;
-            var segCount = maxJ >= 1 ? maxJ : 1;
-            ctx.save();
-            ctx.lineWidth = Math.max(2, cellSize * 0.065);
-            ctx.lineCap = "round";
-            var vi;
-            for (vi = 0; vi < segCount; vi++) {
-              if (vi + 1 >= pathM.length) break;
-              var v0 = pathM[vi];
-              var v1 = pathM[vi + 1];
-              var x0 = offsetX + v0.c * cellSize + cellSize / 2;
-              var y0 = offsetY + v0.r * cellSize + cellSize / 2;
-              var x1 = offsetX + v1.c * cellSize + cellSize / 2;
-              var y1 = offsetY + v1.r * cellSize + cellSize / 2;
-              var segLen = Math.sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0));
-              var subSteps = Math.ceil(segLen / (cellSize * 0.1));
-              if (subSteps < 8) subSteps = 8;
-              if (subSteps > 40) subSteps = 40;
-              var s;
-              for (s = 0; s < subSteps; s++) {
-                var ft0 = s / subSteps;
-                var ft1 = (s + 1) / subSteps;
-                var sx0 = x0 + (x1 - x0) * ft0;
-                var sy0 = y0 + (y1 - y0) * ft0;
-                var sx1 = x0 + (x1 - x0) * ft1;
-                var sy1 = y0 + (y1 - y0) * ft1;
-                var dSq = distPointSegSq(mx, my, sx0, sy0, sx1, sy1);
-                var a = previewLineAlphaFromDistSq(dSq, lineFadeInnerSq, lineFadeOuterSq);
-                if (a < 0.02) continue;
-                ctx.strokeStyle = "rgba(210, 35, 45, " + 0.82 * a + ")";
-                ctx.beginPath();
-                ctx.moveTo(sx0, sy0);
-                ctx.lineTo(sx1, sy1);
-                ctx.stroke();
+          } else {
+            var fullM = enemyFearedPreview
+              ? getMonsterFleePreviewPath(
+                  monsterR,
+                  monsterC,
+                  PREVIEW_MAX_TILE_EDGES
+                )
+              : shortestPath(monsterR, monsterC, playerR, playerC);
+            if (fullM.length >= 2) {
+              var maxE = Math.min(
+                PREVIEW_MAX_TILE_EDGES,
+                fullM.length - 1
+              );
+              var fi;
+              for (fi = 0; fi < maxE; fi++) {
+                var fv0 = fullM[fi];
+                var fv1 = fullM[fi + 1];
+                previewSegs.push({
+                  x0: offsetX + fv0.c * cellSize + cellSize / 2,
+                  y0: offsetY + fv0.r * cellSize + cellSize / 2,
+                  x1: offsetX + fv1.c * cellSize + cellSize / 2,
+                  y1: offsetY + fv1.r * cellSize + cellSize / 2,
+                });
               }
             }
+          }
+          strokeRedPreviewLine(ctx, previewSegs, mx, my, hidePreviewRSq);
+
+          var mix;
+          for (mix = 0; mix < spawnedEnemies.length; mix++) {
+            var mPv = spawnedEnemies[mix];
+            if (mPv.kind !== "minion") {
+              continue;
+            }
+            var minionSegs = buildMinionPreviewSegs(mPv, nowDraw);
+            var mnh = getMinionPixelPos(mPv, nowDraw);
+            strokeRedPreviewLine(
+              ctx,
+              minionSegs,
+              mnh.x,
+              mnh.y,
+              hidePreviewRSq
+            );
+          }
+
+          var monR = monsterEffectiveHitRadius(nowDraw);
+          if (nowDraw < monsterStunnedUntilMs) {
+            ctx.save();
+            ctx.globalAlpha = 0.52;
+          }
+          drawCanvasEmoji(
+            ctx,
+            EMOJI_ONI,
+            mx,
+            my,
+            monR * 2.45 * EMOJI_VISUAL_SCALE,
+            EMOJI_TINT_ENEMY
+          );
+          if (nowDraw < monsterStunnedUntilMs) {
             ctx.restore();
           }
-          ctx.fillStyle = "rgba(180, 60, 200, 0.45)";
-          ctx.beginPath();
-          ctx.arc(mx, my, cellSize * 0.3, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.strokeStyle = "#c060d8";
-          ctx.lineWidth = 2;
-          ctx.stroke();
+
+          var ex;
+          for (ex = 0; ex < spawnedEnemies.length; ex++) {
+            var spawnEnt = spawnedEnemies[ex];
+            if (spawnEnt.kind === "egg") {
+              var grow = (nowDraw - spawnEnt.spawnMs) / EGG_HATCH_MS;
+              if (grow < 0) grow = 0;
+              if (grow > 1) grow = 1;
+              var eggCen = tileCenterPixel(spawnEnt.cellC, spawnEnt.cellR);
+              var eggFont =
+                cellSize * 0.64 * EMOJI_VISUAL_SCALE * grow;
+              if (
+                spawnEnt.stunnedUntilMs &&
+                nowDraw < spawnEnt.stunnedUntilMs
+              ) {
+                ctx.save();
+                ctx.globalAlpha = 0.52;
+              }
+              drawCanvasEmoji(
+                ctx,
+                EMOJI_MINION,
+                eggCen.x,
+                eggCen.y,
+                eggFont,
+                EMOJI_TINT_EGG
+              );
+              if (
+                spawnEnt.stunnedUntilMs &&
+                nowDraw < spawnEnt.stunnedUntilMs
+              ) {
+                ctx.restore();
+              }
+            }
+          }
+          for (ex = 0; ex < spawnedEnemies.length; ex++) {
+            var mn = spawnedEnemies[ex];
+            if (mn.kind !== "minion") {
+              continue;
+            }
+            var mnp = getMinionPixelPos(mn, nowDraw);
+            if (nowDraw < mn.stunnedUntilMs) {
+              ctx.save();
+              ctx.globalAlpha = 0.52;
+            }
+            drawCanvasEmoji(
+              ctx,
+              EMOJI_MINION,
+              mnp.x,
+              mnp.y,
+              cellSize * 0.64 * EMOJI_VISUAL_SCALE,
+              EMOJI_TINT_ENEMY
+            );
+            if (nowDraw < mn.stunnedUntilMs) {
+              ctx.restore();
+            }
+          }
         }
 
         var ppos = getPlayerPixelPos(nowDraw);
         var px = ppos.x;
         var py = ppos.y;
-        ctx.fillStyle = "#f4a742";
-        ctx.beginPath();
-        ctx.arc(px, py, cellSize * 0.32, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = "#e8941a";
-        ctx.lineWidth = 2;
-        ctx.stroke();
+        if (nowDraw < phaseUntilMs) {
+          ctx.save();
+          ctx.globalAlpha = 0.62;
+        }
+        drawCanvasEmoji(
+          ctx,
+          EMOJI_PLAYER_KNIGHT,
+          px,
+          py,
+          cellSize * 0.68 * EMOJI_VISUAL_SCALE,
+          EMOJI_TINT_PLAYER
+        );
+        if (nowDraw < phaseUntilMs) {
+          ctx.restore();
+        }
       }
 
       var DIRS = ["north", "south", "east", "west"];
-      var COOLDOWN_MS = 500;
+      var dpadRoot = document.getElementById("dpadRoot");
+      var dpadCooldownFillGlobal = dpadRoot
+        ? dpadRoot.querySelector(".dpad-cooldown-fill-global")
+        : null;
       var QUEUE_WINDOW_MS = 100;
-      var cooldownEnd = { north: 0, south: 0, east: 0, west: 0 };
-      var cooldownStart = { north: 0, south: 0, east: 0, west: 0 };
+      /** One shared move cooldown: any successful step resets the same window for all directions. */
+      var moveCooldownStart = 0;
+      var moveCooldownEnd = 0;
       var queued = { north: false, south: false, east: false, west: false };
       var KEY_TO_DIR = {
         ArrowUp: "north",
@@ -749,6 +2952,21 @@
       };
 
       function canStepFrom(r, c, dir) {
+        if (performance.now() < phaseUntilMs) {
+          if (dir === "north") {
+            return r > 0;
+          }
+          if (dir === "south") {
+            return r < rows - 1;
+          }
+          if (dir === "east") {
+            return c < cols - 1;
+          }
+          if (dir === "west") {
+            return c > 0;
+          }
+          return false;
+        }
         var w = grid[r][c];
         if (dir === "north") return !(w & N) && r > 0;
         if (dir === "south") return !(w & S) && r < rows - 1;
@@ -761,7 +2979,25 @@
         if (!gameActive()) return false;
         if (playerGlideActive) return false;
 
-        if (!canStepFrom(playerR, playerC, dir)) return false;
+        if (!canStepFrom(playerR, playerC, dir)) {
+          var nb = neighborCell(playerR, playerC, dir);
+          if (
+            nb.r < 0 ||
+            nb.r >= rows ||
+            nb.c < 0 ||
+            nb.c >= cols
+          ) {
+            return false;
+          }
+          if (wallBreakCharges <= 0) {
+            return false;
+          }
+          if (!tryOpenInternalWallForPlayer(playerR, playerC, dir)) {
+            return false;
+          }
+          wallBreakCharges--;
+          breakOpenTwoByTwo(grid, rows, cols);
+        }
 
         var nr = playerR;
         var nc = playerC;
@@ -800,35 +3036,37 @@
           triggerLose();
           return true;
         }
-        if (playerR === rows - 1 && playerC === cols - 1) {
-          winOverlay.classList.remove("hidden");
-          winOverlay.setAttribute("aria-hidden", "false");
-        }
         return true;
       }
 
-      function startCooldown(dir, now) {
-        cooldownStart[dir] = now;
-        cooldownEnd[dir] = now + COOLDOWN_MS;
+      function startMoveCooldown(now) {
+        moveCooldownStart = now;
+        moveCooldownEnd = now + effectiveCooldownMs();
       }
 
       function resetCooldowns() {
+        moveCooldownStart = 0;
+        moveCooldownEnd = 0;
         DIRS.forEach(function (dir) {
-          cooldownEnd[dir] = 0;
-          cooldownStart[dir] = 0;
           queued[dir] = false;
         });
-        DIRS.forEach(function (dir) {
-          var btn = document.querySelector('.dpad-btn[data-dir="' + dir + '"]');
-          if (!btn) return;
-          var fill = btn.querySelector(".dpad-cooldown-fill");
-          if (fill) fill.style.transform = "scaleY(0)";
-          btn.classList.remove("dpad-btn--cooling");
-        });
+        if (dpadRoot) dpadRoot.classList.remove("dpad--cooling");
+        if (dpadCooldownFillGlobal) {
+          dpadCooldownFillGlobal.style.transform = "scaleY(0)";
+        }
       }
 
-      function tickMonster(now) {
+      function tickMonster(now, dt) {
         if (!gameActive()) return;
+        if (now < monsterGrowStartMs + MONSTER_GROW_MS) {
+          return;
+        }
+        if (now < monsterStunnedUntilMs) {
+          if (monsterGlideActive && dt > 0) {
+            monsterGlideStartMs += dt;
+          }
+          return;
+        }
         var guard = 0;
         while (guard < 32) {
           guard++;
@@ -845,7 +3083,20 @@
             }
             continue;
           }
-          var path = shortestPath(monsterR, monsterC, playerR, playerC);
+          var path;
+          if (now < fearUntilMs) {
+            var fd = fullBfsDistFromPlayer();
+            var fleeN = pickMonsterFleeStep(monsterR, monsterC, fd);
+            if (!fleeN) {
+              if (hitboxesOverlap(now)) {
+                triggerLose();
+              }
+              return;
+            }
+            path = [{ r: monsterR, c: monsterC }, fleeN];
+          } else {
+            path = shortestPath(monsterR, monsterC, playerR, playerC);
+          }
           if (path.length < 2) {
             if (hitboxesOverlap(now)) {
               triggerLose();
@@ -862,23 +3113,146 @@
         }
       }
 
+      function tickEggDropsAndHatch(now, dt) {
+        if (!gameActive()) {
+          return;
+        }
+        if (now >= nextEggDropAt) {
+          var mp = getMonsterPixelPos(now);
+          var cell = pixelCellFromPixel(mp.x, mp.y);
+          spawnedEnemies.push({
+            kind: "egg",
+            hurtsPlayer: false,
+            spawnMs: now,
+            cellR: cell.r,
+            cellC: cell.c,
+          });
+          do {
+            nextEggDropAt += consumeNextEggDropGapMs();
+          } while (nextEggDropAt <= now);
+        }
+        var hi;
+        for (hi = spawnedEnemies.length - 1; hi >= 0; hi--) {
+          var ent = spawnedEnemies[hi];
+          if (ent.kind === "egg") {
+            if (ent.stunnedUntilMs && now < ent.stunnedUntilMs) {
+              if (dt > 0) {
+                ent.spawnMs += dt;
+              }
+              continue;
+            }
+            if (now >= ent.spawnMs + EGG_HATCH_MS) {
+              spawnedEnemies[hi] = {
+                kind: "minion",
+                r: ent.cellR,
+                c: ent.cellC,
+                fromR: -1,
+                fromC: -1,
+                plannedCells: [],
+                glideActive: false,
+                fr: ent.cellR,
+                fc: ent.cellC,
+                tr: ent.cellR,
+                tc: ent.cellC,
+                stunnedUntilMs: 0,
+              };
+            }
+          }
+        }
+      }
+
+      function tickMinions(now, dt) {
+        if (!gameActive()) {
+          return;
+        }
+        var mi;
+        for (mi = 0; mi < spawnedEnemies.length; mi++) {
+          var m = spawnedEnemies[mi];
+          if (m.kind !== "minion") {
+            continue;
+          }
+          if (now < m.stunnedUntilMs) {
+            if (m.glideActive && dt > 0) {
+              m.glideStartMs += dt;
+            }
+            continue;
+          }
+          var guard = 0;
+          while (guard < 32) {
+            guard++;
+            if (m.glideActive) {
+              if (now < m.glideStartMs + MONSTER_TILE_MS) {
+                break;
+              }
+              m.fromR = m.fr;
+              m.fromC = m.fc;
+              m.r = m.tr;
+              m.c = m.tc;
+              m.glideActive = false;
+              if (
+                m.plannedCells.length &&
+                m.plannedCells[0].r === m.r &&
+                m.plannedCells[0].c === m.c
+              ) {
+                m.plannedCells.shift();
+              } else {
+                m.plannedCells = [];
+              }
+              replenishMinionPlannedPath(m, MIN_MINION_PLAN_LEN, now);
+              if (hitboxesOverlap(now)) {
+                triggerLose();
+                return;
+              }
+              continue;
+            }
+            replenishMinionPlannedPath(m, MIN_MINION_PLAN_LEN, now);
+            if (!m.plannedCells.length) {
+              break;
+            }
+            var tgt = m.plannedCells[0];
+            if (
+              !minionPlanTargetValid(
+                m.r,
+                m.c,
+                m.fromR,
+                m.fromC,
+                tgt.r,
+                tgt.c
+              )
+            ) {
+              m.plannedCells = [];
+              continue;
+            }
+            m.fr = m.r;
+            m.fc = m.c;
+            m.tr = tgt.r;
+            m.tc = tgt.c;
+            m.glideStartMs = now;
+            m.glideActive = true;
+            break;
+          }
+        }
+      }
+
       function requestMove(dir) {
         if (!gameActive()) return;
         var now = performance.now();
         if (playerGlideActive) {
-          if (canStepFrom(playerR, playerC, dir)) {
+          if (canBufferDir(dir)) {
             bufferedPlayerDir = dir;
           }
           return;
         }
-        if (now >= cooldownEnd[dir]) {
+        if (now >= moveCooldownEnd) {
           if (attemptMove(dir)) {
-            startCooldown(dir, now);
-            queued[dir] = false;
+            startMoveCooldown(now);
+            DIRS.forEach(function (d) {
+              queued[d] = false;
+            });
           }
           return;
         }
-        var left = cooldownEnd[dir] - now;
+        var left = moveCooldownEnd - now;
         if (left <= QUEUE_WINDOW_MS && left > 0) {
           queued[dir] = true;
         }
@@ -886,53 +3260,110 @@
 
       function tickGame() {
         var now = performance.now();
-        tickMonster(now);
+        var dt = lastGameTickMs > 0 ? now - lastGameTickMs : 0;
+        lastGameTickMs = now;
+        tickMonster(now, dt);
+        tickEggDropsAndHatch(now, dt);
+        tickMinions(now, dt);
+        applyMagnetGoldPull(now);
         if (gameActive() && hitboxesOverlap(now)) {
           triggerLose();
         }
         if (playerGlideActive && now >= playerGlideStartMs + PLAYER_GLIDE_MS) {
           playerGlideActive = false;
+          onPlayerArrivedOnTile(now);
           if (bufferedPlayerDir !== null && gameActive()) {
             var nextDir = bufferedPlayerDir;
             bufferedPlayerDir = null;
-            if (canStepFrom(playerR, playerC, nextDir)) {
+            if (now >= moveCooldownEnd) {
               if (attemptMove(nextDir)) {
-                startCooldown(nextDir, now);
+                startMoveCooldown(now);
+                DIRS.forEach(function (d) {
+                  queued[d] = false;
+                });
               }
+            } else {
+              queued[nextDir] = true;
             }
           }
         }
-        DIRS.forEach(function (dir) {
-          var btn = document.querySelector('.dpad-btn[data-dir="' + dir + '"]');
-          if (!btn) return;
-          var fill = btn.querySelector(".dpad-cooldown-fill");
-          if (now >= cooldownEnd[dir]) {
-            if (queued[dir]) {
-              queued[dir] = false;
-              if (playerGlideActive) {
-                if (canStepFrom(playerR, playerC, dir)) {
-                  bufferedPlayerDir = dir;
-                }
-              } else if (attemptMove(dir)) {
-                startCooldown(dir, now);
-              }
+        if (now >= moveCooldownEnd) {
+          var qDir = null;
+          var qi;
+          for (qi = 0; qi < DIRS.length; qi++) {
+            if (queued[DIRS[qi]]) {
+              qDir = DIRS[qi];
+              break;
             }
-            if (fill) fill.style.transform = "scaleY(0)";
-            btn.classList.remove("dpad-btn--cooling");
-          } else {
-            var p = (now - cooldownStart[dir]) / COOLDOWN_MS;
-            if (p < 0) p = 0;
-            if (p > 1) p = 1;
-            if (fill) fill.style.transform = "scaleY(" + p + ")";
-            btn.classList.add("dpad-btn--cooling");
           }
-        });
+          if (qDir !== null && gameActive()) {
+            DIRS.forEach(function (d) {
+              queued[d] = false;
+            });
+            if (playerGlideActive) {
+              if (canBufferDir(qDir)) {
+                bufferedPlayerDir = qDir;
+              }
+            } else if (attemptMove(qDir)) {
+              startMoveCooldown(now);
+            }
+          }
+        }
+        var cdDurAll = moveCooldownEnd - moveCooldownStart;
+        if (cdDurAll < 1) {
+          cdDurAll = 1;
+        }
+        var pAll =
+          now >= moveCooldownEnd
+            ? 0
+            : (now - moveCooldownStart) / cdDurAll;
+        if (pAll < 0) pAll = 0;
+        if (pAll > 1) pAll = 1;
+        if (dpadRoot && dpadCooldownFillGlobal) {
+          if (now >= moveCooldownEnd) {
+            dpadCooldownFillGlobal.style.transform = "scaleY(0)";
+            dpadRoot.classList.remove("dpad--cooling");
+          } else {
+            dpadCooldownFillGlobal.style.transform = "scaleY(" + pAll + ")";
+            dpadRoot.classList.add("dpad--cooling");
+          }
+        }
         draw();
         requestAnimationFrame(tickGame);
       }
 
+      /** Pointer/touch: fire on press, not release. Keyboard: Enter / Space on keydown. */
+      function bindInstantActivate(el, handler) {
+        if (!el) {
+          return;
+        }
+        el.addEventListener("pointerdown", function (e) {
+          if (el.disabled) {
+            return;
+          }
+          if (e.pointerType === "mouse" && e.button !== 0) {
+            return;
+          }
+          e.preventDefault();
+          handler(e);
+        });
+        el.addEventListener("keydown", function (e) {
+          if (el.disabled) {
+            return;
+          }
+          if (e.key !== "Enter" && e.key !== " ") {
+            return;
+          }
+          if (e.repeat) {
+            return;
+          }
+          e.preventDefault();
+          handler(e);
+        });
+      }
+
       document.querySelectorAll(".dpad-btn[data-dir]").forEach(function (btn) {
-        btn.addEventListener("click", function () {
+        bindInstantActivate(btn, function () {
           requestMove(btn.getAttribute("data-dir"));
         });
       });
@@ -944,12 +3375,42 @@
         requestMove(d);
       });
 
-      newMazeBtn.addEventListener("click", function () {
-        newGame();
+      bindInstantActivate(newMazeBtn, function () {
+        startRun();
       });
 
-      loseNewBtn.addEventListener("click", function () {
-        newGame();
+      bindInstantActivate(loseNewBtn, function () {
+        resetRun();
+      });
+
+      SHOP_BUY_SPECS.forEach(function (spec) {
+        bindInstantActivate(spec.el, function () {
+          if (goldWallet < SHOP_PRICE_GOLD) {
+            return;
+          }
+          if (spec.extraCheck && !spec.extraCheck()) {
+            return;
+          }
+          goldWallet -= SHOP_PRICE_GOLD;
+          ownedPowerups.push({ type: spec.type });
+          updateShopUi();
+          updateCoinCounterUi();
+        });
+      });
+
+      bindInstantActivate(shopContinueBtn, function () {
+        hideShopOverlay();
+        if (shopAfterLevel >= MAX_LEVEL) {
+          showCampaignOverlay();
+        } else {
+          currentLevel++;
+          startLevel();
+        }
+      });
+
+      bindInstantActivate(campaignNewRunBtn, function () {
+        hideCampaignOverlay();
+        startRun();
       });
 
       var resizeTimer;
@@ -964,7 +3425,11 @@
       window.addEventListener("resize", onResize);
 
       requestAnimationFrame(tickGame);
-      newGame();
+      startRun();
+      if (SHOW_SHOP_ON_LOAD) {
+        shopAfterLevel = currentLevel;
+        showShopOverlay();
+      }
     })();
   </script>
 </body>
