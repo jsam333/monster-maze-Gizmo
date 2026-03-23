@@ -11,20 +11,16 @@
     .game-shell{--shell-w:500;--shell-h:718;aspect-ratio:var(--shell-w)/var(--shell-h);width:min(100vw,calc(100dvh*var(--shell-w)/var(--shell-h)));height:auto;max-width:100vw;max-height:100dvh;display:flex;flex-direction:column;background:#000;box-shadow:0 14px 56px rgba(0,0,0,.94),0 0 0 1px rgba(255,255,255,.04) inset;position:relative;overflow:hidden;border-radius:0;isolation:isolate;container-type:size;container-name:game}
     .game-shell::before,.game-shell::after{content:"";position:absolute;inset:0;pointer-events:none}
     .game-shell::before{z-index:4;opacity:.22;background:repeating-linear-gradient(180deg,rgba(255,255,255,.13) 0,rgba(255,255,255,.13) 1px,rgba(0,0,0,0) 1px,rgba(0,0,0,0) 4px),linear-gradient(90deg,rgba(120,255,214,.04) 0,rgba(255,255,255,0) 38%,rgba(98,174,255,.04) 100%)}
-    .game-shell::after{z-index:4;background:
-      radial-gradient(160% 108% at 50% -6%,rgba(255,255,255,.2) 0,rgba(255,255,255,.05) 15%,rgba(255,255,255,0) 38%),
-      radial-gradient(128% 98% at 50% 50%,rgba(255,255,255,.06) 0,rgba(255,255,255,0) 34%,rgba(0,0,0,0) 60%,rgba(0,0,0,.08) 78%,rgba(0,0,0,.2) 100%),
-      radial-gradient(34% 18% at 0 0,rgba(0,0,0,.2) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),
-      radial-gradient(34% 18% at 100% 0,rgba(0,0,0,.2) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),
-      radial-gradient(34% 18% at 0 100%,rgba(0,0,0,.18) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),
-      radial-gradient(34% 18% at 100% 100%,rgba(0,0,0,.18) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),
-      linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 12%,rgba(0,0,0,.06) 88%,rgba(0,0,0,.14))}
+    .game-shell::after{z-index:4;background:radial-gradient(160% 108% at 50% -6%,rgba(255,255,255,.2) 0,rgba(255,255,255,.05) 15%,rgba(255,255,255,0) 38%),radial-gradient(128% 98% at 50% 50%,rgba(255,255,255,.06) 0,rgba(255,255,255,0) 34%,rgba(0,0,0,0) 60%,rgba(0,0,0,.08) 78%,rgba(0,0,0,.2) 100%),radial-gradient(34% 18% at 0 0,rgba(0,0,0,.2) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),radial-gradient(34% 18% at 100% 0,rgba(0,0,0,.2) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),radial-gradient(34% 18% at 0 100%,rgba(0,0,0,.18) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),radial-gradient(34% 18% at 100% 100%,rgba(0,0,0,.18) 0,rgba(0,0,0,.08) 42%,rgba(0,0,0,0) 72%),linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 12%,rgba(0,0,0,.06) 88%,rgba(0,0,0,.14))}
     .maze-area{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#000;position:relative}
     .coin-counter{position:absolute;top:8px;right:10px;z-index:5;max-width:calc(100% - 16px);text-align:right;font-size:clamp(.72rem,3.6cqw,.95rem);font-weight:600;color:#c8c8c8;text-shadow:0 1px 3px rgba(0,0,0,.9);letter-spacing:.02em;line-height:1.35;pointer-events:none;user-select:none}
+    .coin-counter .coin-counter-gold{color:#eecf40;text-shadow:0 1px 3px rgba(0,0,0,.9),0 0 12px rgba(232,192,48,.28)}
     #shopOverlay.win-overlay{align-items:stretch;justify-content:stretch;padding:0}
     .shop-panel{width:100%;height:100%;max-width:none;max-height:none;overflow-y:auto;padding:clamp(10px,4cqw,26px) clamp(8px,3.6cqw,22px) clamp(12px,5.6cqw,32px);border-radius:0;background:#000;border:none;display:flex;flex-direction:column;gap:clamp(8px,2.4cqw,14px);box-sizing:border-box;color:#c6c6c6}
+    #shopBuyMount{display:flex;flex-direction:column;gap:2px;width:100%}
     .shop-panel>.win-title{font-size:clamp(1.1rem,6.75cqw,1.65rem)}
     .shop-sub{margin:0;font-size:clamp(.78rem,3.78cqw,.98rem);color:#8c8c8c;text-align:center}
+    #shopGoldLine{color:#eecf40;font-weight:600;font-size:clamp(1.092rem,5.292cqw,1.372rem);text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 14px rgba(232,192,48,.22)}
     button.shop-item-buy{width:100%;display:flex;flex-direction:row;align-items:center;gap:clamp(8px,2.8cqw,16px);padding:clamp(6px,2cqw,12px) clamp(6px,2.4cqw,14px);border-radius:clamp(6px,2cqw,12px);background:#0a0a0a;border:max(1px,.4cqw) solid #3a3a3a;cursor:pointer;touch-action:manipulation;text-align:left;font:inherit;font-size:clamp(.82rem,3.42cqw,1rem);color:inherit;box-sizing:border-box;transition:transform .08s ease,border-color .12s ease,box-shadow .12s ease}
     button.shop-item-buy:hover:not(:disabled){border-color:#6e6e6e;box-shadow:0 0 0 max(2px,.6cqw) rgba(255,255,255,.06)}
     button.shop-item-buy:focus{outline:none}
@@ -37,21 +33,46 @@
     button.shop-item-buy:not(:disabled):hover .shop-pickup-preview{border-color:#8a8a8a}
     button.shop-item-buy:disabled .shop-pickup-preview{border-color:#2a2a2a}
     .shop-item-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:clamp(4px,1.6cqw,10px);text-align:left}
-    .shop-preview-cooldown{width:46%;height:46%;border-radius:50%;background:rgba(200,140,255,.55);border:max(1px,.6cqw) solid #a070e0}
-    .shop-preview-wall{width:52%;height:35.5%;border-radius:clamp(3px,1.4cqw,8px);background:rgba(180,130,80,.7);border:max(1px,.6cqw) solid #8b6040}
+    .shop-preview-cooldown{width:46%;height:46%;border-radius:50%;background:radial-gradient(circle at 30% 30%,#e8bfff,#c080ff 38%,#7040b0 88%);border:max(1px,.6cqw) solid #9050d8;box-shadow:0 0 max(4px,1.4cqw) rgba(180,120,255,.45),inset 0 -25% 20% rgba(60,20,100,.35),inset 0 25% 10% rgba(255,255,255,.2);position:relative}
+    .shop-preview-cooldown::after{content:"";position:absolute;inset:18% 22% auto 22%;height:28%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0));z-index:1;pointer-events:none}
+    .shop-preview-cd-hand{position:absolute;left:50%;bottom:50%;width:max(1.5px,.38cqw);height:28%;margin-left:max(-.75px,-.19cqw);transform-origin:50% 100%;border-radius:max(1px,.2cqw);background:rgba(255,255,255,.78);z-index:2;pointer-events:none}
+    .shop-preview-cd-hand--a{transform:translateY(0) rotate(0)}
+    .shop-preview-cd-hand--b{height:20%;transform:translateY(0) rotate(104deg)}
+    .shop-preview-wall{width:52%;height:42%;border-radius:clamp(3px,1.4cqw,8px);background:linear-gradient(170deg,#e8c880 0%,#c49848 30%,#8b6040 70%,#6a4428 100%);border:max(1px,.6cqw) solid #6a4020;box-shadow:inset 0 max(1px,.35cqw) 0 rgba(255,230,180,.4),inset 0 -1px 0 rgba(40,20,0,.4),0 max(1px,.4cqw) max(3px,1cqw) rgba(0,0,0,.35);position:relative;overflow:hidden}
+    .shop-preview-wall::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 47%,rgba(60,30,10,.35) 47%,rgba(60,30,10,.35) 53%,transparent 53%),linear-gradient(0deg,transparent 44%,rgba(60,30,10,.3) 44%,rgba(60,30,10,.3) 56%,transparent 56%);pointer-events:none}
+    .shop-preview-wall::after{content:"";position:absolute;top:6%;left:10%;width:50%;height:22%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0))}
     .shop-preview-invuln-wrap{width:50%;height:50%;display:flex;align-items:center;justify-content:center}
-    .shop-preview-invuln{width:62.5%;height:62.5%;background:rgba(120,220,255,.65);border:max(1px,.6cqw) solid #4ad0f0;transform:rotate(45deg)}
-    .shop-preview-magnet{width:42%;height:33.5%;border:max(1px,.6cqw) solid #a83838;border-top:none;border-radius:0 0 clamp(8px,3.75cqw,20px) clamp(8px,3.75cqw,20px);background:rgba(200,90,90,.45);align-self:center}
-    .shop-preview-fear{width:40%;height:40%;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(180,90,220,.75),rgba(60,20,90,.85));border:max(1px,.6cqw) solid #7a3daa}
-    .shop-preview-banish{width:42%;height:42%;border-radius:50%;background:rgba(90,95,110,.65);border:max(1px,.6cqw) solid #c44;position:relative}
-    .shop-preview-banish::before,.shop-preview-banish::after{content:"";position:absolute;left:50%;top:50%;width:max(2px,.55cqw);height:23%;background:#e85555;border-radius:max(1px,.35cqw)}
+    .shop-preview-invuln{width:62.5%;height:62.5%;background:linear-gradient(135deg,#bef0ff,#60d8f8 40%,#20a0d0 75%,#1878a8);border:max(1px,.6cqw) solid #30b0e0;transform:rotate(45deg);box-shadow:0 0 max(5px,1.6cqw) rgba(80,200,255,.5),inset 0 0 30% rgba(255,255,255,.3);position:relative;overflow:hidden}
+    .shop-preview-invuln::after{content:"";position:absolute;top:-10%;left:10%;width:60%;height:50%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0));transform:rotate(-45deg)}
+    .shop-preview-magnet{width:44%;height:44%;position:relative;display:flex;align-items:center;justify-content:center}
+    .shop-preview-magnet::before{content:"";position:absolute;width:80%;height:54%;top:8%;border:max(2px,.7cqw) solid #d04040;border-bottom:none;border-radius:clamp(10px,4cqw,22px) clamp(10px,4cqw,22px) 0 0;background:linear-gradient(180deg,rgba(220,60,60,.15),rgba(220,60,60,0))}
+    .shop-preview-magnet::after{content:"";position:absolute;bottom:12%;width:80%;height:40%;background:linear-gradient(90deg,#d04040 0%,#d04040 28%,transparent 28%,transparent 72%,#3868d0 72%,#3868d0 100%);border-radius:0 0 max(2px,.5cqw) max(2px,.5cqw);box-shadow:0 max(1px,.3cqw) max(3px,1cqw) rgba(200,60,60,.3),0 max(1px,.3cqw) max(3px,1cqw) rgba(60,100,220,.3)}
+    .shop-preview-fear{width:42%;height:42%;border-radius:50%;background:radial-gradient(circle at 38% 32%,#d88aff,#9040d0 45%,#4a1878 85%);border:max(1px,.6cqw) solid #7a38b0;box-shadow:0 0 max(5px,1.6cqw) rgba(160,60,240,.5),inset 0 -20% 25% rgba(20,0,40,.5);position:relative;overflow:hidden}
+    .shop-preview-fear::before{content:"";position:absolute;top:22%;left:24%;width:20%;height:24%;border-radius:50%;background:radial-gradient(circle,#1a0830 60%,rgba(20,0,40,.6));box-shadow:115% 0 0 0 #1a0830}
+    .shop-preview-fear::after{content:"";position:absolute;top:6%;left:18%;width:42%;height:26%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0))}
+    .shop-preview-banish{width:42%;height:42%;border-radius:50%;background:radial-gradient(circle at 40% 36%,#a0a8b8,#6a7080 50%,#3a3e48 90%);border:max(1px,.6cqw) solid #cc4444;box-shadow:0 0 max(4px,1.4cqw) rgba(220,50,50,.4),inset 0 -20% 20% rgba(0,0,0,.35),inset 0 20% 10% rgba(255,255,255,.15);position:relative;overflow:hidden}
+    .shop-preview-banish::before,.shop-preview-banish::after{content:"";position:absolute;left:50%;top:50%;width:max(2px,.55cqw);height:52%;background:linear-gradient(180deg,#ff8080,#e04040);border-radius:max(1px,.35cqw);box-shadow:0 0 max(2px,.6cqw) rgba(255,80,80,.5)}
     .shop-preview-banish::before{transform:translate(-50%,-50%) rotate(45deg)}
     .shop-preview-banish::after{transform:translate(-50%,-50%) rotate(-45deg)}
-    .shop-preview-gold-burst{width:46%;height:46%;display:flex;align-items:center;justify-content:center;gap:clamp(2px,.6cqw,5px);flex-wrap:wrap;align-content:center}
-    .shop-preview-gold-burst span{width:11.5%;height:11.5%;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff4a8,#e8c030 55%,#a67c10);border:max(1px,.4cqw) solid #8a6a18}
-    .shop-preview-phase{width:42%;height:42%;border-radius:50%;border:max(1px,.6cqw) dashed rgba(120,240,255,.9);background:radial-gradient(circle at 40% 35%,rgba(180,255,255,.35),rgba(40,90,110,.45))}
-    .shop-preview-stun-nova{width:42%;height:42%;border-radius:50%;background:radial-gradient(circle at 50% 45%,#fff8c8,#f0d040 40%,#c9a020 100%);border:max(1px,.6cqw) solid #e8c040;box-shadow:0 0 0 max(1px,.4cqw) rgba(255,255,255,.25) inset}
-    .shop-item-desc{display:block;margin:0;font-size:clamp(.68rem,3.04cqw,.88rem);color:#909090;line-height:1.35}
+    .shop-preview-gold-burst{position:relative;width:86%;height:auto;aspect-ratio:4256/3556;margin:0 auto}
+    .shop-preview-gold-coin{position:absolute;width:34.2%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff4a8 0%,#e8c030 45%,#a67c10 100%);border:max(1px,.4cqw) solid #8a6a18;box-sizing:border-box;pointer-events:none}
+    .shop-preview-gold-coin--t{left:50%;top:20.5%;transform:translate(-50%,-50%)}
+    .shop-preview-gold-coin--bl{left:17.1%;top:79.5%;transform:translate(-50%,-50%)}
+    .shop-preview-gold-coin--br{left:82.9%;top:79.5%;transform:translate(-50%,-50%)}
+    .shop-preview-phase{width:42%;height:42%;border-radius:50%;border:max(2px,.7cqw) dashed rgba(140,250,255,.95);background:radial-gradient(circle at 40% 35%,rgba(200,255,255,.4),rgba(80,200,220,.25) 48%,rgba(40,100,120,.1));box-shadow:0 0 max(5px,1.6cqw) rgba(100,220,255,.35),inset 0 0 max(4px,1.4cqw) rgba(100,220,255,.15);position:relative;overflow:hidden}
+    .shop-preview-phase::before{content:"";position:absolute;left:50%;top:50%;width:52%;height:52%;transform:translate(-50%,-50%);border-radius:50%;border:max(1px,.25cqw) dashed rgba(140,250,255,.55);pointer-events:none}
+    .shop-preview-phase::after{content:"";position:absolute;top:8%;left:15%;width:45%;height:30%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0));pointer-events:none}
+    .shop-preview-stun-nova{width:42%;height:42%;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fffce0,#f8e040 35%,#d0a020 75%,#a07810);border:max(1px,.6cqw) solid #d8b030;box-shadow:0 0 max(6px,2cqw) rgba(255,220,40,.5),0 0 max(2px,.6cqw) rgba(255,255,200,.3);position:relative;overflow:hidden}
+    .shop-preview-stun-nova::before{content:"";position:absolute;inset:0;background:conic-gradient(from 0deg,transparent 0deg,rgba(255,255,200,.25) 15deg,transparent 30deg,transparent 45deg,rgba(255,255,200,.25) 60deg,transparent 75deg,transparent 90deg,rgba(255,255,200,.25) 105deg,transparent 120deg,transparent 135deg,rgba(255,255,200,.25) 150deg,transparent 165deg,transparent 180deg,rgba(255,255,200,.25) 195deg,transparent 210deg,transparent 225deg,rgba(255,255,200,.25) 240deg,transparent 255deg,transparent 270deg,rgba(255,255,200,.25) 285deg,transparent 300deg,transparent 315deg,rgba(255,255,200,.25) 330deg,transparent 345deg)}
+    .shop-preview-stun-nova::after{content:"";position:absolute;top:8%;left:18%;width:44%;height:28%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0))}
+    .shop-owned-block{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,2.2cqw,14px);margin:0;text-align:center;width:100%}
+    .shop-owned-label{margin:0;font-size:clamp(.78rem,3.78cqw,.98rem);color:#8c8c8c;line-height:1.35}
+    .shop-owned-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(6px,2cqw,12px);width:100%;max-width:100%}
+    .shop-owned-slot{position:relative;flex:0 0 auto;width:clamp(36px,11cqw,56px);touch-action:manipulation}
+    .shop-owned-mini{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#050505;border:max(1px,.35cqw) solid #5a5a5a;border-radius:clamp(5px,1.4cqw,10px);box-sizing:border-box;overflow:hidden}
+    .shop-owned-count{position:absolute;right:max(-2px,-.35cqw);bottom:max(-2px,-.35cqw);z-index:3;min-width:1.15em;padding:0 clamp(3px,.45cqw,6px);font-size:clamp(.58rem,2.35cqw,.72rem);font-weight:700;line-height:1.25;color:#f0f0f0;background:rgba(18,18,18,.94);border:max(1px,.25cqw) solid #6a6a6a;border-radius:clamp(3px,.6cqw,6px);box-shadow:0 1px 3px rgba(0,0,0,.85);pointer-events:none;box-sizing:border-box;text-align:center}
+    .shop-item-desc{display:block;margin:0;font-size:clamp(.82rem,3.65cqw,1.06rem);color:#909090;line-height:1.35}
+    .shop-item-cost{flex:0 0 auto;align-self:center;margin-left:clamp(6px,1.6cqw,12px);font-size:clamp(.72rem,3.2cqw,.92rem);font-weight:600;color:#eecf40;white-space:nowrap;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,.85),0 0 10px rgba(232,192,48,.18);pointer-events:none}
     #mazeCanvas{display:block;width:100%;height:100%;max-width:100%;max-height:100%;touch-action:none}
     .dpad{position:relative;flex:0 0 calc(100% * 210 / 718);padding:4px;display:grid;grid-template-columns:3fr 4fr 3fr;grid-template-rows:1fr;align-items:stretch;gap:4px;min-height:0;background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);border-top:1px solid #333}
     .dpad-center{display:flex;flex-direction:column;min-width:0;min-height:0;gap:4px}
@@ -67,58 +88,21 @@
     .win-overlay.hidden{display:none}
     .win-title{margin:0;font-size:1.5rem;font-weight:600;color:#e0e0e0}
     .win-btn{min-height:48px;padding:0 28px;font-size:1rem;font-weight:600;color:#0a0a0a;background:#b8b8b8;border:none;border-radius:12px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    .win-btn:disabled{opacity:.48;cursor:not-allowed;filter:brightness(.9)}
     .shop-panel .win-btn.shop-continue{min-height:clamp(40px,9.6cqw,54px);margin-top:clamp(2px,.8cqw,6px);padding:0 clamp(14px,5.6cqw,30px);font-size:clamp(.82rem,3.7cqw,1.02rem);border-radius:clamp(8px,2.4cqw,14px)}
     .win-btn:active{filter:brightness(.92)}
   </style>
 </head>
 <body>
-  <div class="game-shell" id="gameShell">
-    <div class="maze-area">
-      <div class="coin-counter" id="coinCounter" aria-live="polite">Lv 1/10<br>Gold 0</div>
-      <canvas id="mazeCanvas" aria-label="Maze"></canvas>
-    </div>
-    <div class="dpad" id="dpadRoot" role="group" aria-label="Move">
-      <div class="dpad-cooldown-overlay" aria-hidden="true">
-        <span class="dpad-cooldown-fill-global"></span>
-      </div>
-      <button type="button" class="dpad-btn dpad-btn--side" data-dir="west" aria-label="Move left">
-        <span class="dpad-btn-label">◀</span>
-      </button>
-      <div class="dpad-center">
-        <button type="button" class="dpad-btn dpad-btn--ns" data-dir="north" aria-label="Move up">
-          <span class="dpad-btn-label">▲</span>
-        </button>
-        <button type="button" class="dpad-btn dpad-btn--ns" data-dir="south" aria-label="Move down">
-          <span class="dpad-btn-label">▼</span>
-        </button>
-      </div>
-      <button type="button" class="dpad-btn dpad-btn--side" data-dir="east" aria-label="Move right">
-        <span class="dpad-btn-label">▶</span>
-      </button>
-    </div>
-    <div class="win-overlay hidden" id="winOverlay" aria-hidden="true">
-      <p class="win-title">You escaped</p>
-      <button type="button" class="win-btn" id="newMazeBtn">New maze</button>
-    </div>
-    <div class="win-overlay hidden" id="loseOverlay" aria-hidden="true">
-      <p class="win-title">Caught!</p>
-      <button type="button" class="win-btn" id="loseNewBtn">New run</button>
-    </div>
-    <div class="win-overlay hidden" id="shopOverlay" aria-hidden="true">
-      <div class="shop-panel" role="dialog" aria-labelledby="shopTitle">
-        <p class="win-title" id="shopTitle">Shop</p>
-        <p class="shop-sub" id="shopGoldLine">Gold: 0</p>
-        <p class="shop-sub" id="shopOwnedLine">Spawns per level: 0</p>
-        <div id="shopBuyMount"></div>
-        <button type="button" class="win-btn shop-continue" id="shopContinueBtn">Continue</button>
-      </div>
-    </div>
-    <div class="win-overlay hidden" id="campaignOverlay" aria-hidden="true">
-      <p class="win-title">You cleared all 10 levels!</p>
-      <button type="button" class="win-btn" id="campaignNewRunBtn">New run</button>
-    </div>
-  </div>
-  <script>
+<div class="game-shell" id="gameShell">
+<div class="maze-area"><div class="coin-counter" id="coinCounter" aria-live="polite">Lv 1/10<br><span class="coin-counter-gold">Gold 0</span></div><canvas id="mazeCanvas" aria-label="Maze"></canvas></div>
+<div class="dpad" id="dpadRoot" role="group" aria-label="Move"><div class="dpad-cooldown-overlay" aria-hidden="true"><span class="dpad-cooldown-fill-global"></span></div><button type="button" class="dpad-btn dpad-btn--side" data-dir="west" aria-label="Move left"><span class="dpad-btn-label">◀</span></button><div class="dpad-center"><button type="button" class="dpad-btn dpad-btn--ns" data-dir="north" aria-label="Move up"><span class="dpad-btn-label">▲</span></button><button type="button" class="dpad-btn dpad-btn--ns" data-dir="south" aria-label="Move down"><span class="dpad-btn-label">▼</span></button></div><button type="button" class="dpad-btn dpad-btn--side" data-dir="east" aria-label="Move right"><span class="dpad-btn-label">▶</span></button></div>
+<div class="win-overlay hidden" id="winOverlay" aria-hidden="true"><p class="win-title">You escaped</p><button type="button" class="win-btn" id="newMazeBtn">New maze</button></div>
+<div class="win-overlay hidden" id="loseOverlay" aria-hidden="true"><p class="win-title">Caught!</p><button type="button" class="win-btn" id="loseNewBtn">New run</button></div>
+<div class="win-overlay hidden" id="shopOverlay" aria-hidden="true"><div class="shop-panel" role="dialog" aria-labelledby="shopTitle"><p class="win-title" id="shopTitle">Powerup Shop</p><p class="shop-sub" id="shopGoldLine">Gold: 0</p><div class="shop-owned-block" id="shopOwnedLine" aria-live="polite" aria-atomic="true"></div><div id="shopBuyMount"></div><button type="button" class="win-btn shop-continue" id="shopContinueBtn">Continue</button></div></div>
+<div class="win-overlay hidden" id="campaignOverlay" aria-hidden="true"><p class="win-title">You cleared all 10 levels!</p><button type="button" class="win-btn" id="campaignNewRunBtn">New run</button></div>
+</div>
+<script>
     (function () {
       "use strict";
 
@@ -127,6 +111,12 @@
       var S = 4;
       var W = 8;
       var ALL = N | E | S | W;
+      var DIR_MOVE = {
+        north: { dr: -1, dc: 0, m: N, o: S },
+        south: { dr: 1, dc: 0, m: S, o: N },
+        east: { dr: 0, dc: 1, m: E, o: W },
+        west: { dr: 0, dc: -1, m: W, o: E },
+      };
 
       var canvas = document.getElementById("mazeCanvas");
       var ctx = canvas.getContext("2d");
@@ -198,92 +188,63 @@
       var EGG_INTERVAL_PER_LEVEL_MS = 1000;
       var SHOP_PRICE_GOLD = 2;
       var COOLDOWN_MS_BASE = 500;
-      var MIN_COOLDOWN_MS = 150;
-      var COOLDOWN_REDUCTION_PER_BUY = 100;
-      var MAX_COOLDOWN_PURCHASES = Math.floor(
-        (COOLDOWN_MS_BASE - MIN_COOLDOWN_MS) / COOLDOWN_REDUCTION_PER_BUY
-      );
+      var MIN_COOLDOWN_MS = 50;
+      var COOLDOWN_MULT_PER_PICKUP = 0.9;
+      var MAX_COOLDOWN_PURCHASES = (function () {
+        var m = 1;
+        while (
+          Math.round(
+            COOLDOWN_MS_BASE * Math.pow(COOLDOWN_MULT_PER_PICKUP, m)
+          ) > MIN_COOLDOWN_MS
+        ) {
+          m++;
+        }
+        return m;
+      })();
 
-      var SHOP_ITEM_DEFS = [
-        {
-          id: "shopBuyCooldown",
-          type: "cooldown",
-          title: "Cooldown token — 2 gold. Looks like this in the maze.",
-          aria: "Buy cooldown token for 2 gold",
-          desc: "Pick up for −0.1s cooldown, min 0.15s — 2 gold.",
-          preview: '<span class="shop-preview-cooldown"></span>',
-        },
-        {
-          id: "shopBuyWall",
-          type: "wall",
-          title: "Wall break token — 2 gold. Looks like this in the maze.",
-          aria: "Buy wall break token for 2 gold",
-          desc: "Pick up for +1 wall break charge — 2 gold.",
-          preview: '<span class="shop-preview-wall"></span>',
-        },
-        {
-          id: "shopBuyInvuln",
-          type: "invuln",
-          title: "Invulnerability token — 2 gold. Looks like this in the maze.",
-          aria: "Buy invulnerability token for 2 gold",
-          desc: "Pick up for 5s invulnerability — 2 gold.",
-          preview:
+      var SHOP_ITEM_DEFS = (function () {
+        var rows = [
+          [
+            "shopBuyCooldown",
+            "cooldown",
+            "Move Speed",
+            '<span class="shop-preview-cooldown"><span class="shop-preview-cd-hand shop-preview-cd-hand--a" aria-hidden="true"></span><span class="shop-preview-cd-hand shop-preview-cd-hand--b" aria-hidden="true"></span></span>',
+          ],
+          ["shopBuyWall", "wall", "Wall Break", '<span class="shop-preview-wall"></span>'],
+          [
+            "shopBuyInvuln",
+            "invuln",
+            "Invincibility",
             '<span class="shop-preview-invuln-wrap"><span class="shop-preview-invuln"></span></span>',
-        },
-        {
-          id: "shopBuyMagnet",
-          type: "magnet",
-          title: "Magnet token — 2 gold. Pulls gold along rows/columns.",
-          aria: "Buy magnet token for 2 gold",
-          desc:
-            "Pick up for 5s magnet: gold up to 2 tiles away in a straight line pulls toward you — 2 gold.",
-          preview: '<span class="shop-preview-magnet"></span>',
-        },
-        {
-          id: "shopBuyFear",
-          type: "fear",
-          title: "Fear token — 2 gold. Enemies run from you.",
-          aria: "Buy fear token for 2 gold",
-          desc: "Pick up for 5s fear: Oni and minions path away from you — 2 gold.",
-          preview: '<span class="shop-preview-fear"></span>',
-        },
-        {
-          id: "shopBuyBanish",
-          type: "banish",
-          title: "Banish token — 2 gold. Removes one minion.",
-          aria: "Buy banish token for 2 gold",
-          desc: "Pick up to destroy one random minion on the level (hatched imps only) — 2 gold.",
-          preview: '<span class="shop-preview-banish"></span>',
-        },
-        {
-          id: "shopBuyGoldBurst",
-          type: "goldBurst",
-          title: "Bonus gold — 2 gold. Adds 3 coins on the level.",
-          aria: "Buy bonus gold pickup for 2 gold",
-          desc:
-            "Pick up to spawn 3 gold on random empty tiles (never the exit; skips cells that already have gold or another pickup) — 2 gold.",
-          preview:
-            '<span class="shop-preview-gold-burst"><span></span><span></span><span></span></span>',
-        },
-        {
-          id: "shopBuyPhase",
-          type: "phase",
-          title: "Phase token — 2 gold. Walk through walls briefly.",
-          aria: "Buy phase token for 2 gold",
-          desc:
-            "Pick up for 5s phase: move through maze walls (still blocked by the outer edge) — 2 gold.",
-          preview: '<span class="shop-preview-phase"></span>',
-        },
-        {
-          id: "shopBuyStunNova",
-          type: "stunNova",
-          title: "Stun nova — 2 gold. Freezes nearby enemies.",
-          aria: "Buy stun nova for 2 gold",
-          desc:
-            "Pick up to stun all enemies within 3 orthogonal tiles of you (through walls) for 5s — 2 gold.",
-          preview: '<span class="shop-preview-stun-nova"></span>',
-        },
-      ];
+          ],
+          ["shopBuyMagnet", "magnet", "Gold Magnet", '<span class="shop-preview-magnet"></span>'],
+          ["shopBuyFear", "fear", "Fear", '<span class="shop-preview-fear"></span>'],
+          ["shopBuyBanish", "banish", "Banish imp", '<span class="shop-preview-banish"></span>'],
+          [
+            "shopBuyGoldBurst",
+            "goldBurst",
+            "Gold Spread",
+            '<span class="shop-preview-gold-burst" aria-hidden="true"><span class="shop-preview-gold-coin shop-preview-gold-coin--t"></span><span class="shop-preview-gold-coin shop-preview-gold-coin--bl"></span><span class="shop-preview-gold-coin shop-preview-gold-coin--br"></span></span>',
+          ],
+          ["shopBuyPhase", "phase", "Phase", '<span class="shop-preview-phase"></span>'],
+          ["shopBuyStunNova", "stunNova", "Stun Nova", '<span class="shop-preview-stun-nova"></span>'],
+        ];
+        var out = [];
+        var si;
+        for (si = 0; si < rows.length; si++) {
+          var z = rows[si];
+          var nm = z[2];
+          out.push({
+            id: z[0],
+            type: z[1],
+            desc: nm,
+            title: nm + " — 2 gold",
+            aria: "Buy " + nm + " for 2 gold",
+            preview: z[3],
+          });
+        }
+        return out;
+      })();
 
       function buildShopBuyButtons(mount) {
         if (!mount) {
@@ -309,8 +270,13 @@
           desc.className = "shop-item-desc";
           desc.textContent = it.desc;
           main.appendChild(desc);
+          var costLbl = document.createElement("span");
+          costLbl.className = "shop-item-cost";
+          costLbl.textContent = "Cost: " + SHOP_PRICE_GOLD;
+          costLbl.setAttribute("aria-hidden", "true");
           btn.appendChild(pv);
           btn.appendChild(main);
+          btn.appendChild(costLbl);
           frag.appendChild(btn);
         }
         mount.appendChild(frag);
@@ -358,6 +324,8 @@
       var GOLD_PICKUPS_PER_LEVEL = 10;
       var GOLD_BURST_SPAWN_COUNT = 3;
       var pendingCoinKeys = new Set();
+      var playerPickupFlashes = [];
+      var FLASH_DURATION_MS = 450;
 
       var rows;
       var cols;
@@ -428,7 +396,10 @@
       function effectiveCooldownMs() {
         return Math.max(
           MIN_COOLDOWN_MS,
-          COOLDOWN_MS_BASE - cooldownReductionPurchases * COOLDOWN_REDUCTION_PER_BUY
+          Math.round(
+            COOLDOWN_MS_BASE *
+              Math.pow(COOLDOWN_MULT_PER_PICKUP, cooldownReductionPurchases)
+          )
         );
       }
 
@@ -441,8 +412,9 @@
           currentLevel +
           "/" +
           MAX_LEVEL +
-          "<br>Gold " +
-          goldWallet;
+          '<br><span class="coin-counter-gold">Gold ' +
+          goldWallet +
+          "</span>";
       }
 
       function countOwnedCooldownSlots() {
@@ -456,35 +428,59 @@
         return n;
       }
 
-      function formatOwnedPowerupsLine() {
+      function getOwnedPowerupCounts() {
         var counts = Object.create(null);
         var i;
         for (i = 0; i < ownedPowerups.length; i++) {
           var t = ownedPowerups[i].type;
           counts[t] = (counts[t] || 0) + 1;
         }
-        return (
-          "Spawns per level: " +
-          ownedPowerups.length +
-          " — CD " +
-          (counts.cooldown || 0) +
-          " · Wall " +
-          (counts.wall || 0) +
-          " · Inv " +
-          (counts.invuln || 0) +
-          " · Mag " +
-          (counts.magnet || 0) +
-          " · Fear " +
-          (counts.fear || 0) +
-          " · Ban " +
-          (counts.banish || 0) +
-          " · +3G " +
-          (counts.goldBurst || 0) +
-          " · Ph " +
-          (counts.phase || 0) +
-          " · Stun " +
-          (counts.stunNova || 0)
+        return counts;
+      }
+
+      function escapeAttrHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/"/g, "&quot;")
+          .replace(/</g, "&lt;");
+      }
+
+      function buildShopOwnedPowerupsHtml() {
+        var counts = getOwnedPowerupCounts();
+        var total = ownedPowerups.length;
+        var parts = [];
+        parts.push(
+          '<div class="shop-owned-label">Powerups per level: ' + total + "</div>"
         );
+        parts.push('<div class="shop-owned-grid" role="list">');
+        var ii;
+        for (ii = 0; ii < SHOP_ITEM_DEFS.length; ii++) {
+          var def = SHOP_ITEM_DEFS[ii];
+          var c = counts[def.type] || 0;
+          if (c < 1) {
+            continue;
+          }
+          var tip = escapeAttrHtml(def.desc || def.title);
+          var ariaName = def.desc || def.type;
+          var ariaFull =
+            ariaName + ", " + c + (c === 1 ? " spawn" : " spawns") + " per level";
+          parts.push(
+            '<div class="shop-owned-slot" role="listitem" title="' +
+              tip +
+              '" aria-label="' +
+              escapeAttrHtml(ariaFull) +
+              '">' +
+              '<div class="shop-owned-mini">' +
+              def.preview +
+              "</div>" +
+              '<span class="shop-owned-count" aria-hidden="true">' +
+              c +
+              "</span>" +
+              "</div>"
+          );
+        }
+        parts.push("</div>");
+        return parts.join("");
       }
 
       function updateShopUi() {
@@ -492,7 +488,7 @@
           shopGoldLine.textContent = "Gold: " + goldWallet;
         }
         if (shopOwnedLine) {
-          shopOwnedLine.textContent = formatOwnedPowerupsLine();
+          shopOwnedLine.innerHTML = buildShopOwnedPowerupsHtml();
         }
         var canBuy = goldWallet >= SHOP_PRICE_GOLD;
         var si;
@@ -513,7 +509,20 @@
         el.setAttribute("aria-hidden", hidden ? "true" : "false");
       }
 
+      var shopContinueArmTimer = null;
+
+      function resetShopContinueButton() {
+        if (shopContinueArmTimer !== null) {
+          clearTimeout(shopContinueArmTimer);
+          shopContinueArmTimer = null;
+        }
+        if (shopContinueBtn) {
+          shopContinueBtn.disabled = false;
+        }
+      }
+
       function hideAllGameOverlays() {
+        resetShopContinueButton();
         setOverlayHidden(winOverlay, true);
         setOverlayHidden(loseOverlay, true);
         setOverlayHidden(shopOverlay, true);
@@ -523,9 +532,20 @@
       function showShopOverlay() {
         setOverlayHidden(shopOverlay, false);
         updateShopUi();
+        resetShopContinueButton();
+        if (shopContinueBtn) {
+          shopContinueBtn.disabled = true;
+        }
+        shopContinueArmTimer = setTimeout(function () {
+          shopContinueArmTimer = null;
+          if (shopContinueBtn) {
+            shopContinueBtn.disabled = false;
+          }
+        }, 500);
       }
 
       function hideShopOverlay() {
+        resetShopContinueButton();
         setOverlayHidden(shopOverlay, true);
       }
 
@@ -572,14 +592,20 @@
         }
       }
 
+      function addPickupFlash(type, now) {
+        playerPickupFlashes.push({ type: type, startMs: now });
+      }
+
       var POWERUP_APPLY = {
         cooldown: function (now) {
           if (cooldownReductionPurchases < MAX_COOLDOWN_PURCHASES) {
             cooldownReductionPurchases++;
           }
+          addPickupFlash("cooldown", now);
         },
         wall: function (now) {
           wallBreakCharges++;
+          addPickupFlash("wall", now);
         },
         invuln: function (now) {
           invulnerableUntilMs = now + 5000;
@@ -594,15 +620,18 @@
         },
         banish: function (now) {
           banishOneRandomMinion();
+          addPickupFlash("banish", now);
         },
         goldBurst: function (now) {
           spawnExtraGoldPickups(GOLD_BURST_SPAWN_COUNT);
+          addPickupFlash("goldBurst", now);
         },
         phase: function (now) {
           phaseUntilMs = now + PHASE_DURATION_MS;
         },
         stunNova: function (now) {
           applyOrthogonalStunNova(now);
+          addPickupFlash("stunNova", now);
         },
       };
 
@@ -728,19 +757,16 @@
       }
 
       function hasInternalWallInDir(r, c, dir) {
-        if (dir === "north") {
-          return r > 0 && (grid[r][c] & N);
+        var d = DIR_MOVE[dir];
+        if (!d) {
+          return false;
         }
-        if (dir === "south") {
-          return r < rows - 1 && (grid[r][c] & S);
+        var nr = r + d.dr;
+        var nc = c + d.dc;
+        if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) {
+          return false;
         }
-        if (dir === "east") {
-          return c < cols - 1 && (grid[r][c] & E);
-        }
-        if (dir === "west") {
-          return c > 0 && (grid[r][c] & W);
-        }
-        return false;
+        return !!(grid[r][c] & d.m);
       }
 
       function canBufferDir(dir) {
@@ -760,82 +786,33 @@
       }
 
       function tryOpenInternalWallForPlayer(r, c, dir) {
-        if (dir === "north") {
-          if (r <= 0) {
-            return false;
-          }
-          if (!(grid[r][c] & N)) {
-            return false;
-          }
-          grid[r][c] &= ~N;
-          grid[r - 1][c] &= ~S;
-          monsterFearPreviewCache = null;
-          if (performance.now() < fearUntilMs) {
-            clearMinionPlannedPathsForFear();
-          }
-          return true;
+        var d = DIR_MOVE[dir];
+        if (!d) {
+          return false;
         }
-        if (dir === "south") {
-          if (r >= rows - 1) {
-            return false;
-          }
-          if (!(grid[r][c] & S)) {
-            return false;
-          }
-          grid[r][c] &= ~S;
-          grid[r + 1][c] &= ~N;
-          monsterFearPreviewCache = null;
-          if (performance.now() < fearUntilMs) {
-            clearMinionPlannedPathsForFear();
-          }
-          return true;
+        var nr = r + d.dr;
+        var nc = c + d.dc;
+        if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) {
+          return false;
         }
-        if (dir === "east") {
-          if (c >= cols - 1) {
-            return false;
-          }
-          if (!(grid[r][c] & E)) {
-            return false;
-          }
-          grid[r][c] &= ~E;
-          grid[r][c + 1] &= ~W;
-          monsterFearPreviewCache = null;
-          if (performance.now() < fearUntilMs) {
-            clearMinionPlannedPathsForFear();
-          }
-          return true;
+        if (!(grid[r][c] & d.m)) {
+          return false;
         }
-        if (dir === "west") {
-          if (c <= 0) {
-            return false;
-          }
-          if (!(grid[r][c] & W)) {
-            return false;
-          }
-          grid[r][c] &= ~W;
-          grid[r][c - 1] &= ~E;
-          monsterFearPreviewCache = null;
-          if (performance.now() < fearUntilMs) {
-            clearMinionPlannedPathsForFear();
-          }
-          return true;
+        grid[r][c] &= ~d.m;
+        grid[nr][nc] &= ~d.o;
+        monsterFearPreviewCache = null;
+        if (performance.now() < fearUntilMs) {
+          clearMinionPlannedPathsForFear();
         }
-        return false;
+        return true;
       }
 
       function neighborCell(r, c, dir) {
-        var nr = r;
-        var nc = c;
-        if (dir === "north") {
-          nr--;
-        } else if (dir === "south") {
-          nr++;
-        } else if (dir === "east") {
-          nc++;
-        } else {
-          nc--;
+        var d = DIR_MOVE[dir];
+        if (!d) {
+          return { r: r, c: c };
         }
-        return { r: nr, c: nc };
+        return { r: r + d.dr, c: c + d.dc };
       }
 
       function scatterCoins() {
@@ -1984,6 +1961,7 @@
         fearUntilMs = 0;
         phaseUntilMs = 0;
         monsterStunnedUntilMs = 0;
+        playerPickupFlashes = [];
         lastGameTickMs = 0;
         var startT = performance.now();
         monsterGrowStartMs = startT;
@@ -2088,33 +2066,59 @@
         ctx.stroke();
       }
 
+      function puHighlight(ctx, cx, cy, rad) {
+        var hg = ctx.createRadialGradient(
+          cx - rad * 0.3, cy - rad * 0.35, rad * 0.05,
+          cx - rad * 0.1, cy - rad * 0.15, rad * 0.55
+        );
+        hg.addColorStop(0, "rgba(255,255,255,0.55)");
+        hg.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = hg;
+        ctx.beginPath();
+        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      var POWERUP_MAZE_VISUAL_SCALE = 1.4;
+
       var POWERUP_DRAW = {
-        invuln: function (ctx, px, py, cellSize, ph) {
-          ctx.fillStyle = "rgba(120, 220, 255, 0.65)";
-          ctx.beginPath();
-          ctx.moveTo(px, py - ph);
-          ctx.lineTo(px + ph, py);
-          ctx.lineTo(px, py + ph);
-          ctx.lineTo(px - ph, py);
-          ctx.closePath();
-          ctx.fill();
-          puStrokeStd(ctx, cellSize, "#4ad0f0");
-        },
         cooldown: function (ctx, px, py, cellSize) {
-          var cr = Math.max(3, cellSize * 0.13);
-          ctx.fillStyle = "rgba(200, 140, 255, 0.55)";
+          var cr = Math.max(3, cellSize * 0.14);
+          var grd = ctx.createRadialGradient(
+            px - cr * 0.3, py - cr * 0.3, cr * 0.1,
+            px, py, cr
+          );
+          grd.addColorStop(0, "#e8bfff");
+          grd.addColorStop(0.4, "#c080ff");
+          grd.addColorStop(1, "#7040b0");
+          ctx.fillStyle = grd;
           ctx.beginPath();
           ctx.arc(px, py, cr, 0, Math.PI * 2);
           ctx.fill();
-          puStrokeStd(ctx, cellSize, "#a070e0");
+          puStrokeStd(ctx, cellSize, "#9050d8");
+          puHighlight(ctx, px, py, cr);
+          var hand = Math.max(1, cellSize * 0.035);
+          ctx.strokeStyle = "rgba(255,255,255,0.75)";
+          ctx.lineWidth = hand;
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(px, py - cr * 0.55);
+          ctx.moveTo(px, py);
+          ctx.lineTo(px + cr * 0.4, py + cr * 0.1);
+          ctx.stroke();
         },
         wall: function (ctx, px, py, cellSize) {
-          var bw = Math.max(5, cellSize * 0.2);
-          var bh = Math.max(4, cellSize * 0.14);
-          ctx.fillStyle = "rgba(180, 130, 80, 0.7)";
+          var bw = Math.max(6, cellSize * 0.22);
+          var bh = Math.max(5, cellSize * 0.16);
           var rx = px - bw / 2;
           var ry = py - bh / 2;
-          var rr = cellSize * 0.08;
+          var rr = cellSize * 0.06;
+          var wg = ctx.createLinearGradient(rx, ry, rx + bw, ry + bh);
+          wg.addColorStop(0, "#e8c880");
+          wg.addColorStop(0.35, "#c49848");
+          wg.addColorStop(0.7, "#8b6040");
+          wg.addColorStop(1, "#5a3420");
+          ctx.fillStyle = wg;
           ctx.beginPath();
           ctx.moveTo(rx + rr, ry);
           ctx.lineTo(rx + bw - rr, ry);
@@ -2127,58 +2131,142 @@
           ctx.quadraticCurveTo(rx, ry, rx + rr, ry);
           ctx.closePath();
           ctx.fill();
-          puStrokeStd(ctx, cellSize, "#8b6040");
-        },
-        magnet: function (ctx, px, py, cellSize) {
-          var mw = Math.max(10, cellSize * 0.26);
-          var mh = Math.max(8, cellSize * 0.2);
-          var mrx = px - mw / 2;
-          var mry = py - mh / 2;
-          var arcY = mry + mh - mw / 2;
-          if (arcY < mry + mw * 0.15) {
-            arcY = mry + mw * 0.15;
-          }
-          var rCup = mw / 2;
-          ctx.fillStyle = "rgba(200, 90, 90, 0.5)";
+          puStrokeStd(ctx, cellSize, "#5a3420");
+          ctx.strokeStyle = "rgba(60,30,10,0.4)";
+          ctx.lineWidth = Math.max(1, cellSize * 0.025);
           ctx.beginPath();
-          ctx.moveTo(mrx, mry);
-          ctx.lineTo(mrx + mw, mry);
-          ctx.lineTo(mrx + mw, arcY);
-          ctx.arc(px, arcY, rCup, 0, Math.PI, false);
-          ctx.lineTo(mrx, mry);
+          ctx.moveTo(px, ry);
+          ctx.lineTo(px, ry + bh);
+          ctx.moveTo(rx, py);
+          ctx.lineTo(rx + bw, py);
+          ctx.stroke();
+          var hg = ctx.createLinearGradient(rx, ry, rx, ry + bh * 0.35);
+          hg.addColorStop(0, "rgba(255,255,255,0.35)");
+          hg.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.fillStyle = hg;
+          ctx.fillRect(rx + 1, ry + 1, bw - 2, bh * 0.35);
+        },
+        invuln: function (ctx, px, py, cellSize) {
+          var ph = Math.max(4, cellSize * 0.18);
+          var ig = ctx.createLinearGradient(px - ph, py - ph, px + ph, py + ph);
+          ig.addColorStop(0, "#c0f0ff");
+          ig.addColorStop(0.35, "#60d8f8");
+          ig.addColorStop(0.7, "#20a0d0");
+          ig.addColorStop(1, "#107090");
+          ctx.fillStyle = ig;
+          ctx.beginPath();
+          ctx.moveTo(px, py - ph);
+          ctx.lineTo(px + ph, py);
+          ctx.lineTo(px, py + ph);
+          ctx.lineTo(px - ph, py);
           ctx.closePath();
           ctx.fill();
-          puStrokeStd(ctx, cellSize, "#a83838");
+          puStrokeStd(ctx, cellSize, "#20b0e0");
+          var shg = ctx.createRadialGradient(
+            px - ph * 0.25, py - ph * 0.3, ph * 0.05,
+            px, py, ph * 0.7
+          );
+          shg.addColorStop(0, "rgba(255,255,255,0.5)");
+          shg.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.fillStyle = shg;
+          ctx.beginPath();
+          ctx.moveTo(px, py - ph);
+          ctx.lineTo(px + ph, py);
+          ctx.lineTo(px, py + ph);
+          ctx.lineTo(px - ph, py);
+          ctx.closePath();
+          ctx.fill();
+        },
+        magnet: function (ctx, px, py, cellSize) {
+          var mw = Math.max(10, cellSize * 0.28);
+          var mh = Math.max(8, cellSize * 0.22);
+          var legW = mw * 0.28;
+          var arcR = mw * 0.5;
+          var topY = py - mh * 0.5;
+          var arcCy = py + mh * 0.08;
+          ctx.strokeStyle = "rgba(0,0,0,0)";
+          ctx.lineWidth = Math.max(1.5, cellSize * 0.04);
+          ctx.fillStyle = "#d04040";
+          ctx.beginPath();
+          ctx.moveTo(px - arcR, topY);
+          ctx.lineTo(px - arcR + legW, topY);
+          ctx.lineTo(px - arcR + legW, arcCy);
+          ctx.arc(px, arcCy, arcR - legW, Math.PI, 0, true);
+          ctx.lineTo(px + arcR, topY);
+          ctx.lineTo(px + arcR, topY);
+          ctx.arc(px, arcCy, arcR, 0, Math.PI, false);
+          ctx.closePath();
+          ctx.fill();
+          var mg = ctx.createLinearGradient(px - arcR, topY, px + arcR, topY);
+          mg.addColorStop(0, "#e06060");
+          mg.addColorStop(0.45, "#d04040");
+          mg.addColorStop(0.55, "#3060d0");
+          mg.addColorStop(1, "#4878e0");
+          ctx.fillStyle = mg;
+          ctx.fill();
+          puStrokeStd(ctx, cellSize, "#802020");
+          var tipH = mh * 0.22;
+          ctx.fillStyle = "#c0c0c0";
+          ctx.fillRect(px - arcR, topY, legW, tipH);
+          ctx.fillRect(px + arcR - legW, topY, legW, tipH);
+          puHighlight(ctx, px, py - mh * 0.15, mw * 0.35);
         },
         fear: function (ctx, px, py, cellSize) {
-          var fw = Math.max(8, cellSize * 0.22);
-          ctx.fillStyle = "rgba(140, 70, 200, 0.55)";
+          var fr = Math.max(5, cellSize * 0.13);
+          var fg = ctx.createRadialGradient(
+            px - fr * 0.25, py - fr * 0.3, fr * 0.1,
+            px, py, fr
+          );
+          fg.addColorStop(0, "#d88aff");
+          fg.addColorStop(0.45, "#9040d0");
+          fg.addColorStop(1, "#3a1060");
+          ctx.fillStyle = fg;
           ctx.beginPath();
-          ctx.arc(px, py, fw * 0.5, 0, Math.PI * 2);
+          ctx.arc(px, py, fr, 0, Math.PI * 2);
           ctx.fill();
-          puStrokeStd(ctx, cellSize, "#8b4dc4");
-          var eye = Math.max(2, cellSize * 0.04);
-          ctx.fillStyle = "rgba(40, 15, 60, 0.85)";
+          puStrokeStd(ctx, cellSize, "#7030b0");
+          puHighlight(ctx, px, py, fr);
+          var eye = Math.max(1.5, cellSize * 0.035);
+          ctx.fillStyle = "#1a0830";
           ctx.beginPath();
-          ctx.arc(px - fw * 0.16, py - eye * 0.2, eye, 0, Math.PI * 2);
-          ctx.arc(px + fw * 0.16, py - eye * 0.2, eye, 0, Math.PI * 2);
+          ctx.arc(px - fr * 0.25, py - eye * 0.3, eye, 0, Math.PI * 2);
+          ctx.arc(px + fr * 0.25, py - eye * 0.3, eye, 0, Math.PI * 2);
           ctx.fill();
+          ctx.strokeStyle = "rgba(255,255,255,0.15)";
+          ctx.lineWidth = Math.max(1, cellSize * 0.02);
+          ctx.beginPath();
+          ctx.arc(px - fr * 0.25, py - eye * 0.3, eye * 0.5, -2.4, -0.8);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(px + fr * 0.25, py - eye * 0.3, eye * 0.5, -2.4, -0.8);
+          ctx.stroke();
         },
         banish: function (ctx, px, py, cellSize) {
           var brad = Math.max(6, cellSize * 0.18);
-          ctx.fillStyle = "rgba(85, 90, 105, 0.7)";
+          var bg = ctx.createRadialGradient(
+            px - brad * 0.25, py - brad * 0.25, brad * 0.08,
+            px, py, brad
+          );
+          bg.addColorStop(0, "#b0b8c8");
+          bg.addColorStop(0.5, "#6a7080");
+          bg.addColorStop(1, "#2a2e38");
+          ctx.fillStyle = bg;
           ctx.beginPath();
           ctx.arc(px, py, brad, 0, Math.PI * 2);
           ctx.fill();
-          puStrokeStd(ctx, cellSize, "#d04545");
-          ctx.strokeStyle = "#ff6b6b";
-          ctx.lineWidth = Math.max(2, cellSize * 0.055);
+          puStrokeStd(ctx, cellSize, "#cc4444");
+          puHighlight(ctx, px, py, brad);
+          var xw = Math.max(1.5, cellSize * 0.05);
+          ctx.strokeStyle = "#ff6060";
+          ctx.lineWidth = xw;
+          ctx.lineCap = "round";
           ctx.beginPath();
-          ctx.moveTo(px - brad * 0.45, py - brad * 0.45);
-          ctx.lineTo(px + brad * 0.45, py + brad * 0.45);
-          ctx.moveTo(px + brad * 0.45, py - brad * 0.45);
-          ctx.lineTo(px - brad * 0.45, py + brad * 0.45);
+          ctx.moveTo(px - brad * 0.42, py - brad * 0.42);
+          ctx.lineTo(px + brad * 0.42, py + brad * 0.42);
+          ctx.moveTo(px + brad * 0.42, py - brad * 0.42);
+          ctx.lineTo(px - brad * 0.42, py + brad * 0.42);
           ctx.stroke();
+          ctx.lineCap = "butt";
         },
         goldBurst: function (ctx, px, py, cellSize) {
           var gsz = cellSize * 0.52;
@@ -2190,32 +2278,69 @@
         },
         phase: function (ctx, px, py, cellSize) {
           var prad = Math.max(7, cellSize * 0.2);
-          ctx.strokeStyle = "rgba(140, 250, 255, 0.95)";
+          var pg = ctx.createRadialGradient(
+            px - prad * 0.2, py - prad * 0.25, prad * 0.05,
+            px, py, prad
+          );
+          pg.addColorStop(0, "rgba(200,255,255,0.4)");
+          pg.addColorStop(0.5, "rgba(80,200,220,0.25)");
+          pg.addColorStop(1, "rgba(40,100,120,0.1)");
+          ctx.fillStyle = pg;
+          ctx.beginPath();
+          ctx.arc(px, py, prad, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = "rgba(140,250,255,0.95)";
           ctx.lineWidth = Math.max(2, cellSize * 0.045);
           ctx.setLineDash([cellSize * 0.1, cellSize * 0.08]);
           ctx.beginPath();
           ctx.arc(px, py, prad, 0, Math.PI * 2);
           ctx.stroke();
           ctx.setLineDash([]);
-          ctx.fillStyle = "rgba(100, 200, 220, 0.25)";
+          puHighlight(ctx, px, py, prad * 0.7);
+          ctx.save();
+          ctx.globalAlpha = 0.3;
+          ctx.strokeStyle = "rgba(140,250,255,0.6)";
+          ctx.lineWidth = Math.max(1, cellSize * 0.025);
+          ctx.setLineDash([cellSize * 0.06, cellSize * 0.06]);
           ctx.beginPath();
-          ctx.arc(px, py, prad * 0.72, 0, Math.PI * 2);
-          ctx.fill();
+          ctx.arc(px, py, prad * 0.6, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.restore();
         },
         stunNova: function (ctx, px, py, cellSize) {
-          var snR = Math.max(8, cellSize * 0.2);
+          var snR = Math.max(8, cellSize * 0.22);
           var spi;
-          ctx.fillStyle = "rgba(255, 230, 120, 0.5)";
+          var sg = ctx.createRadialGradient(
+            px - snR * 0.15, py - snR * 0.2, snR * 0.05,
+            px, py, snR * 0.55
+          );
+          sg.addColorStop(0, "#fffce0");
+          sg.addColorStop(0.35, "#f8e040");
+          sg.addColorStop(1, "#c09020");
+          ctx.fillStyle = sg;
           ctx.beginPath();
           ctx.arc(px, py, snR * 0.55, 0, Math.PI * 2);
           ctx.fill();
-          ctx.strokeStyle = "#e8c040";
-          ctx.lineWidth = Math.max(1, cellSize * 0.04);
+          ctx.strokeStyle = "#d8b030";
+          ctx.lineWidth = Math.max(1, cellSize * 0.035);
+          ctx.stroke();
+          puHighlight(ctx, px, py, snR * 0.5);
+          ctx.lineWidth = Math.max(1.5, cellSize * 0.04);
           for (spi = 0; spi < 8; spi++) {
             var ang = (spi / 8) * Math.PI * 2 - Math.PI / 2;
+            var cs = Math.cos(ang);
+            var sn = Math.sin(ang);
+            var rg = ctx.createLinearGradient(
+              px + cs * snR * 0.45, py + sn * snR * 0.45,
+              px + cs * snR, py + sn * snR
+            );
+            rg.addColorStop(0, "rgba(248,224,64,0.8)");
+            rg.addColorStop(1, "rgba(248,224,64,0)");
+            ctx.strokeStyle = rg;
             ctx.beginPath();
-            ctx.moveTo(px + Math.cos(ang) * snR * 0.35, py + Math.sin(ang) * snR * 0.35);
-            ctx.lineTo(px + Math.cos(ang) * snR * 0.95, py + Math.sin(ang) * snR * 0.95);
+            ctx.moveTo(px + cs * snR * 0.45, py + sn * snR * 0.45);
+            ctx.lineTo(px + cs * snR, py + sn * snR);
             ctx.stroke();
           }
         },
@@ -2326,10 +2451,14 @@
           var pup = pendingLevelPowerups[ppi];
           var px = offsetX + pup.c * cellSize + cellSize / 2;
           var py = offsetY + pup.r * cellSize + cellSize / 2;
-          var ph = Math.max(4, cellSize * 0.16);
           var drawPu = POWERUP_DRAW[pup.type];
           if (drawPu) {
-            drawPu(ctx, px, py, cellSize, ph);
+            ctx.save();
+            ctx.translate(px, py);
+            ctx.scale(POWERUP_MAZE_VISUAL_SCALE, POWERUP_MAZE_VISUAL_SCALE);
+            ctx.translate(-px, -py);
+            drawPu(ctx, px, py, cellSize);
+            ctx.restore();
           }
         }
       }
@@ -2470,10 +2599,226 @@
         }
       }
 
+      function drawInvulnAura(px, py, now) {
+        if (now >= invulnerableUntilMs) {
+          return;
+        }
+        var r = cellSize * 0.38;
+        var breathe = 1.0 + 0.1 * Math.sin(now * 0.005);
+        var sr = r * breathe;
+        var alpha = 0.35 + 0.2 * Math.sin(now * 0.004);
+        ctx.save();
+        ctx.strokeStyle = "rgba(80,220,255," + alpha.toFixed(2) + ")";
+        ctx.lineWidth = Math.max(1.5, cellSize * 0.04);
+        ctx.beginPath();
+        ctx.moveTo(px, py - sr);
+        ctx.lineTo(px + sr, py);
+        ctx.lineTo(px, py + sr);
+        ctx.lineTo(px - sr, py);
+        ctx.closePath();
+        ctx.stroke();
+        var grd = ctx.createRadialGradient(px, py, sr * 0.2, px, py, sr);
+        grd.addColorStop(0, "rgba(80,220,255,0.12)");
+        grd.addColorStop(1, "rgba(80,220,255,0)");
+        ctx.fillStyle = grd;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function drawPhaseAura(px, py, now) {
+        if (now >= phaseUntilMs) {
+          return;
+        }
+        var r = cellSize * 0.42;
+        var rot = (now * 0.002) % (Math.PI * 2);
+        ctx.save();
+        ctx.translate(px, py);
+        ctx.rotate(rot);
+        ctx.strokeStyle = "rgba(140,250,255,0.45)";
+        ctx.lineWidth = Math.max(1.5, cellSize * 0.035);
+        ctx.setLineDash([cellSize * 0.12, cellSize * 0.1]);
+        ctx.beginPath();
+        ctx.arc(0, 0, r, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+      }
+
+      function drawMagnetAura(px, py, now) {
+        if (now >= magnetUntilMs) {
+          return;
+        }
+        var r = cellSize * 0.48;
+        var dotCount = 4;
+        var baseAngle = now * 0.003;
+        var dotR = Math.max(2, cellSize * 0.06);
+        var mi;
+        for (mi = 0; mi < dotCount; mi++) {
+          var ang = baseAngle + (mi / dotCount) * Math.PI * 2;
+          var dx = px + Math.cos(ang) * r;
+          var dy = py + Math.sin(ang) * r;
+          var grd = ctx.createRadialGradient(
+            dx - dotR * 0.3, dy - dotR * 0.3, dotR * 0.1,
+            dx, dy, dotR
+          );
+          grd.addColorStop(0, "#fff4a8");
+          grd.addColorStop(0.5, "#e8c030");
+          grd.addColorStop(1, "#a67c10");
+          ctx.fillStyle = grd;
+          ctx.beginPath();
+          ctx.arc(dx, dy, dotR, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function drawFearAura(px, py, now) {
+        if (now >= fearUntilMs) {
+          return;
+        }
+        var r = cellSize * 0.44;
+        var rot = -(now * 0.0015) % (Math.PI * 2);
+        var alpha = 0.25 + 0.15 * Math.sin(now * 0.006);
+        var arcCount = 3;
+        var arcLen = Math.PI * 0.45;
+        ctx.save();
+        ctx.strokeStyle = "rgba(160,60,240," + alpha.toFixed(2) + ")";
+        ctx.lineWidth = Math.max(2, cellSize * 0.055);
+        ctx.lineCap = "round";
+        var ai;
+        for (ai = 0; ai < arcCount; ai++) {
+          var start = rot + (ai / arcCount) * Math.PI * 2;
+          ctx.beginPath();
+          ctx.arc(px, py, r, start, start + arcLen);
+          ctx.stroke();
+        }
+        ctx.lineCap = "butt";
+        ctx.restore();
+      }
+
+      var FLASH_DRAW = {
+        cooldown: function (ctx, px, py, t) {
+          var scale = 0.5 + t * 0.7;
+          var alpha = 1 - t;
+          var r = cellSize * 0.3 * scale;
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.6;
+          ctx.strokeStyle = "#d0b0ff";
+          ctx.lineWidth = Math.max(1, cellSize * 0.03);
+          ctx.beginPath();
+          ctx.arc(px, py, r, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.strokeStyle = "rgba(255,255,255,0.8)";
+          ctx.lineWidth = Math.max(1, cellSize * 0.025);
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(px, py - r * 0.6);
+          ctx.moveTo(px, py);
+          ctx.lineTo(px + r * 0.4, py + r * 0.1);
+          ctx.stroke();
+          ctx.restore();
+        },
+        wall: function (ctx, px, py, t) {
+          var alpha = 1 - t;
+          var spread = cellSize * 0.15 + t * cellSize * 0.3;
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.7;
+          ctx.strokeStyle = "#c09050";
+          ctx.lineWidth = Math.max(1.5, cellSize * 0.04);
+          ctx.lineCap = "round";
+          var wi;
+          for (wi = 0; wi < 6; wi++) {
+            var wa = (wi / 6) * Math.PI * 2;
+            ctx.beginPath();
+            ctx.moveTo(
+              px + Math.cos(wa) * spread * 0.3,
+              py + Math.sin(wa) * spread * 0.3
+            );
+            ctx.lineTo(
+              px + Math.cos(wa) * spread,
+              py + Math.sin(wa) * spread
+            );
+            ctx.stroke();
+          }
+          ctx.lineCap = "butt";
+          ctx.restore();
+        },
+        banish: function (ctx, px, py, t) {
+          var scale = 0.4 + t * 0.8;
+          var alpha = 1 - t;
+          var arm = cellSize * 0.22 * scale;
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.75;
+          ctx.strokeStyle = "#ff5050";
+          ctx.lineWidth = Math.max(2, cellSize * 0.06);
+          ctx.lineCap = "round";
+          ctx.beginPath();
+          ctx.moveTo(px - arm, py - arm);
+          ctx.lineTo(px + arm, py + arm);
+          ctx.moveTo(px + arm, py - arm);
+          ctx.lineTo(px - arm, py + arm);
+          ctx.stroke();
+          ctx.lineCap = "butt";
+          ctx.restore();
+        },
+        goldBurst: function (ctx, px, py, t) {
+          var alpha = 1 - t;
+          var dist = cellSize * (0.1 + t * 0.35);
+          var dotR = Math.max(1.5, cellSize * 0.04) * (1 - t * 0.5);
+          ctx.save();
+          ctx.globalAlpha = alpha * 0.7;
+          var gi;
+          for (gi = 0; gi < 8; gi++) {
+            var ga = (gi / 8) * Math.PI * 2 - Math.PI / 2;
+            var gx = px + Math.cos(ga) * dist;
+            var gy = py + Math.sin(ga) * dist;
+            ctx.fillStyle = "#f0d040";
+            ctx.beginPath();
+            ctx.arc(gx, gy, dotR, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        },
+        stunNova: function (ctx, px, py, t) {
+          var alpha = (1 - t) * 0.6;
+          var r = cellSize * (0.2 + t * 0.5);
+          ctx.save();
+          ctx.globalAlpha = alpha;
+          ctx.strokeStyle = "#f8e040";
+          ctx.lineWidth = Math.max(2, cellSize * 0.05) * (1 - t * 0.5);
+          ctx.beginPath();
+          ctx.arc(px, py, r, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        },
+      };
+
+      function drawPickupFlashes(px, py, now) {
+        var fi = playerPickupFlashes.length - 1;
+        while (fi >= 0) {
+          var fl = playerPickupFlashes[fi];
+          var elapsed = now - fl.startMs;
+          if (elapsed >= FLASH_DURATION_MS) {
+            playerPickupFlashes.splice(fi, 1);
+            fi--;
+            continue;
+          }
+          var t = clamp01(elapsed / FLASH_DURATION_MS);
+          var fn = FLASH_DRAW[fl.type];
+          if (fn) {
+            fn(ctx, px, py, t);
+          }
+          fi--;
+        }
+      }
+
       function drawPlayerAvatar(nowDraw) {
         var ppos = getPlayerPixelPos(nowDraw);
         var px = ppos.x;
         var py = ppos.y;
+
+        drawInvulnAura(px, py, nowDraw);
+        drawPhaseAura(px, py, nowDraw);
+
         if (nowDraw < phaseUntilMs) {
           ctx.save();
           ctx.globalAlpha = 0.62;
@@ -2489,6 +2834,10 @@
         if (nowDraw < phaseUntilMs) {
           ctx.restore();
         }
+
+        drawMagnetAura(px, py, nowDraw);
+        drawFearAura(px, py, nowDraw);
+        drawPickupFlashes(px, py, nowDraw);
       }
 
       function draw() {
@@ -2536,28 +2885,20 @@
       };
 
       function canStepFrom(r, c, dir, nowMs) {
-        var stepNow = nowMs !== undefined ? nowMs : performance.now();
-        if (stepNow < phaseUntilMs) {
-          if (dir === "north") {
-            return r > 0;
-          }
-          if (dir === "south") {
-            return r < rows - 1;
-          }
-          if (dir === "east") {
-            return c < cols - 1;
-          }
-          if (dir === "west") {
-            return c > 0;
-          }
+        var d = DIR_MOVE[dir];
+        if (!d) {
           return false;
         }
-        var w = grid[r][c];
-        if (dir === "north") return !(w & N) && r > 0;
-        if (dir === "south") return !(w & S) && r < rows - 1;
-        if (dir === "east") return !(w & E) && c < cols - 1;
-        if (dir === "west") return !(w & W) && c > 0;
-        return false;
+        var stepNow = nowMs !== undefined ? nowMs : performance.now();
+        var nr = r + d.dr;
+        var nc = c + d.dc;
+        if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) {
+          return false;
+        }
+        if (stepNow < phaseUntilMs) {
+          return true;
+        }
+        return !(grid[r][c] & d.m);
       }
 
       function attemptMove(dir) {
@@ -2582,15 +2923,11 @@
             return false;
           }
           wallBreakCharges--;
-          breakOpenTwoByTwo(grid, rows, cols);
         }
 
-        var nr = playerR;
-        var nc = playerC;
-        if (dir === "north") nr--;
-        else if (dir === "south") nr++;
-        else if (dir === "east") nc++;
-        else nc--;
+        var dm = DIR_MOVE[dir];
+        var nr = playerR + (dm ? dm.dr : 0);
+        var nc = playerC + (dm ? dm.dc : 0);
 
         var oldPr = playerR;
         var oldPc = playerC;
